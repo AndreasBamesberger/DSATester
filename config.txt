@@ -1,0 +1,15 @@
+#input file: SianaHaimamudsuniashShaya.xml
+input file: Billabong_v02.xml
+output file: output.csv
+#interface: CLI
+interface: GUI
+#dice: manual
+dice: auto
+
+#1k display
+scaling: 1.5
+font: none 14 bold
+
+#4k display
+#scaling: 0.5
+#font: none 20 bold
