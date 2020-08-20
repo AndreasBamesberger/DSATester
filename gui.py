@@ -173,8 +173,6 @@ class GUI():
         else:
             self.state.mod = 0
 
-        if self.state.category == "attr"
-
     def setup_window(self):
         """ clear all widgets and, based on current test category, set up screen again """
         self.text_outputs.clear()
