@@ -1,11 +1,11 @@
+""" command line interface, communicates with GameLogic """
 import re
 from game_backend import GameLogic, GameState
-#from interface import Interface
 
 game = GameLogic()
 
-#class CLI(Interface):
 class CLI:
+    """ command line interface, communicates with GameLogic """
     def __init__(self):
         self.state = GameState()
         self.read_config("config.txt")
