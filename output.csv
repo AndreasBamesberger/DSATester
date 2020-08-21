@@ -31,3 +31,7 @@ spell,8; 2; 14,Caldofrigo heiß und kalt,10,-2,5,Roll#2: spell test,2020-08-21 1
 attr,6,Körperkraft,11,-2,3,Roll#1: attr test,2020-08-21 12:46:07.037290
 skill,6; 15; 16,Sprachen kennen Zhayad,6,-2,3,Roll#2: k,2020-08-21 12:47:57.648777
 attr,9,Körperkraft,11,2,4,Roll#1: test,2020-08-21 12:51:01.812364
+misc,78; 57; 18,,,-3,150,Roll#1: misc test,2020-08-21 13:19:20.544506
+misc,8,,,0,8,Roll#2: misc test,2020-08-21 13:19:29.847413
+misc,10; 8,,,0,18,Roll#1: misc test,2020-08-21 13:20:27.962394
+misc,1; 14; 15; 5; 17; 1; 13; 18; 2; 2; 13; 16; 12; 6; 18; 10; 19; 5; 18; 8,,,3,216,Roll#2: misc test,2020-08-21 13:20:47.915956

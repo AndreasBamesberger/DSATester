@@ -57,11 +57,11 @@ class CLI:
         if self.state.first_input in ("exit", "quit"):
             raise SystemExit
 
-        pattern1 = "^(\d+)[d,D](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
+        pattern1 = "^(\d+)[dD](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
 
-        pattern2 = "^(\d+)[d,D](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+        pattern2 = "^(\d+)[dD](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
 
-        pattern3 = "^(\d+)[d,D](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+        pattern3 = "^(\d+)[dD](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
 
         match1 = re.match(pattern1, self.state.first_input)
         if match1:
@@ -80,7 +80,10 @@ class CLI:
             self.state.category = "misc"
             self.state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
             self.state.mod = int(match3.groups()[2]) * -1
-        if self.state.category != "misc":
+
+        if self.state.category == "misc":
+            return_value = True
+        else:
             self.state = game.autocomplete(self.state)
             if not self.state.option_list:
                 self.display_message("No matches found")
