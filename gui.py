@@ -295,10 +295,142 @@ class GUI():
                    ["var_tested", '', 5, 1, tk.W],
                    ["value", "Value: ", 6, 0, tk.E],
                    ["var_value", '', 6, 1, tk.W],
-                   ["mod_output", "Mod: ", 7, 0, tk.E],
-                   ["var_mod_output", '', 7, 1, tk.W],
+                   ["rolls", "Rolls: ", 7, 0, tk.E],
+                   ["var_rolls", '', 7, 1, tk.W],
+                   ["result", "Result: ", 9, 0, tk.E],
+                   ["var_result", '', 9, 1, tk.W],
+                   ["desc", "Description: ", 10, 0, tk.E]]
+
+        for _, value in enumerate(outputs):
+            key = value[0]
+            text = value[1]
+            row = value[2]
+            column = value[3]
+            sticky = value[4]
+
+            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
+            temp.grid(row=row, column=column, sticky=sticky)
+
+            self.text_outputs.update({key:temp})
+
+        inputs = [["mod", 20, 3, 1, tk.W],
+                  ["desc", 20, 10, 1, tk.W]]
+        for _, value in enumerate(inputs):
+            key = value[0]
+            width = value[1]
+            row = value[2]
+            column = value[3]
+            sticky = value[4]
+
+            temp = tk.Entry(self.window, width=width, bg="white")
+            temp.grid(row=row, column=column, sticky=sticky)
+
+            self.text_inputs.update({key: temp})
+
+        self.text_inputs.update({"first_input": self.input_firstinput})
+
+        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
+                   ["save", "Save", 4, self.button_save, 11, 0, False]]
+
+        for _, value in enumerate(buttons):
+            key = value[0]
+            text = value[1]
+            width = value[2]
+            command = value[3]
+            row = value[4]
+            column = value[5]
+            sticky = value[6]
+
+            temp = tk.Button(self.window, text=text, width=width, command=command)
+            if sticky:
+                temp.grid(row=row, column=column, sticky=sticky)
+            else:
+                temp.grid(row=row, column=column)
+
+            self.buttons.update({key: temp})
+
+    def setup_fight_talent_screen(self):
+        """ create tkinter widgets """
+        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+                   ["var_roll_nr", '', 0, 1, tk.W],
+                   ["matching", "Matching: ", 2, 0, tk.E],
+                   ["var_matching", '', 2, 1, tk.W],
+                   ["mod", "Modifier: ", 3, 0, tk.E],
+                   ["tested", "Tested fight talent: ", 5, 0, tk.E],
+                   ["var_tested", '', 5, 1, tk.W],
+                   ["value", "Value: ", 6, 0, tk.E],
+                   ["var_value", '', 6, 1, tk.W],
+                   ["rolls", "Rolls: ", 7, 0, tk.E],
+                   ["var_rolls", '', 7, 1, tk.W],
+                   ["result", "Result: ", 8, 0, tk.E],
+                   ["var_result", '', 8, 1, tk.W],
+                   ["desc", "Description: ", 9, 0, tk.E]]
+
+        for _, value in enumerate(outputs):
+            key = value[0]
+            text = value[1]
+            row = value[2]
+            column = value[3]
+            sticky = value[4]
+
+            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
+            temp.grid(row=row, column=column, sticky=sticky)
+
+            self.text_outputs.update({key:temp})
+
+        inputs = [["mod", 20, 3, 1, tk.W],
+                  ["desc", 20, 9, 1, tk.W]]
+        for _, value in enumerate(inputs):
+            key = value[0]
+            width = value[1]
+            row = value[2]
+            column = value[3]
+            sticky = value[4]
+
+            temp = tk.Entry(self.window, width=width, bg="white")
+            temp.grid(row=row, column=column, sticky=sticky)
+
+            self.text_inputs.update({key: temp})
+
+        self.text_inputs.update({"first_input": self.input_firstinput})
+
+        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
+                   ["save", "Save", 4, self.button_save, 10, 0, False]]
+
+        for _, value in enumerate(buttons):
+            key = value[0]
+            text = value[1]
+            width = value[2]
+            command = value[3]
+            row = value[4]
+            column = value[5]
+            sticky = value[6]
+
+            temp = tk.Button(self.window, text=text, width=width, command=command)
+            if sticky:
+                temp.grid(row=row, column=column, sticky=sticky)
+            else:
+                temp.grid(row=row, column=column)
+
+            self.buttons.update({key: temp})
+
+    def setup_skill_screen(self):
+        """ create tkinter widgets """
+        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+                   ["var_roll_nr", '', 0, 1, tk.W],
+                   ["matching", "Matching: ", 2, 0, tk.E],
+                   ["var_matching", '', 2, 1, tk.W],
+                   ["mod", "Modifier: ", 3, 0, tk.E],
+                   ["tested", "Tested skill/spell: ", 5, 0, tk.E],
+                   ["var_tested", '', 5, 1, tk.W],
+                   ["tested_attrs", "Tested attributes: ", 6, 0, tk.E],
+                   ["var_tested_attrs", '', 6, 1, tk.W],
+                   ["value", "Value: ", 7, 0, tk.E],
+                   ["var_value", '', 7, 1, tk.W],
                    ["rolls", "Rolls: ", 8, 0, tk.E],
                    ["var_rolls", '', 8, 1, tk.W],
+                   ["remaining", "Attribute values remaining: ", 9, 0, tk.E],
+                   ["var_remaining", '', 9, 1, tk.W],
                    ["result", "Result: ", 10, 0, tk.E],
                    ["var_result", '', 10, 1, tk.W],
                    ["desc", "Description: ", 11, 0, tk.E]]
@@ -333,144 +465,6 @@ class GUI():
 
         buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
                    ["save", "Save", 4, self.button_save, 12, 0, False]]
-
-        for _, value in enumerate(buttons):
-            key = value[0]
-            text = value[1]
-            width = value[2]
-            command = value[3]
-            row = value[4]
-            column = value[5]
-            sticky = value[6]
-
-            temp = tk.Button(self.window, text=text, width=width, command=command)
-            if sticky:
-                temp.grid(row=row, column=column, sticky=sticky)
-            else:
-                temp.grid(row=row, column=column)
-
-            self.buttons.update({key: temp})
-
-    def setup_fight_talent_screen(self):
-        """ create tkinter widgets """
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
-                   ["var_roll_nr", '', 0, 1, tk.W],
-                   ["matching", "Matching: ", 2, 0, tk.E],
-                   ["var_matching", '', 2, 1, tk.W],
-                   ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested fight talent: ", 5, 0, tk.E],
-                   ["var_tested", '', 5, 1, tk.W],
-                   ["value", "Value: ", 6, 0, tk.E],
-                   ["var_value", '', 6, 1, tk.W],
-                   ["mod_output", "Mod: ", 7, 0, tk.E],
-                   ["var_mod_output", '', 7, 1, tk.W],
-                   ["rolls", "Rolls: ", 7, 0, tk.E],
-                   ["var_rolls", '', 7, 1, tk.W],
-                   ["result", "Result: ", 9, 0, tk.E],
-                   ["var_result", '', 9, 1, tk.W],
-                   ["desc", "Description: ", 10, 0, tk.E]]
-
-        for _, value in enumerate(outputs):
-            key = value[0]
-            text = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_outputs.update({key:temp})
-
-        inputs = [["mod", 20, 3, 1, tk.W],
-                  ["desc", 20, 11, 1, tk.W]]
-        for _, value in enumerate(inputs):
-            key = value[0]
-            width = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Entry(self.window, width=width, bg="white")
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_inputs.update({key: temp})
-
-        self.text_inputs.update({"first_input": self.input_firstinput})
-
-        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
-                   ["save", "Save", 4, self.button_save, 12, 0, False]]
-
-        for _, value in enumerate(buttons):
-            key = value[0]
-            text = value[1]
-            width = value[2]
-            command = value[3]
-            row = value[4]
-            column = value[5]
-            sticky = value[6]
-
-            temp = tk.Button(self.window, text=text, width=width, command=command)
-            if sticky:
-                temp.grid(row=row, column=column, sticky=sticky)
-            else:
-                temp.grid(row=row, column=column)
-
-            self.buttons.update({key: temp})
-
-    def setup_skill_screen(self):
-        """ create tkinter widgets """
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
-                   ["var_roll_nr", '', 0, 1, tk.W],
-                   ["matching", "Matching: ", 2, 0, tk.E],
-                   ["var_matching", '', 2, 1, tk.W],
-                   ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested skill/spell: ", 5, 0, tk.E],
-                   ["var_tested", '', 5, 1, tk.W],
-                   ["tested_attrs", "Tested attributes: ", 6, 0, tk.E],
-                   ["var_tested_attrs", '', 6, 1, tk.W],
-                   ["value", "Value: ", 7, 0, tk.E],
-                   ["var_value", '', 7, 1, tk.W],
-                   ["mod_output", "Mod: ", 8, 0, tk.E],
-                   ["var_mod_output", '', 8, 1, tk.W],
-                   ["rolls", "Rolls: ", 9, 0, tk.E],
-                   ["var_rolls", '', 9, 1, tk.W],
-                   ["remaining", "Attribute values remaining: ", 10, 0, tk.E],
-                   ["var_remaining", '', 10, 1, tk.W],
-                   ["result", "Result: ", 11, 0, tk.E],
-                   ["var_result", '', 11, 1, tk.W],
-                   ["desc", "Description: ", 12, 0, tk.E]]
-
-        for _, value in enumerate(outputs):
-            key = value[0]
-            text = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_outputs.update({key:temp})
-
-        inputs = [["mod", 20, 3, 1, tk.W],
-                  ["desc", 20, 12, 1, tk.W]]
-        for _, value in enumerate(inputs):
-            key = value[0]
-            width = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Entry(self.window, width=width, bg="white")
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_inputs.update({key: temp})
-
-        self.text_inputs.update({"first_input": self.input_firstinput})
-
-        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
-                   ["save", "Save", 4, self.button_save, 13, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]

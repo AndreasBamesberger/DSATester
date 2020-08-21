@@ -12,3 +12,8 @@ fight_talent,7,AT Ringen,14,2,9,Roll#3: at ringen test,2020-08-20 13:48:43.22156
 fight_talent,20,AT Hiebwaffen,9,2,-9,Roll#4: at hiebwaffen test,2020-08-20 13:49:18.138345
 skill,4; 17; 18,Sinnenschärfe,9,2,4,Roll#1: test,2020-08-20 14:03:19.725130
 fight_talent,3,PA Dolche,11,3,11,Roll#1: test,2020-08-20 14:49:56.210048
+attr,4,Fingerfertigkeit,12,-2,6,Roll#1: ff test,2020-08-21 10:45:12.600307
+skill,2; 16; 6,Klettern,2,0,1,Roll#2: klettern test,2020-08-21 10:45:48.517919
+fight_talent,16,AT Infanteriewaffen,21,-10,-5,Roll#1: at infanteriewaffen test,2020-08-21 10:47:44.692261
+fight_talent,20,PA Infanteriewaffen,16,-5,-9,Roll#2: pa infanteriewaffen test,2020-08-21 10:48:54.475987
+skill,18; 15; 19,Götter und Kulte,8,-2,-12,Roll#3: skill test,2020-08-21 10:49:55.042226
