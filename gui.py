@@ -9,9 +9,8 @@ game = GameLogic()
 class GUI():
     """ creates window using tkinter, communicates with GameLogic through the dataclass GameState"""
     def __init__(self):
-        self.read_config("config.txt")
         self.state = GameState()
-        self.state.dice = "auto"
+        self.read_config("config.txt")
 
         self.window = tk.Tk()
         self.window.tk.call('tk', 'scaling', self.scaling)
@@ -29,7 +28,6 @@ class GUI():
         # text input for first_input
         self.input_firstinput = tk.Entry(self.window, width=20, bg="white")
         self.input_firstinput.grid(row=1, column=1, sticky=tk.W)
-
 
         self.setup_window()
         self.update()
@@ -173,6 +171,29 @@ class GUI():
         else:
             self.state.mod = 0
 
+    def get_manual_rolls(self, rolls_string):
+        """ take manual dice input and save it into self.state.rolls """
+        pattern = "\d+" #pylint: disable=anomalous-backslash-in-string
+        outlist = []
+
+        if self.state.category in ("attr", "fight_talent"):
+            dice_count = 1
+        elif self.state.category in ("skill", "spell"):
+            dice_count = 3
+
+        rolls_list = rolls_string.split(' ')
+
+        for item in rolls_list:
+            match = re.match(pattern, item)
+            if match:
+                if int(item) in range(1, 21):
+                    outlist.append(int(item))
+
+        self.state.rolls = outlist
+
+        if len(self.state.rolls) != dice_count:
+            self.state.rolls = None
+
     def setup_window(self):
         """ clear all widgets and, based on current test category, set up screen again """
         self.text_outputs.clear()
@@ -196,6 +217,13 @@ class GUI():
     def button_test(self):
         """ method that gets executed when "test" button is clicked. calls
         GameLogic.test and displays result """
+
+        if self.state.dice == "manual":
+            self.get_manual_rolls(self.text_inputs["dice_input"].get())
+
+        if not self.state.rolls:
+            return
+
         self.state = game.test(self.state)
 
         rolls = ", ".join(map(str, self.state.rolls))
@@ -205,21 +233,21 @@ class GUI():
             self.text_outputs["var_result"].configure(text=str(self.state.result))
 
         if self.state.category == "attr":
-            if self.state.result:
+            if self.state.result is not None:
                 self.text_outputs["var_tested"].configure(text=self.state.name)
                 self.text_outputs["var_value"].configure(text=str(self.state.value))
                 self.text_outputs["var_rolls"].configure(text=str(self.state.rolls[0]))
                 self.text_outputs["var_result"].configure(text=str(self.state.result))
 
         if self.state.category == "fight_talent":
-            if self.state.result:
+            if self.state.result is not None:
                 self.text_outputs["var_tested"].configure(text=self.state.name)
                 self.text_outputs["var_value"].configure(text=str(self.state.value))
                 self.text_outputs["var_rolls"].configure(text=str(self.state.rolls[0]))
                 self.text_outputs["var_result"].configure(text=str(self.state.result))
 
         if self.state.category in ("skill", "spell"):
-            if self.state.result:
+            if self.state.result is not None:
                 if self.state.mod + self.state.value < 0:
                     value_string = str(self.state.value) + " -> " + str(self.state.value + self.state.mod)
                     attrs_string = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(self.state.attrs)]
@@ -241,7 +269,7 @@ class GUI():
     def button_save(self):
         """ gets executed when "Test" button is clicked. runs
         GameLogic.save_to_csv and then calls reset """
-        if not self.state.result:
+        if self.state.result is None:
             return
         self.state.save = True
         self.state = game.save_to_csv(self.state)
@@ -254,6 +282,9 @@ class GUI():
             for line in configfile.readlines():
                 if line.startswith('#'):
                     continue
+                if "dice" in line:
+                    split = line.split()
+                    self.state.dice = split[-1]
                 if "scaling" in line:
                     split = line.split()
                     self.scaling = float(split[-1])
@@ -291,15 +322,18 @@ class GUI():
                    ["matching", "Matching: ", 2, 0, tk.E],
                    ["var_matching", '', 2, 1, tk.W],
                    ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested attribute: ", 5, 0, tk.E],
-                   ["var_tested", '', 5, 1, tk.W],
-                   ["value", "Value: ", 6, 0, tk.E],
-                   ["var_value", '', 6, 1, tk.W],
-                   ["rolls", "Rolls: ", 7, 0, tk.E],
-                   ["var_rolls", '', 7, 1, tk.W],
-                   ["result", "Result: ", 9, 0, tk.E],
-                   ["var_result", '', 9, 1, tk.W],
-                   ["desc", "Description: ", 10, 0, tk.E]]
+                   ["tested", "Tested attribute: ", 6, 0, tk.E],
+                   ["var_tested", '', 6, 1, tk.W],
+                   ["value", "Value: ", 7, 0, tk.E],
+                   ["var_value", '', 7, 1, tk.W],
+                   ["rolls", "Rolls: ", 8, 0, tk.E],
+                   ["var_rolls", '', 8, 1, tk.W],
+                   ["result", "Result: ", 10, 0, tk.E],
+                   ["var_result", '', 10, 1, tk.W],
+                   ["desc", "Description: ", 11, 0, tk.E]]
+
+        if self.state.dice == "manual":
+            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -313,8 +347,21 @@ class GUI():
 
             self.text_outputs.update({key:temp})
 
-        inputs = [["mod", 20, 3, 1, tk.W],
-                  ["desc", 20, 10, 1, tk.W]]
+
+        # pressing the tab key while inside a text entry jumps to the next one
+        # in the list. because of this, this list has to be created in the
+        # order the entries appear on screen.
+        inputs = []
+        inputs.append(["mod", 20, 3, 1, tk.W])
+
+#        inputs = [["mod", 20, 3, 1, tk.W],
+#                  ["desc", 20, 11, 1, tk.W]]
+
+        if self.state.dice == "manual":
+            inputs.append(["dice_input", 20, 4, 1, tk.W])
+
+        inputs.append(["desc", 20, 11, 1, tk.W])
+
         for _, value in enumerate(inputs):
             key = value[0]
             width = value[1]
@@ -329,8 +376,8 @@ class GUI():
 
         self.text_inputs.update({"first_input": self.input_firstinput})
 
-        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
-                   ["save", "Save", 4, self.button_save, 11, 0, False]]
+        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
+                   ["save", "Save", 4, self.button_save, 12, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
@@ -356,15 +403,18 @@ class GUI():
                    ["matching", "Matching: ", 2, 0, tk.E],
                    ["var_matching", '', 2, 1, tk.W],
                    ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested fight talent: ", 5, 0, tk.E],
-                   ["var_tested", '', 5, 1, tk.W],
-                   ["value", "Value: ", 6, 0, tk.E],
-                   ["var_value", '', 6, 1, tk.W],
-                   ["rolls", "Rolls: ", 7, 0, tk.E],
-                   ["var_rolls", '', 7, 1, tk.W],
-                   ["result", "Result: ", 8, 0, tk.E],
-                   ["var_result", '', 8, 1, tk.W],
-                   ["desc", "Description: ", 9, 0, tk.E]]
+                   ["tested", "Tested fight talent: ", 6, 0, tk.E],
+                   ["var_tested", '', 6, 1, tk.W],
+                   ["value", "Value: ", 7, 0, tk.E],
+                   ["var_value", '', 7, 1, tk.W],
+                   ["rolls", "Rolls: ", 8, 0, tk.E],
+                   ["var_rolls", '', 8, 1, tk.W],
+                   ["result", "Result: ", 9, 0, tk.E],
+                   ["var_result", '', 9, 1, tk.W],
+                   ["desc", "Description: ", 10, 0, tk.E]]
+
+        if self.state.dice == "manual":
+            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -378,8 +428,17 @@ class GUI():
 
             self.text_outputs.update({key:temp})
 
-        inputs = [["mod", 20, 3, 1, tk.W],
-                  ["desc", 20, 9, 1, tk.W]]
+        # pressing the tab key while inside a text entry jumps to the next one
+        # in the list. because of this, this list has to be created in the
+        # order the entries appear on screen.
+        inputs = []
+        inputs.append(["mod", 20, 3, 1, tk.W])
+
+        if self.state.dice == "manual":
+            inputs.append(["dice_input", 20, 4, 1, tk.W])
+
+        inputs.append(["desc", 20, 10, 1, tk.W])
+
         for _, value in enumerate(inputs):
             key = value[0]
             width = value[1]
@@ -394,8 +453,8 @@ class GUI():
 
         self.text_inputs.update({"first_input": self.input_firstinput})
 
-        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
-                   ["save", "Save", 4, self.button_save, 10, 0, False]]
+        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
+                   ["save", "Save", 4, self.button_save, 11, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
@@ -421,19 +480,22 @@ class GUI():
                    ["matching", "Matching: ", 2, 0, tk.E],
                    ["var_matching", '', 2, 1, tk.W],
                    ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested skill/spell: ", 5, 0, tk.E],
-                   ["var_tested", '', 5, 1, tk.W],
-                   ["tested_attrs", "Tested attributes: ", 6, 0, tk.E],
-                   ["var_tested_attrs", '', 6, 1, tk.W],
-                   ["value", "Value: ", 7, 0, tk.E],
-                   ["var_value", '', 7, 1, tk.W],
-                   ["rolls", "Rolls: ", 8, 0, tk.E],
-                   ["var_rolls", '', 8, 1, tk.W],
-                   ["remaining", "Attribute values remaining: ", 9, 0, tk.E],
-                   ["var_remaining", '', 9, 1, tk.W],
-                   ["result", "Result: ", 10, 0, tk.E],
-                   ["var_result", '', 10, 1, tk.W],
-                   ["desc", "Description: ", 11, 0, tk.E]]
+                   ["tested", "Tested skill/spell: ", 6, 0, tk.E],
+                   ["var_tested", '', 6, 1, tk.W],
+                   ["tested_attrs", "Tested attributes: ", 7, 0, tk.E],
+                   ["var_tested_attrs", '', 7, 1, tk.W],
+                   ["value", "Value: ", 8, 0, tk.E],
+                   ["var_value", '', 8, 1, tk.W],
+                   ["rolls", "Rolls: ", 9, 0, tk.E],
+                   ["var_rolls", '', 9, 1, tk.W],
+                   ["remaining", "Attribute values remaining: ", 10, 0, tk.E],
+                   ["var_remaining", '', 10, 1, tk.W],
+                   ["result", "Result: ", 11, 0, tk.E],
+                   ["var_result", '', 11, 1, tk.W],
+                   ["desc", "Description: ", 12, 0, tk.E]]
+
+        if self.state.dice == "manual":
+            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -447,8 +509,17 @@ class GUI():
 
             self.text_outputs.update({key:temp})
 
-        inputs = [["mod", 20, 3, 1, tk.W],
-                  ["desc", 20, 11, 1, tk.W]]
+        # pressing the tab key while inside a text entry jumps to the next one
+        # in the list. because of this, this list has to be created in the
+        # order the entries appear on screen.
+        inputs = []
+        inputs.append(["mod", 20, 3, 1, tk.W])
+
+        if self.state.dice == "manual":
+            inputs.append(["dice_input", 20, 4, 1, tk.W])
+
+        inputs.append(["desc", 20, 12, 1, tk.W])
+
         for _, value in enumerate(inputs):
             key = value[0]
             width = value[1]
@@ -463,8 +534,8 @@ class GUI():
 
         self.text_inputs.update({"first_input": self.input_firstinput})
 
-        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
-                   ["save", "Save", 4, self.button_save, 12, 0, False]]
+        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
+                   ["save", "Save", 4, self.button_save, 13, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]

@@ -17,3 +17,8 @@ skill,2; 16; 6,Klettern,2,0,1,Roll#2: klettern test,2020-08-21 10:45:48.517919
 fight_talent,16,AT Infanteriewaffen,21,-10,-5,Roll#1: at infanteriewaffen test,2020-08-21 10:47:44.692261
 fight_talent,20,PA Infanteriewaffen,16,-5,-9,Roll#2: pa infanteriewaffen test,2020-08-21 10:48:54.475987
 skill,18; 15; 19,Götter und Kulte,8,-2,-12,Roll#3: skill test,2020-08-21 10:49:55.042226
+attr,10,Charisma,11,0,1,Roll#1: test,2020-08-21 11:17:30.702690
+attr,3,Charisma,11,-2,6,Roll#1: asdf,2020-08-21 11:48:19.508351
+attr,12,Charisma,11,-2,-3,Roll#1: attr test,2020-08-21 12:03:23.767634
+fight_talent,10,AT Infanteriewaffen,21,-5,6,Roll#1: test,2020-08-21 12:15:39.714852
+spell,12; 14; 14,Caldofrigo heiß und kalt,10,-5,2,Roll#1: spell test,2020-08-21 12:17:27.676402

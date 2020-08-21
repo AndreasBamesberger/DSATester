@@ -179,7 +179,7 @@ class CLI:
 
         if self.state.category == "attr":
             dice_count = 1
-        elif self.state.category in ["skill, spell"]:
+        elif self.state.category in ("skill", "spell"):
             dice_count = 3
 
         while True:

@@ -5,15 +5,14 @@ import os.path # to check if file already exists
 import datetime # to log time of dice roll
 import xml.etree.ElementTree as ET # to parse input xml file
 from collections import namedtuple
-#from dataclasses import make_dataclass # for attributes, skills, spells
-from dataclasses import dataclass
+from dataclasses import dataclass # to create GameState
 import operator # to subtract list from list
 from DSA_data import Attribute, Skill, Spell, FightTalent
 
 @dataclass
 class GameState:
     """ dataclass used to transfer state of game between GameLogic and interfaces """
-    done: bool = False        # exit when True
+    done: bool = False        # exit when True (currently not used)
     save: bool = False        # export roll to csv if True
     dice: str = None          # "auto" or "manual" whether dice rolls are input or calculated
     counter: int = 1          # increases with every saved dice roll

@@ -1,15 +1,21 @@
-from game_backend import GameLogic
+""" reads interface choice from config file and starts interface """
 from cli import CLI
 from gui import GUI
 
 def read_config(configname):
+    """ input = string, name of config file.
+        output = string, name of chosen interface.
+        searches config file for "interface" """
+
+    output = ''
+
     with open(configname, "r", encoding="utf-8") as configfile:
         for line in configfile.readlines():
-            if line.startswith('#'):
-                continue
-            if "interface" in line:
-                split = line.split()
-                return split[-1]
+            # ignore comment lines
+            if "interface" in line and not line.startswith('#'):
+                output = line.split()[-1]
+
+    return output
 
 if __name__ == '__main__':
     interface_input = read_config("config.txt")
