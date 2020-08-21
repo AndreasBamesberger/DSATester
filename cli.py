@@ -8,25 +8,24 @@ game = GameLogic()
 class CLI:
     def __init__(self):
         self.state = GameState()
-        self.state.dice = "auto"
-        #self.state.dice = "manual"
+        self.read_config("config.txt")
 
     def loop(self):
         while True:
-            self.get_test_input()
-            if self.state.category != "misc":
-                self.get_mod()
-            if self.state.dice == "manual":
-                self.get_dice()
-            self.state = game.test(self.state)
-            self.show_result()
-            self.get_save_choice()
-            if self.state.save:
-                game.save_to_csv(self.state)
+            print("Roll #" + str(self.state.counter))
+            if self.get_test_input():
+                if self.state.category != "misc":
+                    self.get_mod()
+                if self.state.dice == "manual" and self.state.category != "misc":
+                    self.get_dice()
+                self.state = game.test(self.state)
+                self.show_result()
+                self.get_save_choice()
+                if self.state.save:
+                    game.save_to_csv(self.state)
             self.reset()
 
     def reset(self):
-#        game.reset()
         self.state.save = False
         self.state.category = None
         self.state.name = None
@@ -41,14 +40,28 @@ class CLI:
         self.state.option_list = None
         self.state.selection = None
 
+    def read_config(self, configname):
+        """ input = string, name of config-file. scans config-file for
+        "scaling" and "font" entries and sets variables accordingly """
+        with open(configname, "r", encoding="utf-8") as configfile:
+            for line in configfile.readlines():
+                if line.startswith('#'):
+                    continue
+                if "dice" in line:
+                    split = line.split()
+                    self.state.dice = split[-1]
+
     def get_test_input(self):
-        self.state.first_input = input('Enter name of attr, skill, spell ("misc" for misc test): ').lower()
+        return_value = None
+        self.state.first_input = input('Input: ').lower()
         if self.state.first_input in ("exit", "quit"):
             raise SystemExit
 
-        pattern1 = "^(\d+)[d,D](\d+)$" # 3d20 -> 3, 20
-        pattern2 = "^(\d+)[d,D](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4
-        pattern3 = "^(\d+)[d,D](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4
+        pattern1 = "^(\d+)[d,D](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
+
+        pattern2 = "^(\d+)[d,D](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+
+        pattern3 = "^(\d+)[d,D](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
 
         match1 = re.match(pattern1, self.state.first_input)
         if match1:
@@ -67,37 +80,22 @@ class CLI:
             self.state.category = "misc"
             self.state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
             self.state.mod = int(match3.groups()[2]) * -1
-#        elif self.state.first_input == "misc":
-#            self.state.category = "misc"
-#            self.get_misc_input()
-#        else:
         if self.state.category != "misc":
             self.state = game.autocomplete(self.state)
             if not self.state.option_list:
                 self.display_message("No matches found")
-                self.reset()
+                return_value = False
             else:
                 self.get_selection()
+                return_value = True
 
-    def get_misc_input(self):
-        dice_pattern = '(\d*)d(\d*)' # two integers separated by the letter 'd', match both those integers
-        mod_pattern = '-?\d*'
-        while True:
-            choice  = input("Dice type and count [e.g. 4d6]: ")
-            match = re.match(dice_pattern, choice)
-            if match:
-                v1 = int(match.groups()[0])
-                v2 = int(match.groups()[1])
-                self.state.misc = (v1, v2)
-                break
-
-        self.get_mod()
+        return return_value
 
     def get_selection(self):
-        pattern = '\d*'
+        pattern = '^\d+$'
         print("Character entries fitting input:")
         for index, option in enumerate(self.state.option_list):
-            print("\t{0}: {1} ({2})".format(str(index+1), option[0], option[1].capitalize()))
+            print("\t{0}: {1}".format(str(index+1), option[0]))
 
         while True:
             selection = input("Enter number: ")
@@ -110,7 +108,7 @@ class CLI:
                 print("invalid input, try again")
 
     def get_mod(self):
-        pattern = '-?\d*'
+        pattern = '^-?\d+$'
         while True:
             mod_input = input("Modifier: ")
             if mod_input == '':
@@ -121,8 +119,6 @@ class CLI:
             else:
                 print("Invalid")
 
-        print("self.state.mod: " + repr(self.state.mod))
-
     def display_message(self, text):
         print(text)
 
@@ -132,6 +128,13 @@ class CLI:
             return
         if self.state.category == "attr":
             outstring = (f"\tTested attribute: {self.state.name}\n"
+                         f"\tValue: {self.state.value}\n"
+                         f"\tModifier: {self.state.mod}\n"
+                         f"\tDice value: {self.state.rolls[0]}\n"
+                         f"\tResult: {self.state.result}")
+            print(outstring)
+        elif self.state.category == "fight_talent":
+            outstring = (f"\tTested fight talent: {self.state.name}\n"
                          f"\tValue: {self.state.value}\n"
                          f"\tModifier: {self.state.mod}\n"
                          f"\tDice value: {self.state.rolls[0]}\n"
@@ -175,16 +178,17 @@ class CLI:
             self.state.desc = desc
 
     def get_dice(self):
-        pattern = "\d+"
+        pattern = "^\d+$"
 
-        if self.state.category == "attr":
+        if self.state.category in ("attr", "fight_talent"):
+            prompt_string = "Input 1 dice value: "
             dice_count = 1
         elif self.state.category in ("skill", "spell"):
+            prompt_string = "Input 3 dice values, separated by whitespace: "
             dice_count = 3
 
         while True:
             outlist = []
-            prompt_string = "Input {0} dice values, separated by whitespace: ".format(str(dice_count))
             input_list = input(prompt_string).split(' ')
 
             for item in input_list:

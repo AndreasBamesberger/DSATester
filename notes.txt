@@ -2,18 +2,11 @@ todo
     add BE to modifier
         for fight talents, is BE even considered? it's not listed in xml file
     extra test for reading/writing
-    extra input for IRL dice roll
-    attack, evade, parade rolls
+    attack, evade, parade rolls (need BE first)
 
-    fix CLI
-        add fight_talent test
-
-
-    attr,skill,spell change from class into other data format
-    fix encoding errors either when reading from text-input or writing to csv
+    (attr,skill,spell change from class into other data format?)
     (calculate probabilities?)
-    input external dice rolls
 
-when converting to exe (using windows), 'freesansbold.ttf' wasn't included automatically. had to manually copy it into the folder.
+old version using pygame: when converting to exe (using windows), 'freesansbold.ttf' wasn't included automatically. had to manually copy it into the folder.
 
 converted using 'pyinstaller main.py'
