@@ -1,4 +1,6 @@
 todo
+    fix auto dice mode, gui doesn't test
+
     add BE to modifier
         for fight talents, is BE even considered? it's not listed in xml file
     extra test for reading/writing
