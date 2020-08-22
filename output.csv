@@ -1,2 +1,4 @@
 Hero file,Test type,Rolls,Attribute/Skill,Attribute/Skill value,Modifier,Result,Description,Timestamp
 testchar_01.xml,skill,18; 20; 20,Ackerbau,1,-2,-33,Roll#1: skill test,2020-08-22 14:00:30.594018
+testchar_01.xml,skill,3; 7; 14,Sternkunde,4,0,2,Roll#1: skill test,2020-08-22 14:05:05.110863
+testchar_01.xml,skill,9; 9; 20,Philosophie,2,0,-8,Roll#2: skill test,2020-08-22 14:06:29.903919

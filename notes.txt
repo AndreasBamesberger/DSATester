@@ -1,6 +1,8 @@
 this program is for DSA 4.1
 
 todo
+    make trello board
+    change GameState.option_list into options (list or tuple?)
     spell "attributo" only needs 2 rolls, would need special case
         same for "ritualkenntnis: hexe"
 

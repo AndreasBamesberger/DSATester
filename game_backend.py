@@ -38,7 +38,6 @@ class GameLogic:
         random.seed(a=None, version=2)
         self.hero_xml = None
         self.result_csv = None
-        self.dice = "auto"
 
         self.read_config("config.txt")
         self.setup_output_file()
