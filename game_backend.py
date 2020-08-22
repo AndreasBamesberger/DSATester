@@ -77,7 +77,8 @@ class GameLogic:
     def setup_output_file(self):
         """ prepares first line of output CSV if necessary """
 
-        columns = ["Test type",
+        columns = ["Hero file",
+                   "Test type",
                    "Rolls",
                    "Attribute/Skill",
                    "Attribute/Skill value",
@@ -103,7 +104,8 @@ class GameLogic:
 
         printable_rolls = "; ".join(map(str, state.rolls))
 
-        save_values = [state.category,
+        save_values = [self.hero_xml,
+                       state.category,
                        printable_rolls,
                        state.name,
                        state.value,

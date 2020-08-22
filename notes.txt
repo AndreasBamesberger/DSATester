@@ -1,5 +1,8 @@
+this program is for DSA 4.1
+
 todo
     spell "attributo" only needs 2 rolls, would need special case
+        same for "ritualkenntnis: hexe"
 
     add BE to modifier
         for fight talents, is BE even considered? it's not listed in xml file
