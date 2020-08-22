@@ -1,5 +1,5 @@
 todo
-    fix auto dice mode, gui doesn't test
+    spell "attributo" only needs 2 rolls, would need special case
 
     add BE to modifier
         for fight talents, is BE even considered? it's not listed in xml file
