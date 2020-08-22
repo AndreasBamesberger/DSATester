@@ -17,7 +17,7 @@ interface: GUI
 # current options: 
 #   auto
 #   manual
-dice: auto
+dice: manual
 
 # choose scaling of the tkinter window and the text font
 # current options:
