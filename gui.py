@@ -112,7 +112,7 @@ class GUI():
         if self.state.first_input != self.old_input:
             self.old_input = self.state.first_input
         else:
-            return
+            return False
 
         match1 = re.match(pattern1, self.state.first_input)
         if match1:
@@ -221,10 +221,10 @@ class GUI():
         if self.state.dice == "manual":
             self.get_manual_rolls(self.text_inputs["dice_input"].get())
 
-        if not self.state.rolls:
-            return
-
         self.state = game.test(self.state)
+
+        if self.state.result is None or self.state.rolls is None:
+            return False
 
         rolls = ", ".join(map(str, self.state.rolls))
 
@@ -270,7 +270,7 @@ class GUI():
         """ gets executed when "Test" button is clicked. runs
         GameLogic.save_to_csv and then calls reset """
         if self.state.result is None:
-            return
+            return False
         self.state.save = True
         self.state = game.save_to_csv(self.state)
         self.reset()

@@ -13,7 +13,7 @@ from DSA_data import Attribute, Skill, Spell, FightTalent
 class GameState:
     """ dataclass used to transfer state of game between GameLogic and interfaces """
     done: bool = False        # exit when True (currently not used)
-    save: bool = False        # export roll to csv if True
+    save: bool = False        # export roll to csv if True (currently not used)
     dice: str = None          # "auto" or "manual" whether dice rolls are input or calculated
     counter: int = 1          # increases with every saved dice roll
     category: str = None      # "attr"/"skill"/"spell"/"misc"
@@ -94,8 +94,8 @@ class GameLogic:
 
     def save_to_csv(self, state):
         """add roll results to csv file"""
-        if not state.rolls:
-            return
+        if state.rolls == [] or state.rolls is None:
+            return state
         timestamp = datetime.datetime.now()
 
         desc = f"Roll#{state.counter}: {state.desc}"
@@ -162,6 +162,9 @@ class GameLogic:
         return output_list
 
     def test(self, state):
+        if state.dice == "manual" and (state.rolls is None or state.rolls == []):
+            return state
+
         if state.category == "attr":
             for attr in self.attributes:
                 if state.name == attr.name:
@@ -187,6 +190,7 @@ class GameLogic:
         state.value = attr.value
         if state.dice == "auto":
             state.rolls = self.roll_dice(1, 1, 20)
+
         state.result = attr.value + state.mod - state.rolls[0]
         return state
 

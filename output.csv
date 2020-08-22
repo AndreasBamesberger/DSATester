@@ -35,3 +35,27 @@ misc,78; 57; 18,,,-3,150,Roll#1: misc test,2020-08-21 13:19:20.544506
 misc,8,,,0,8,Roll#2: misc test,2020-08-21 13:19:29.847413
 misc,10; 8,,,0,18,Roll#1: misc test,2020-08-21 13:20:27.962394
 misc,1; 14; 15; 5; 17; 1; 13; 18; 2; 2; 13; 16; 12; 6; 18; 10; 19; 5; 18; 8,,,3,216,Roll#2: misc test,2020-08-21 13:20:47.915956
+misc,19; 8; 5,,,-3,29,Roll#1: misc test,2020-08-21 14:38:32.148938
+misc,18; 15,,,-3,30,Roll#2: ;;;;;;;;test,2020-08-21 14:38:47.249746
+skill,2; 3; 4,Klettern,3,3,6,Roll#1: asdf,2020-08-21 14:40:18.886261
+skill,2; 2; 2,Klettern,3,2,5,Roll#2: test,2020-08-21 14:41:05.489338
+spell,2; 3; 4,Armatrutz,9,-2,7,Roll#1: asdf,2020-08-21 14:42:12.266142
+skill,3; 19; 2,Rechnen,6,0,2,Roll#2: ,2020-08-21 14:43:03.898342
+skill,2; 3; 4,Sinnenschärfe,4,2,6,Roll#1: ,2020-08-21 14:43:23.862823
+attr,8,Klugheit,15,-1,6,Roll#1: asdf,2020-08-21 14:44:06.275273
+attr,10,Klugheit,15,-2,3,Roll#1: attr test,2020-08-22 13:01:13.744501
+skill,10; 16; 2,Sich verstecken,3,0,2,Roll#2: skill test,2020-08-22 13:01:44.428605
+spell,19; 6; 6,Caldofrigo heiß und kalt,10,-6,0,Roll#3: test,2020-08-22 13:02:04.057293
+fight_talent,13,AT Säbel,12,0,-1,Roll#4: säbel test,2020-08-22 13:02:35.894386
+attr,2,Körperkraft,11,-2,7,Roll#1: attr test,2020-08-22 13:12:08.122992
+skill,2; 3; 4,Klettern,3,-10,0,Roll#1: test,2020-08-22 13:13:25.657311
+skill,2; 3; 8,Klettern,3,-2,1,Roll#2: test,2020-08-22 13:15:57.596411
+skill,8; 12; 2,Sich verstecken,3,2,5,Roll#3: asdf,2020-08-22 13:16:24.810995
+skill,8; 12; 20,Klettern,3,-2,-9,Roll#4: asdf,2020-08-22 13:17:11.791873
+skill,8; 12; 15,Sinnenschärfe,4,-20,-38,Roll#5: asf,2020-08-22 13:18:15.710692
+attr,7,Körperkraft,11,8,12,Roll#6: asdf,2020-08-22 13:18:37.279848
+skill,8; 12; 7,Zechen,0,-2,-3,Roll#7: asdf,2020-08-22 13:18:54.336261
+skill,8; 14; 3,Sich verstecken,3,8,11,Roll#1: asdf,2020-08-22 13:25:01.282258
+skill,17; 11; 6,Sich verstecken,3,-2,-2,Roll#1: asdf,2020-08-22 13:26:45.458443
+fight_talent,19,PA Ringen,10,2,-7,Roll#2: asdf,2020-08-22 13:27:10.056968
+skill,4; 7; 15,Schwimmen,3,-2,-3,Roll#3: asdf,2020-08-22 13:28:01.743258

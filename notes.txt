@@ -12,3 +12,32 @@ todo
 old version using pygame: when converting to exe (using windows), 'freesansbold.ttf' wasn't included automatically. had to manually copy it into the folder.
 
 converted using 'pyinstaller main.py'
+
+bugs
+    bug while testing gui with manual dice input:
+        possibly fixed by changing save_to_csv:
+
+            def save_to_csv(self, state):
+                """add roll results to csv file"""
+                if state.rolls == [] or state.rolls is None:
+                    return state
+
+        ---
+
+        Exception in Tkinter callback
+        Traceback (most recent call last):
+          File "/usr/lib/python3.8/tkinter/__init__.py", line 1883, in __call__
+            return self.func(*args)
+          File "/home/andi/Documents/git/DSATester/gui.py", line 276, in button_save
+            self.reset()
+          File "/home/andi/Documents/git/DSATester/gui.py", line 63, in reset
+            self.state.save = False
+        AttributeError: 'NoneType' object has no attribute 'save'
+        Traceback (most recent call last):
+          File "main.py", line 27, in <module>
+            interface.loop()
+          File "/home/andi/Documents/git/DSATester/gui.py", line 39, in loop
+            self.get_first_input()
+          File "/home/andi/Documents/git/DSATester/gui.py", line 110, in get_first_input
+            self.state.first_input = self.text_inputs["first_input"].get().lower()
+        AttributeError: 'NoneType' object has no attribute 'first_input'

@@ -9,7 +9,7 @@ output file: output.csv
 # current options: 
 #   GUI, graphical user interface
 #   CLI, command line interface
-interface: CLI
+interface: GUI
 
 # choose whether you want to generate dice rolls automatically or manually
 # input dice rolls you got IRL ("misc" tests always roll dice automatically)
@@ -17,7 +17,7 @@ interface: CLI
 # current options: 
 #   auto
 #   manual
-dice: manual
+dice: auto
 
 # choose scaling of the tkinter window and the text font
 # current options:
