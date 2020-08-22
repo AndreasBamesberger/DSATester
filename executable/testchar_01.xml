@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="helden.xsl"?>
+<helden Version="5.5.3">
+    <held key="1598097126693" name="testchar_01" stand="1598097127966">
+        <mods/>
+        <basis>
+            <geschlecht name="männlich"/>
+            <settings name="DSA4.1">
+                <inc name="Spielhilfen"/>
+                <inc name="Wege der Alchimie"/>
+                <inc name="Unter dem Westwind"/>
+                <inc name="Aventurischer Bote"/>
+                <inc name="Abenteuer"/>
+            </settings>
+            <rasse name="helden.model.rasse.Mittellaender" string="Mittelländer">
+                <groesse gewicht="80" value="180"/>
+                <aussehen alter="21" augenfarbe="braun" aussehentext0="" aussehentext1="" aussehentext2="" aussehentext3="" familietext0="" familietext1="" familietext2="" familietext3="" familietext4="" familietext5="" gbjahr="1003" gbmonat="9" gbtag="18" gprest="13" gpstart="110" haarfarbe="schwarz" kalender="Bosparans Fall" stand="" titel=""/>
+            </rasse>
+            <kultur name="helden.model.kultur.Maraskan" schrift="Lesen/Schreiben Kusliker Zeichen" sprache="Sprachen kennen Garethi" string="Maraskan" zweitsprache="Sprachen kennen Tulamidya"/>
+            <ausbildungen>
+                <ausbildung art="Hauptprofession" name="helden.model.profession.Hexe" string="Hexer: Schwarze Witwe" tarnidentitaet="">
+                    <variante name="Schwarze Witwe"/>
+                </ausbildung>
+            </ausbildungen>
+            <verify value="1"/>
+            <notiz notiz0="Notizen" notiz1="" notiz10="" notiz11="" notiz2="" notiz3="" notiz4="" notiz5="" notiz6="" notiz7="" notiz8="" notiz9=""/>
+            <portraet value=""/>
+            <abenteuerpunkte value="400"/>
+            <freieabenteuerpunkte value="400"/>
+        </basis>
+        <eigenschaften>
+            <eigenschaft mod="0" name="Mut" startwert="12" value="12"/>
+            <eigenschaft mod="0" name="Klugheit" startwert="8" value="8"/>
+            <eigenschaft mod="1" name="Intuition" startwert="11" value="11"/>
+            <eigenschaft mod="0" name="Charisma" startwert="12" value="12"/>
+            <eigenschaft mod="0" name="Fingerfertigkeit" startwert="8" value="8"/>
+            <eigenschaft mod="0" name="Gewandtheit" startwert="8" value="8"/>
+            <eigenschaft mod="0" name="Konstitution" startwert="8" value="8"/>
+            <eigenschaft mod="0" name="Körperkraft" startwert="8" value="8"/>
+            <eigenschaft mod="0" name="Sozialstatus" startwert="3" value="3"/>
+            <eigenschaft mod="10" name="Lebensenergie" value="0"/>
+            <eigenschaft mod="10" name="Ausdauer" value="0"/>
+            <eigenschaft grossemeditation="0" mod="13" mrmod="-1" name="Astralenergie" value="0"/>
+            <eigenschaft karmalqueste="0" mod="0" name="Karmaenergie" value="0"/>
+            <eigenschaft mod="-1" name="Magieresistenz" value="0"/>
+            <eigenschaft mod="0" name="ini" value="9"/>
+            <eigenschaft mod="0" name="at" value="6"/>
+            <eigenschaft mod="0" name="pa" value="6"/>
+            <eigenschaft mod="0" name="fk" value="6"/>
+        </eigenschaften>
+        <vt>
+            <vorteil name="Vollzauberer"/>
+            <vorteil name="Arroganz" value="5"/>
+            <vorteil name="Feste Gewohnheit"/>
+            <vorteil name="Jähzorn" value="6"/>
+            <vorteil name="Neugier" value="5"/>
+        </vt>
+        <sf>
+            <sonderfertigkeit name="Große Meditation"/>
+            <sonderfertigkeit name="Hexenritual: Hexensalbe"/>
+            <sonderfertigkeit name="Kulturkunde">
+                <kultur name="Maraskan"/>
+            </sonderfertigkeit>
+            <sonderfertigkeit name="Merkmalskenntnis: Geisterwesen"/>
+            <sonderfertigkeit name="Repräsentation: Hexe"/>
+            <sonderfertigkeit name="Ritualkenntnis: Hexe"/>
+            <sonderfertigkeit name="Talentspezialisierung Kochen (Tränke)">
+                <talent name="Kochen"/>
+                <spezialisierung name="Tränke"/>
+            </sonderfertigkeit>
+            <sonderfertigkeit name="Vertrautenbindung"/>
+            <verbilligtesonderfertigkeit name="Merkmalskenntnis: Einfluss"/>
+        </sf>
+        <ereignisse>
+            <ereignis obj="max GP für Helden: 110" text="EINSTELLUNG" time="1598097127964" version="HS 5.5.3"/>
+            <ereignis obj="max Eigenschafts-GP für Helden: 100" text="EINSTELLUNG" time="1598097127964" version="HS 5.5.3"/>
+            <ereignis obj="max Eigenschafts-Wert für Helden: 14" text="EINSTELLUNG" time="1598097127964" version="HS 5.5.3"/>
+            <ereignis obj="Vorteil/Nachteil Jähzorn ist ungeeignet." text="Meistergenehmigung notwendig" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis obj="Eine größere Menge (400) AP wurde nicht genutzt und dem Helden gut geschrieben" text="Meistergenehmigung notwendig" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Rasse: Mittelländer" text="RKP" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="5 GP" obj="Kultur: Maraskan" text="RKP" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="17 GP" obj="Profession: Hexer: Schwarze Witwe" text="RKP" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="12" kommentar="12 GP" obj="Mut: 12" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Klugheit: 8" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="12" kommentar="11 GP" obj="Intuition: 12" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="12" kommentar="12 GP" obj="Charisma: 12" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Fingerfertigkeit: 8" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Gewandtheit: 8" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Konstitution: 8" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Körperkraft: 8" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="3" kommentar="0 GP" obj="Sozialstatus: 3" text="EIGENSCHAFTEN" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Arroganz: 5" text="VORTEILE" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Feste Gewohnheit" text="VORTEILE" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Jähzorn: 6" text="VORTEILE" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Neugier: 5" text="VORTEILE" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Vollzauberer" text="VORTEILE" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis obj="Auswahl" text="Jähzorn" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis obj="Auswahl" text="Merkmalskenntnis: Geisterwesen" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis obj="Auswahl" text="Sprachen kennen Garethi" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Neu="1" obj="Auswahl" text="Säbel" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Neu="1" obj="Auswahl" text="Speere" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Neu="2" obj="Auswahl" text="Malen/Zeichnen" time="1598097127966" version="HS 5.5.3"/>
+            <ereignis Neu="4" obj="Auswahl" text="Sprachen kennen Bosparano" time="1598097127966" version="HS 5.5.3"/>
+        </ereignisse>
+        <talentliste>
+            <talent lernmethode="Gegenseitiges Lehren" name="Blasrohr" probe=" (GE/FF/KK)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Diskus" probe=" (GE/FF/KK)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Dolche" probe=" (GE/GE/KK)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Hiebwaffen" probe=" (GE/GE/KK)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Raufen" probe=" (GE/GE/KK)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Ringen" probe=" (GE/GE/KK)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Säbel" probe=" (GE/GE/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Speere" probe=" (GE/GE/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Wurfmesser" probe=" (GE/FF/KK)" value="0"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Athletik" probe=" (GE/KO/KK)" value="0"/>
+            <talent be="BE" lernmethode="Gegenseitiges Lehren" name="Fliegen" probe=" (MU/IN/GE)" value="4"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Klettern" probe=" (MU/GE/KK)" value="0"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Körperbeherrschung" probe=" (MU/IN/GE)" value="0"/>
+            <talent be="BE" lernmethode="Gegenseitiges Lehren" name="Schleichen" probe=" (MU/IN/GE)" value="2"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Schwimmen" probe=" (GE/KO/KK)" value="1"/>
+            <talent be="" lernmethode="Gegenseitiges Lehren" name="Selbstbeherrschung" probe=" (MU/KO/KK)" value="6"/>
+            <talent be="BE-2" lernmethode="Gegenseitiges Lehren" name="Sich verstecken" probe=" (MU/IN/GE)" value="3"/>
+            <talent be="BE-3" lernmethode="Gegenseitiges Lehren" name="Singen" probe=" (IN/CH/CH)" value="0"/>
+            <talent be="0-&gt;BE" lernmethode="Gegenseitiges Lehren" name="Sinnenschärfe" probe=" (KL/IN/IN)" value="3"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Tanzen" probe=" (CH/GE/GE)" value="3"/>
+            <talent be="" lernmethode="Gegenseitiges Lehren" name="Zechen" probe=" (IN/KO/KK)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Betören" probe=" (IN/CH/CH)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Menschenkenntnis" probe=" (KL/IN/CH)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Sich verkleiden" probe=" (MU/CH/GE)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Überreden" probe=" (MU/IN/CH)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Überzeugen" probe=" (KL/IN/CH)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Fährtensuchen" probe=" (KL/IN/KO)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Orientierung" probe=" (KL/IN/IN)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Wildnisleben" probe=" (IN/GE/KO)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Geschichtswissen" probe=" (KL/KL/IN)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Götter und Kulte" probe=" (KL/KL/IN)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Magiekunde" probe=" (KL/KL/IN)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Pflanzenkunde" probe=" (KL/IN/FF)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Philosophie" probe=" (KL/KL/IN)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Rechnen" probe=" (KL/KL/IN)" value="6"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Sagen und Legenden" probe=" (KL/IN/CH)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Sternkunde" probe=" (KL/KL/IN)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Tierkunde" probe=" (MU/KL/IN)" value="4"/>
+            <talent k="21" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Bosparano" probe=" (KL/IN/CH)" value="4"/>
+            <talent k="18" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Garethi" probe=" (KL/IN/CH)" value="6"/>
+            <talent k="18" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Tulamidya" probe=" (KL/IN/CH)" value="4"/>
+            <talent k="10" lernmethode="Gegenseitiges Lehren" name="Lesen/Schreiben Kusliker Zeichen" probe=" (KL/KL/FF)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Abrichten" probe=" (MU/IN/CH)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Ackerbau" probe=" (IN/FF/KO)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Heilkunde: Gift" probe=" (MU/KL/IN)" value="8"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Heilkunde: Krankheiten" probe=" (MU/KL/CH)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Heilkunde: Wunden" probe=" (KL/CH/FF)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Holzbearbeitung" probe=" (KL/FF/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Kochen" probe=" (KL/IN/FF)" value="7"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Lederarbeiten" probe=" (KL/FF/FF)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Malen/Zeichnen" probe=" (KL/IN/FF)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Schneidern" probe=" (KL/FF/FF)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Stoffe färben" probe=" (KL/FF/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Ritualkenntnis: Hexe" probe=" (--/--/--)" value="3"/>
+        </talentliste>
+        <zauberliste>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Abvenenum reine Speise" probe=" (KL/KL/FF)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Ängste lindern" probe=" (MU/IN/CH)" reichweite="" repraesentation="Hexe" value="2" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="D" kosten="" lernmethode="Gegenseitiges Lehren" name="Blick in die Gedanken" probe=" (KL/KL/CH)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Einfluss bannen" probe=" (IN/CH/CH)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Geisterbann" probe=" (MU/MU/CH)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="D" kosten="" lernmethode="Gegenseitiges Lehren" name="Geisterruf" probe=" (MU/MU/CH)" reichweite="" repraesentation="Hexe" value="6" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Große Gier" probe=" (KL/KL/CH)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Harmlose Gestalt" probe=" (KL/CH/GE)" reichweite="" repraesentation="Hexe" value="2" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Hellsicht trüben" probe=" (KL/IN/CH)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Hexenblick" probe=" (IN/IN/CH)" reichweite="" repraesentation="Hexe" value="2" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Hexenknoten" probe=" (KL/IN/CH)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="D" kosten="" lernmethode="Gegenseitiges Lehren" name="Klarum Purum" probe=" (KL/KL/CH)" reichweite="" repraesentation="Hexe" value="2" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Krabbelnder Schrecken" probe=" (MU/MU/CH)" reichweite="" repraesentation="Hexe" value="4" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="D" kosten="" lernmethode="Gegenseitiges Lehren" name="Schleier der Unwissenheit" probe=" (KL/KL/FF)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Sensibar Empathicus" probe=" (KL/IN/CH)" reichweite="" repraesentation="Hexe" value="4" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Spinnenlauf" probe=" (IN/GE/KK)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="E" kosten="" lernmethode="Gegenseitiges Lehren" name="Zauberzwang" probe=" (MU/CH/CH)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+        </zauberliste>
+        <kampf>
+            <kampfwerte name="Dolche">
+                <attacke value="6"/>
+                <parade value="6"/>
+            </kampfwerte>
+            <kampfwerte name="Hiebwaffen">
+                <attacke value="6"/>
+                <parade value="6"/>
+            </kampfwerte>
+            <kampfwerte name="Raufen">
+                <attacke value="6"/>
+                <parade value="6"/>
+            </kampfwerte>
+            <kampfwerte name="Ringen">
+                <attacke value="6"/>
+                <parade value="6"/>
+            </kampfwerte>
+            <kampfwerte name="Säbel">
+                <attacke value="6"/>
+                <parade value="6"/>
+            </kampfwerte>
+            <kampfwerte name="Speere">
+                <attacke value="6"/>
+                <parade value="6"/>
+            </kampfwerte>
+        </kampf>
+        <gegenstände/>
+        <BoniWaffenlos/>
+        <kommentare>
+            <sfInfos dauer="" kosten="" probe="" sf="" sfname="Hexenritual: Hexensalbe" wirkung=""/>
+            <sfInfos dauer="" kosten="" probe="" sf="" sfname="Vertrautenbindung" wirkung=""/>
+        </kommentare>
+        <ausrüstungen>
+            <heldenausruestung name="jagtwaffe" nummer="0" set="0"/>
+        </ausrüstungen>
+        <verbindungen/>
+        <extention/>
+        <geldboerse/>
+        <plugindata/>
+    </held>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+            <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+            <Reference URI="">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                <DigestValue>qcIckn9MCYSUcaV8ShhiGDYZYVs=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>
+            kyjpQGstjJ4qUE6eMz2YldmYfuV4rUK6ngFQTg+LpEma5r8VzLq0fA==
+        </SignatureValue>
+        <KeyInfo>
+            <KeyValue>
+                <DSAKeyValue>
+                    <P>
+                        /KaCzo4Syrom78z3EQ5SbbB4sF7ey80etKII864WF64B81uRpH5t9jQTxeEu0ImbzRMqzVDZkVG9&#13;
+                        xD7nN1kuFw==
+                    </P>
+                    <Q>li7dzDacuo67Jg7mtqEm2TRuOMU=</Q>
+                    <G>
+                        Z4Rxsnqc9E7pGknFFH2xqaryRPBaQ01khpMdLRQnG541Awtx/XPaF5Bpsy4pNWMOHCBiNU0Nogps&#13;
+                        QW5QvnlMpA==
+                    </G>
+                    <Y>
+                        uVrvWkzIbUdL7E80AiD0PJDX3Ck0beY5StXp1wDAA1/ePpemd6rTBNd8YoCzOovNrX016YMcTSiO&#13;
+                        iExM4RWtJA==
+                    </Y>
+                </DSAKeyValue>
+            </KeyValue>
+        </KeyInfo>
+    </Signature>
+</helden>
