@@ -11,7 +11,7 @@ Current supported entries which can be tested include:
     Zauber
     Kampftalente
 
-Project progress can be viewed at: INSERT TRELLO LINK HERE
+Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 
 ## Technologies
 helden-software 5.5.3-1 for character creation
@@ -26,17 +26,14 @@ pyinstaller to create executable
 
 ### Running the python script
 The program relies on the following modules:
-    re
-    tkinter
-    random
-    csv
-    os.path
-    datetime
-    xml.etree.ElementTree
-    collections
-    dataclasses
-    operator
+re, tkinter, random, csv, os, datetime, xml, collections, dataclasses, operator
 
 1. Place your xml file in the main folder
 2. Change the values in "config.txt" based on your preferences
 3. Launch "main.exe"
+
+# Diagrams
+## Program structure
+![Program structure](./images/structure.png)
+## Flowchart
+![Flowchart](./images/flowchart.png)
