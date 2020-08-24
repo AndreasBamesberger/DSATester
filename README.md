@@ -30,7 +30,7 @@ re, tkinter, random, csv, os, datetime, xml, collections, dataclasses, operator
 
 1. Place your xml file in the main folder
 2. Change the values in "config.txt" based on your preferences
-3. Launch "main.exe"
+3. Launch "main.py"
 
 # Diagrams
 ## Program structure
