@@ -14,9 +14,9 @@ Current supported entries which can be tested include:
 Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 
 ## Technologies
-helden-software 5.5.3-1 for character creation
-Python3.8.5 
-pyinstaller to create executable
+helden-software 5.5.3-1 (for character creation)\n
+Python3.8.5\n
+pyinstaller (to create executable)
 
 ## Launch
 ### Launching the executable
