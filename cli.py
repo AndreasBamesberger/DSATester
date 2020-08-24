@@ -128,7 +128,7 @@ class CLI:
     def show_result(self):
         if not self.state:
             print("empty")
-            return
+            return #TODO: change this from None to something more meaningful
         if self.state.category == "attr":
             outstring = (f"\tTested attribute: {self.state.name}\n"
                          f"\tValue: {self.state.value}\n"
@@ -210,5 +210,4 @@ class CLI:
 
 if __name__ == '__main__':
     interface = CLI()
-    while True:
-        interface.loop()
+    interface.loop()

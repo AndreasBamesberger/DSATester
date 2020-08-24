@@ -28,6 +28,7 @@ class GUI():
         # text input for first_input
         self.input_firstinput = tk.Entry(self.window, width=20, bg="white")
         self.input_firstinput.grid(row=1, column=1, sticky=tk.W)
+        print(repr(self.input_firstinput))
 
         self.setup_window()
         self.update()

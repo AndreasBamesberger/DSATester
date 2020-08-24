@@ -1,6 +1,8 @@
 this program is for DSA 4.1
 
 todo
+    change name of get_dice and get_manual_rolls to same name
+    combine test_attr and test_fight_talent
     make trello board
     change GameState.option_list into options (list or tuple?)
     spell "attributo" only needs 2 rolls, would need special case
