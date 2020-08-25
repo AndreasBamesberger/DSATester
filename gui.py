@@ -101,10 +101,9 @@ class GUI():
         test category to misc, else it sends input to game autocomplete to get
         matching entry. if just 1 entry matches then set this as current test
         """
-        pattern1 = "^(\d+)[dD](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
-        pattern2 = "^(\d+)[dD](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
-
-        pattern3 = "^(\d+)[dD](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+        pattern1 = "^(\d+)[dDwW](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
+        pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+        pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
 
 
         self.state.first_input = self.text_inputs["first_input"].get().lower()
@@ -115,19 +114,19 @@ class GUI():
             return False
 
         match1 = re.match(pattern1, self.state.first_input)
-        if match1:
+        if match1 and int(match1.groups()[0]) > 0 and int(match1.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match1.groups()[0]), int(match1.groups()[1]))
             self.state.mod = 0
 
         match2 = re.match(pattern2, self.state.first_input)
-        if match2:
+        if match2 and int(match2.groups()[0]) > 0 and int(match2.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match2.groups()[0]), int(match2.groups()[1]))
             self.state.mod = int(match2.groups()[2])
 
         match3 = re.match(pattern3, self.state.first_input)
-        if match3:
+        if match3 and int(match3.groups()[0]) > 0 and int(match3.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
             self.state.mod = int(match3.groups()[2]) * -1
@@ -171,7 +170,7 @@ class GUI():
         else:
             self.state.mod = 0
 
-    def get_manual_rolls(self, rolls_string):
+    def get_manual_dice(self, rolls_string):
         """ take manual dice input and save it into self.state.rolls """
         pattern = "\d+" #pylint: disable=anomalous-backslash-in-string
         outlist = []
@@ -219,7 +218,7 @@ class GUI():
         GameLogic.test and displays result """
 
         if self.state.dice == "manual":
-            self.get_manual_rolls(self.text_inputs["dice_input"].get())
+            self.get_manual_dice(self.text_inputs["dice_input"].get())
 
         self.state = game.test(self.state)
 

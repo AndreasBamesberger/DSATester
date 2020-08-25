@@ -17,7 +17,7 @@ class CLI:
                 if self.state.category != "misc":
                     self.get_mod()
                 if self.state.dice == "manual" and self.state.category != "misc":
-                    self.get_dice()
+                    self.get_manual_dice()
                 self.state = game.test(self.state)
                 self.show_result()
                 self.get_save_choice()
@@ -57,26 +57,24 @@ class CLI:
         if self.state.first_input in ("exit", "quit"):
             raise SystemExit
 
-        pattern1 = "^(\d+)[dD](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
-
-        pattern2 = "^(\d+)[dD](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
-
-        pattern3 = "^(\d+)[dD](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+        pattern1 = "^(\d+)[dDwW](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
+        pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+        pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
 
         match1 = re.match(pattern1, self.state.first_input)
-        if match1:
+        if match1 and int(match1.groups()[0]) > 0 and int(match1.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match1.groups()[0]), int(match1.groups()[1]))
             self.state.mod = 0
 
         match2 = re.match(pattern2, self.state.first_input)
-        if match2:
+        if match2 and int(match2.groups()[0]) > 0 and int(match2.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match2.groups()[0]), int(match2.groups()[1]))
             self.state.mod = int(match2.groups()[2])
 
         match3 = re.match(pattern3, self.state.first_input)
-        if match3:
+        if match3 and int(match3.groups()[0]) > 0 and int(match3.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
             self.state.mod = int(match3.groups()[2]) * -1
@@ -115,7 +113,8 @@ class CLI:
         while True:
             mod_input = input("Modifier: ")
             if mod_input == '':
-                return 0
+                self.state.mod = 0
+                break
             if re.match(pattern, mod_input):
                 self.state.mod = int(mod_input)
                 break
@@ -180,7 +179,7 @@ class CLI:
             self.state.save = True
             self.state.desc = desc
 
-    def get_dice(self):
+    def get_manual_dice(self):
         pattern = "^\d+$"
 
         if self.state.category in ("attr", "fight_talent"):
