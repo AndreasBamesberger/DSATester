@@ -1,0 +1,155 @@
+root[0][1][0]: geschlecht, {'name': 'männlich'}
+root[0][1][1]: settings, {'name': 'DSA4.1'}
+root[0][1][2]: rasse, {'name': 'helden.model.rasse.Mittellaender', 'string': 'Mittelländer'}
+root[0][1][3]: kultur, {'name': 'helden.model.kultur.Maraskan', 'schrift': 'Lesen/Schreiben Kusliker Zeichen', 'sprache': 'Sprachen kennen Garethi', 'string': 'Maraskan', 'zweitsprache': 'Sprachen kennen Tulamidya'}
+root[0][1][4]: ausbildungen, {}
+root[0][1][5]: verify, {'value': '1'}
+root[0][1][6]: notiz, {'notiz0': 'Notizen', 'notiz1': '', 'notiz10': '', 'notiz11': '', 'notiz2': '', 'notiz3': '', 'notiz4': '', 'notiz5': '', 'notiz6': '', 'notiz7': '', 'notiz8': '', 'notiz9': ''}
+root[0][1][7]: portraet, {'value': ''}
+root[0][1][8]: abenteuerpunkte, {'value': '400'}
+root[0][1][9]: freieabenteuerpunkte, {'value': '400'}
+root[0][2][0]: eigenschaft, {'mod': '0', 'name': 'Mut', 'startwert': '12', 'value': '12'}
+root[0][2][1]: eigenschaft, {'mod': '0', 'name': 'Klugheit', 'startwert': '8', 'value': '8'}
+root[0][2][2]: eigenschaft, {'mod': '1', 'name': 'Intuition', 'startwert': '11', 'value': '11'}
+root[0][2][3]: eigenschaft, {'mod': '0', 'name': 'Charisma', 'startwert': '12', 'value': '12'}
+root[0][2][4]: eigenschaft, {'mod': '0', 'name': 'Fingerfertigkeit', 'startwert': '8', 'value': '8'}
+root[0][2][5]: eigenschaft, {'mod': '0', 'name': 'Gewandtheit', 'startwert': '8', 'value': '8'}
+root[0][2][6]: eigenschaft, {'mod': '0', 'name': 'Konstitution', 'startwert': '8', 'value': '8'}
+root[0][2][7]: eigenschaft, {'mod': '0', 'name': 'Körperkraft', 'startwert': '8', 'value': '8'}
+root[0][2][8]: eigenschaft, {'mod': '0', 'name': 'Sozialstatus', 'startwert': '3', 'value': '3'}
+root[0][2][9]: eigenschaft, {'mod': '10', 'name': 'Lebensenergie', 'value': '0'}
+root[0][2][10]: eigenschaft, {'mod': '10', 'name': 'Ausdauer', 'value': '0'}
+root[0][2][11]: eigenschaft, {'grossemeditation': '0', 'mod': '13', 'mrmod': '-1', 'name': 'Astralenergie', 'value': '0'}
+root[0][2][12]: eigenschaft, {'karmalqueste': '0', 'mod': '0', 'name': 'Karmaenergie', 'value': '0'}
+root[0][2][13]: eigenschaft, {'mod': '-1', 'name': 'Magieresistenz', 'value': '0'}
+root[0][2][14]: eigenschaft, {'mod': '0', 'name': 'ini', 'value': '9'}
+root[0][2][15]: eigenschaft, {'mod': '0', 'name': 'at', 'value': '6'}
+root[0][2][16]: eigenschaft, {'mod': '0', 'name': 'pa', 'value': '6'}
+root[0][2][17]: eigenschaft, {'mod': '0', 'name': 'fk', 'value': '6'}
+root[0][3][0]: vorteil, {'name': 'Vollzauberer'}
+root[0][3][1]: vorteil, {'name': 'Arroganz', 'value': '5'}
+root[0][3][2]: vorteil, {'name': 'Feste Gewohnheit'}
+root[0][3][3]: vorteil, {'name': 'Jähzorn', 'value': '6'}
+root[0][3][4]: vorteil, {'name': 'Neugier', 'value': '5'}
+root[0][4][0]: sonderfertigkeit, {'name': 'Große Meditation'}
+root[0][4][1]: sonderfertigkeit, {'name': 'Hexenritual: Hexensalbe'}
+root[0][4][2]: sonderfertigkeit, {'name': 'Kulturkunde'}
+root[0][4][3]: sonderfertigkeit, {'name': 'Merkmalskenntnis: Geisterwesen'}
+root[0][4][4]: sonderfertigkeit, {'name': 'Repräsentation: Hexe'}
+root[0][4][5]: sonderfertigkeit, {'name': 'Ritualkenntnis: Hexe'}
+root[0][4][6]: sonderfertigkeit, {'name': 'Talentspezialisierung Kochen (Tränke)'}
+root[0][4][7]: sonderfertigkeit, {'name': 'Vertrautenbindung'}
+root[0][4][8]: verbilligtesonderfertigkeit, {'name': 'Merkmalskenntnis: Einfluss'}
+root[0][5][0]: ereignis, {'obj': 'max GP für Helden: 110', 'text': 'EINSTELLUNG', 'time': '1598097127964', 'version': 'HS 5.5.3'}
+root[0][5][1]: ereignis, {'obj': 'max Eigenschafts-GP für Helden: 100', 'text': 'EINSTELLUNG', 'time': '1598097127964', 'version': 'HS 5.5.3'}
+root[0][5][2]: ereignis, {'obj': 'max Eigenschafts-Wert für Helden: 14', 'text': 'EINSTELLUNG', 'time': '1598097127964', 'version': 'HS 5.5.3'}
+root[0][5][3]: ereignis, {'obj': 'Vorteil/Nachteil Jähzorn ist ungeeignet.', 'text': 'Meistergenehmigung notwendig', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][4]: ereignis, {'obj': 'Eine größere Menge (400) AP wurde nicht genutzt und dem Helden gut geschrieben', 'text': 'Meistergenehmigung notwendig', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][5]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '0 GP', 'obj': 'Rasse: Mittelländer', 'text': 'RKP', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][6]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '5 GP', 'obj': 'Kultur: Maraskan', 'text': 'RKP', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][7]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '17 GP', 'obj': 'Profession: Hexer: Schwarze Witwe', 'text': 'RKP', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][8]: ereignis, {'Alt': '0', 'Neu': '12', 'kommentar': '12 GP', 'obj': 'Mut: 12', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][9]: ereignis, {'Alt': '0', 'Neu': '8', 'kommentar': '8 GP', 'obj': 'Klugheit: 8', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][10]: ereignis, {'Alt': '0', 'Neu': '12', 'kommentar': '11 GP', 'obj': 'Intuition: 12', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][11]: ereignis, {'Alt': '0', 'Neu': '12', 'kommentar': '12 GP', 'obj': 'Charisma: 12', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][12]: ereignis, {'Alt': '0', 'Neu': '8', 'kommentar': '8 GP', 'obj': 'Fingerfertigkeit: 8', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][13]: ereignis, {'Alt': '0', 'Neu': '8', 'kommentar': '8 GP', 'obj': 'Gewandtheit: 8', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][14]: ereignis, {'Alt': '0', 'Neu': '8', 'kommentar': '8 GP', 'obj': 'Konstitution: 8', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][15]: ereignis, {'Alt': '0', 'Neu': '8', 'kommentar': '8 GP', 'obj': 'Körperkraft: 8', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][16]: ereignis, {'Alt': '0', 'Neu': '3', 'kommentar': '0 GP', 'obj': 'Sozialstatus: 3', 'text': 'EIGENSCHAFTEN', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][17]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '0 GP', 'obj': 'Arroganz: 5', 'text': 'VORTEILE', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][18]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '0 GP', 'obj': 'Feste Gewohnheit', 'text': 'VORTEILE', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][19]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '0 GP', 'obj': 'Jähzorn: 6', 'text': 'VORTEILE', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][20]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '0 GP', 'obj': 'Neugier: 5', 'text': 'VORTEILE', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][21]: ereignis, {'Alt': '0', 'Neu': '0', 'kommentar': '0 GP', 'obj': 'Vollzauberer', 'text': 'VORTEILE', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][22]: ereignis, {'obj': 'Auswahl', 'text': 'Jähzorn', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][23]: ereignis, {'obj': 'Auswahl', 'text': 'Merkmalskenntnis: Geisterwesen', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][24]: ereignis, {'obj': 'Auswahl', 'text': 'Sprachen kennen Garethi', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][25]: ereignis, {'Neu': '1', 'obj': 'Auswahl', 'text': 'Säbel', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][26]: ereignis, {'Neu': '1', 'obj': 'Auswahl', 'text': 'Speere', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][27]: ereignis, {'Neu': '2', 'obj': 'Auswahl', 'text': 'Malen/Zeichnen', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][5][28]: ereignis, {'Neu': '4', 'obj': 'Auswahl', 'text': 'Sprachen kennen Bosparano', 'time': '1598097127966', 'version': 'HS 5.5.3'}
+root[0][6][0]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Blasrohr', 'probe': ' (GE/FF/KK)', 'value': '3'}
+root[0][6][1]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Diskus', 'probe': ' (GE/FF/KK)', 'value': '2'}
+root[0][6][2]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Dolche', 'probe': ' (GE/GE/KK)', 'value': '3'}
+root[0][6][3]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Hiebwaffen', 'probe': ' (GE/GE/KK)', 'value': '0'}
+root[0][6][4]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Raufen', 'probe': ' (GE/GE/KK)', 'value': '2'}
+root[0][6][5]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Ringen', 'probe': ' (GE/GE/KK)', 'value': '0'}
+root[0][6][6]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Säbel', 'probe': ' (GE/GE/KK)', 'value': '1'}
+root[0][6][7]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Speere', 'probe': ' (GE/GE/KK)', 'value': '1'}
+root[0][6][8]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Wurfmesser', 'probe': ' (GE/FF/KK)', 'value': '0'}
+root[0][6][9]: talent, {'be': 'BEx2', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Athletik', 'probe': ' (GE/KO/KK)', 'value': '0'}
+root[0][6][10]: talent, {'be': 'BE', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Fliegen', 'probe': ' (MU/IN/GE)', 'value': '4'}
+root[0][6][11]: talent, {'be': 'BEx2', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Klettern', 'probe': ' (MU/GE/KK)', 'value': '0'}
+root[0][6][12]: talent, {'be': 'BEx2', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Körperbeherrschung', 'probe': ' (MU/IN/GE)', 'value': '0'}
+root[0][6][13]: talent, {'be': 'BE', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Schleichen', 'probe': ' (MU/IN/GE)', 'value': '2'}
+root[0][6][14]: talent, {'be': 'BEx2', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Schwimmen', 'probe': ' (GE/KO/KK)', 'value': '1'}
+root[0][6][15]: talent, {'be': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Selbstbeherrschung', 'probe': ' (MU/KO/KK)', 'value': '6'}
+root[0][6][16]: talent, {'be': 'BE-2', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sich verstecken', 'probe': ' (MU/IN/GE)', 'value': '3'}
+root[0][6][17]: talent, {'be': 'BE-3', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Singen', 'probe': ' (IN/CH/CH)', 'value': '0'}
+root[0][6][18]: talent, {'be': '0->BE', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sinnenschärfe', 'probe': ' (KL/IN/IN)', 'value': '3'}
+root[0][6][19]: talent, {'be': 'BEx2', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Tanzen', 'probe': ' (CH/GE/GE)', 'value': '3'}
+root[0][6][20]: talent, {'be': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Zechen', 'probe': ' (IN/KO/KK)', 'value': '0'}
+root[0][6][21]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Betören', 'probe': ' (IN/CH/CH)', 'value': '2'}
+root[0][6][22]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Menschenkenntnis', 'probe': ' (KL/IN/CH)', 'value': '4'}
+root[0][6][23]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sich verkleiden', 'probe': ' (MU/CH/GE)', 'value': '5'}
+root[0][6][24]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Überreden', 'probe': ' (MU/IN/CH)', 'value': '5'}
+root[0][6][25]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Überzeugen', 'probe': ' (KL/IN/CH)', 'value': '2'}
+root[0][6][26]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Fährtensuchen', 'probe': ' (KL/IN/KO)', 'value': '0'}
+root[0][6][27]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Orientierung', 'probe': ' (KL/IN/IN)', 'value': '3'}
+root[0][6][28]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Wildnisleben', 'probe': ' (IN/GE/KO)', 'value': '2'}
+root[0][6][29]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Geschichtswissen', 'probe': ' (KL/KL/IN)', 'value': '2'}
+root[0][6][30]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Götter und Kulte', 'probe': ' (KL/KL/IN)', 'value': '4'}
+root[0][6][31]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Magiekunde', 'probe': ' (KL/KL/IN)', 'value': '4'}
+root[0][6][32]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Pflanzenkunde', 'probe': ' (KL/IN/FF)', 'value': '5'}
+root[0][6][33]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Philosophie', 'probe': ' (KL/KL/IN)', 'value': '2'}
+root[0][6][34]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Rechnen', 'probe': ' (KL/KL/IN)', 'value': '6'}
+root[0][6][35]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sagen und Legenden', 'probe': ' (KL/IN/CH)', 'value': '4'}
+root[0][6][36]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sternkunde', 'probe': ' (KL/KL/IN)', 'value': '4'}
+root[0][6][37]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Tierkunde', 'probe': ' (MU/KL/IN)', 'value': '4'}
+root[0][6][38]: talent, {'k': '21', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sprachen kennen Bosparano', 'probe': ' (KL/IN/CH)', 'value': '4'}
+root[0][6][39]: talent, {'k': '18', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sprachen kennen Garethi', 'probe': ' (KL/IN/CH)', 'value': '6'}
+root[0][6][40]: talent, {'k': '18', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sprachen kennen Tulamidya', 'probe': ' (KL/IN/CH)', 'value': '4'}
+root[0][6][41]: talent, {'k': '10', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Lesen/Schreiben Kusliker Zeichen', 'probe': ' (KL/KL/FF)', 'value': '4'}
+root[0][6][42]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Abrichten', 'probe': ' (MU/IN/CH)', 'value': '3'}
+root[0][6][43]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Ackerbau', 'probe': ' (IN/FF/KO)', 'value': '1'}
+root[0][6][44]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Heilkunde: Gift', 'probe': ' (MU/KL/IN)', 'value': '8'}
+root[0][6][45]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Heilkunde: Krankheiten', 'probe': ' (MU/KL/CH)', 'value': '3'}
+root[0][6][46]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Heilkunde: Wunden', 'probe': ' (KL/CH/FF)', 'value': '1'}
+root[0][6][47]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Holzbearbeitung', 'probe': ' (KL/FF/KK)', 'value': '1'}
+root[0][6][48]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Kochen', 'probe': ' (KL/IN/FF)', 'value': '7'}
+root[0][6][49]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Lederarbeiten', 'probe': ' (KL/FF/FF)', 'value': '1'}
+root[0][6][50]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Malen/Zeichnen', 'probe': ' (KL/IN/FF)', 'value': '5'}
+root[0][6][51]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Schneidern', 'probe': ' (KL/FF/FF)', 'value': '2'}
+root[0][6][52]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Stoffe färben', 'probe': ' (KL/FF/KK)', 'value': '1'}
+root[0][6][53]: talent, {'lernmethode': 'Gegenseitiges Lehren', 'name': 'Ritualkenntnis: Hexe', 'probe': ' (--/--/--)', 'value': '3'}
+root[0][7][0]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Abvenenum reine Speise', 'probe': ' (KL/KL/FF)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '3', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][1]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Ängste lindern', 'probe': ' (MU/IN/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '2', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][2]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'D', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Blick in die Gedanken', 'probe': ' (KL/KL/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '3', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][3]: zauber, {'anmerkungen': '', 'hauszauber': 'true', 'k': 'B', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Einfluss bannen', 'probe': ' (IN/CH/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '3', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][4]: zauber, {'anmerkungen': '', 'hauszauber': 'true', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Geisterbann', 'probe': ' (MU/MU/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '5', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][5]: zauber, {'anmerkungen': '', 'hauszauber': 'true', 'k': 'D', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Geisterruf', 'probe': ' (MU/MU/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '6', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][6]: zauber, {'anmerkungen': '', 'hauszauber': 'true', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Große Gier', 'probe': ' (KL/KL/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '5', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][7]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Harmlose Gestalt', 'probe': ' (KL/CH/GE)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '2', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][8]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Hellsicht trüben', 'probe': ' (KL/IN/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '3', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][9]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'B', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Hexenblick', 'probe': ' (IN/IN/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '2', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][10]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Hexenknoten', 'probe': ' (KL/IN/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '3', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][11]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'D', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Klarum Purum', 'probe': ' (KL/KL/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '2', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][12]: zauber, {'anmerkungen': '', 'hauszauber': 'true', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Krabbelnder Schrecken', 'probe': ' (MU/MU/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '4', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][13]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'D', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Schleier der Unwissenheit', 'probe': ' (KL/KL/FF)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '3', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][14]: zauber, {'anmerkungen': '', 'hauszauber': 'false', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Sensibar Empathicus', 'probe': ' (KL/IN/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '4', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][15]: zauber, {'anmerkungen': '', 'hauszauber': 'true', 'k': 'C', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Spinnenlauf', 'probe': ' (IN/GE/KK)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '5', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][7][16]: zauber, {'anmerkungen': '', 'hauszauber': 'true', 'k': 'E', 'kosten': '', 'lernmethode': 'Gegenseitiges Lehren', 'name': 'Zauberzwang', 'probe': ' (MU/CH/CH)', 'reichweite': '', 'repraesentation': 'Hexe', 'value': '3', 'variante': '', 'wirkungsdauer': '', 'zauberdauer': '', 'zauberkommentar': ''}
+root[0][8][0]: kampfwerte, {'name': 'Dolche'}
+root[0][8][1]: kampfwerte, {'name': 'Hiebwaffen'}
+root[0][8][2]: kampfwerte, {'name': 'Raufen'}
+root[0][8][3]: kampfwerte, {'name': 'Ringen'}
+root[0][8][4]: kampfwerte, {'name': 'Säbel'}
+root[0][8][5]: kampfwerte, {'name': 'Speere'}
+root[0][11][0]: sfInfos, {'dauer': '', 'kosten': '', 'probe': '', 'sf': '', 'sfname': 'Hexenritual: Hexensalbe', 'wirkung': ''}
+root[0][11][1]: sfInfos, {'dauer': '', 'kosten': '', 'probe': '', 'sf': '', 'sfname': 'Vertrautenbindung', 'wirkung': ''}
+root[0][12][0]: heldenausruestung, {'name': 'jagtwaffe', 'nummer': '0', 'set': '0'}
+root[1][0][0]: {http://www.w3.org/2000/09/xmldsig#}CanonicalizationMethod, {'Algorithm': 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments'}
+root[1][0][1]: {http://www.w3.org/2000/09/xmldsig#}SignatureMethod, {'Algorithm': 'http://www.w3.org/2000/09/xmldsig#dsa-sha1'}
+root[1][0][2]: {http://www.w3.org/2000/09/xmldsig#}Reference, {'URI': ''}
+root[1][2][0]: {http://www.w3.org/2000/09/xmldsig#}KeyValue, {}

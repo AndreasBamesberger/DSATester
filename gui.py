@@ -1,15 +1,12 @@
 """ creates window using tkinter, communicates with GameLogic through the dataclass GameState"""
 import re
 import tkinter as tk
-from game_backend import GameLogic, GameState
-
-game = GameLogic()
-
 
 class GUI():
     """ creates window using tkinter, communicates with GameLogic through the dataclass GameState"""
-    def __init__(self):
-        self.state = GameState()
+    def __init__(self, game, state):
+        self.game = game
+        self.state = state
         self.read_config("config.txt")
 
         self.window = tk.Tk()
@@ -138,7 +135,7 @@ class GUI():
             self.state.category = None
             self.printable_options = ''
         elif self.state.category != "misc":
-            self.state = game.autocomplete(self.state)
+            self.state = self.game.autocomplete(self.state)
 
             self.printable_options = []
 
@@ -220,7 +217,7 @@ class GUI():
         if self.state.dice == "manual":
             self.get_manual_dice(self.text_inputs["dice_input"].get())
 
-        self.state = game.test(self.state)
+        self.state = self.game.test(self.state)
 
         if self.state.result is None or self.state.rolls is None:
             return False
@@ -271,7 +268,7 @@ class GUI():
         if self.state.result is None:
             return False
         self.state.save = True
-        self.state = game.save_to_csv(self.state)
+        self.state = self.game.save_to_csv(self.state)
         self.reset()
 
     def read_config(self, configname):
@@ -628,7 +625,3 @@ class GUI():
 #
 #    def post_change(self):
 #        # do stuff right after variable has changed
-
-if __name__ == '__main__':
-    interface = GUI()
-    interface.loop()

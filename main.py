@@ -1,6 +1,7 @@
 """ reads interface choice from config file and starts interface """
 from cli import CLI
 from gui import GUI
+from game_backend import GameLogic, GameState
 
 def read_config(configname):
     """ input = string, name of config file.
@@ -19,9 +20,11 @@ def read_config(configname):
 
 if __name__ == '__main__':
     interface_input = read_config("config.txt")
+    game = GameLogic()
+    state = GameState()
     if interface_input == "CLI":
-        interface = CLI()
+        interface = CLI(game, state)
     elif interface_input == "GUI":
-        interface = GUI()
+        interface = GUI(game, state)
 
     interface.loop()

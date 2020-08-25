@@ -1,13 +1,12 @@
 """ command line interface, communicates with GameLogic """
 import re
-from game_backend import GameLogic, GameState
-
-game = GameLogic()
+#from game_backend import GameLogic, GameState
 
 class CLI:
     """ command line interface, communicates with GameLogic """
-    def __init__(self):
-        self.state = GameState()
+    def __init__(self, game, state):
+        self.game = game
+        self.state = state
         self.read_config("config.txt")
 
     def loop(self):
@@ -18,11 +17,11 @@ class CLI:
                     self.get_mod()
                 if self.state.dice == "manual" and self.state.category != "misc":
                     self.get_manual_dice()
-                self.state = game.test(self.state)
+                self.state = self.game.test(self.state)
                 self.show_result()
                 self.get_save_choice()
                 if self.state.save:
-                    game.save_to_csv(self.state)
+                    self.game.save_to_csv(self.state)
             self.reset()
 
     def reset(self):
@@ -82,7 +81,7 @@ class CLI:
         if self.state.category == "misc":
             return_value = True
         else:
-            self.state = game.autocomplete(self.state)
+            self.state = self.game.autocomplete(self.state)
             if not self.state.option_list:
                 self.display_message("No matches found")
                 return_value = False
@@ -205,8 +204,3 @@ class CLI:
                 print("wrong input, try again")
 
         self.state.rolls = outlist
-
-
-if __name__ == '__main__':
-    interface = CLI()
-    interface.loop()

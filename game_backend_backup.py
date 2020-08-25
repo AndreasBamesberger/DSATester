@@ -1,7 +1,7 @@
 """ DSA rules for testing, called upon by interfaces """
 import random # for dice rolls
 import csv # to write into file
-import os # to check if file already exists
+import os.path # to check if file already exists
 import datetime # to log time of dice roll
 import xml.etree.ElementTree as ET # to parse input xml file
 from collections import namedtuple
@@ -39,16 +39,6 @@ class GameLogic:
         random.seed(a=None, version=2)
         self.hero_xml = None
         self.result_csv = None
-
-        self.heroes = {}
-
-        self.xml_list = []
-
-        for file in os.listdir():
-            if file.endswith(".xml"):
-                self.xml_list.append(file)
-
-        print(repr(self.xml_list))
 
         self.read_config("config.txt")
         self.setup_output_file()
@@ -286,7 +276,3 @@ class GameLogic:
 
         state.option_list = output_list
         return state
-
-if __name__ == '__main__':
-    game = GameLogic()
-    game.write_all()
