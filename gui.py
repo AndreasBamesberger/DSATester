@@ -7,6 +7,7 @@ class GUI():
     def __init__(self, game, state):
         self.game = game
         self.state = state
+        self.state.current_hero = "testchar_01"
         self.read_config("config.txt")
 
         self.window = tk.Tk()

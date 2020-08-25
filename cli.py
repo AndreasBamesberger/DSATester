@@ -7,11 +7,13 @@ class CLI:
     def __init__(self, game, state):
         self.game = game
         self.state = state
+        self.state.current_hero = "testchar_01"
         self.read_config("config.txt")
 
     def loop(self):
         while True:
             print("Roll #" + str(self.state.counter))
+            self.get_hero()
             if self.get_test_input():
                 if self.state.category != "misc":
                     self.get_mod()
@@ -92,7 +94,7 @@ class CLI:
         return return_value
 
     def get_selection(self):
-        pattern = '^\d+$'
+        pattern = "^\d+$"
         print("Character entries fitting input:")
         for index, option in enumerate(self.state.option_list):
             print("\t{0}: {1}".format(str(index+1), option[0]))
@@ -106,6 +108,24 @@ class CLI:
                 break
             else:
                 print("invalid input, try again")
+
+    def get_hero(self):
+        pattern = "^\d+$"
+        hero_options = self.game.get_heroes()
+        while True:
+            print("Available heroes: ")
+            for index, value in enumerate(hero_options):
+                print("\t{0}: {1}".format(str(index + 1), value))
+            hero_input = input("Enter number: ")
+            if hero_input == '':
+                break
+            elif re.match(pattern, hero_input) and int(hero_input) in range(1, len(hero_options) + 1):
+                self.state.current_hero = hero_options[int(hero_input) - 1]
+                break
+            else:
+                print("invalid input, try again")
+
+
 
     def get_mod(self):
         pattern = '^-?\d+$'
@@ -128,14 +148,16 @@ class CLI:
             print("empty")
             return #TODO: change this from None to something more meaningful
         if self.state.category == "attr":
-            outstring = (f"\tTested attribute: {self.state.name}\n"
+            outstring = (f"\tTested hero: {self.state.current_hero}\n"
+                         f"\tTested attribute: {self.state.name}\n"
                          f"\tValue: {self.state.value}\n"
                          f"\tModifier: {self.state.mod}\n"
                          f"\tDice value: {self.state.rolls[0]}\n"
                          f"\tResult: {self.state.result}")
             print(outstring)
         elif self.state.category == "fight_talent":
-            outstring = (f"\tTested fight talent: {self.state.name}\n"
+            outstring = (f"\tTested hero: {self.state.current_hero}\n"
+                         f"\tTested fight talent: {self.state.name}\n"
                          f"\tValue: {self.state.value}\n"
                          f"\tModifier: {self.state.mod}\n"
                          f"\tDice value: {self.state.rolls[0]}\n"
@@ -154,7 +176,8 @@ class CLI:
             remaining_string = [i.remaining for _, i in enumerate(self.state.attrs)]
             remaining_string = ", ".join(map(str, remaining_string))
 
-            outstring = (f"\tTested {self.state.category}: {self.state.name}\n"
+            outstring = (f"\tTested hero: {self.state.current_hero}\n"
+                         f"\tTested {self.state.category}: {self.state.name}\n"
                          f"\tRelated attributes: {attrs_string}\n"
                          f"\tSkill value: {value_string}\n"
                          f"\tModifier: {self.state.mod}\n"
@@ -204,3 +227,4 @@ class CLI:
                 print("wrong input, try again")
 
         self.state.rolls = outlist
+

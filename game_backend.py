@@ -15,6 +15,7 @@ class GameState:
     done: bool = False        # exit when True (currently not used)
     save: bool = False        # export roll to csv if True (currently not used)
     dice: str = None          # "auto" or "manual" whether dice rolls are input or calculated
+    current_hero: str = None  # which hero file will be evaluated
     counter: int = 1          # increases with every saved dice roll
     category: str = None      # "attr"/"skill"/"spell"/"misc"
     name: str = None          # name of tested attr/skill/spell
@@ -31,7 +32,7 @@ class GameState:
 
 
 SkillAttr = namedtuple("SkillAttr", ["abbr", "value", "modified", "remaining"])
-Hero = namedtuple("Hero", ["root", "attrs", "skills", "spells", "fight_talents"])
+Hero = namedtuple("Hero", ["name", "root", "attrs", "skills", "spells", "fight_talents"])
 
 class GameLogic:
     """ DSA rules for testing, called upon by interfaces """
@@ -48,20 +49,30 @@ class GameLogic:
             if file.endswith(".xml"):
                 self.xml_list.append(file)
 
-        print(repr(self.xml_list))
+        for _, value in enumerate(self.xml_list):
+            name = value.replace(".xml", '')
+            hero_root = self.parse_xml(value)
+            attrs = self.read_attributes(hero_root)
+            skills = self.read_skills(hero_root)
+            spells = self.read_spells(hero_root)
+            fight_talents = self.read_fight_talents(hero_root)
+            self.heroes.update({name: Hero(name, hero_root, attrs, skills, spells, fight_talents)})
 
-        for index, value in enumerate(self.xml_list):
-            pass
+#        print(repr(self.heroes["testchar_01"].name))
+#        print(repr(self.heroes["testchar_01"].attrs))
+#        print(repr(self.heroes["testchar_01"].skills))
+#        print(repr(self.heroes["testchar_01"].spells))
+#        print(repr(self.heroes["testchar_01"].fight_talents))
 
-
+#        self.write_all()
         self.read_config("config.txt")
         self.setup_output_file()
-        self.root = self.parse_xml(self.hero_xml)
-
-        self.attributes = self.read_attributes()
-        self.skills = self.read_skills()
-        self.spells = self.read_spells()
-        self.fight_talents = self.read_fight_talents()
+#        self.root = self.parse_xml(self.hero_xml)
+#
+#        self.attributes = self.read_attributes(self.root)
+#        self.skills = self.read_skills(self.root)
+#        self.spells = self.read_spells(self.root)
+#        self.fight_talents = self.read_fight_talents(self.root)
 
     def read_config(self, configname):
         """ input = string, name of config-file. scans config-file for names of
@@ -140,61 +151,62 @@ class GameLogic:
         """dump all information of xml file into txt"""
         #TODO: fix lebensenergie, ausdauer, magieresistenz, ini
         with open("dump.txt", "w", encoding="utf-8") as dumpfile:
-            for i in range(len(self.root)): #pylint: disable=consider-using-enumerate
-                for j in range(len(self.root[i])):
-                    for k in range(len(self.root[i][j])):
-                        output = "root[{0}][{1}][{2}]: {3}, {4}\n".format(i, j, k, self.root[i][j][k].tag, self.root[i][j][k].attrib) #pylint: disable=invalid-name, line-too-long
-                        dumpfile.write(output)
+            for _, item in self.heroes.items():
+                for i in range(len(item.root)): #pylint: disable=consider-using-enumerate
+                    for j in range(len(item.root[i])):
+                        for k in range(len(item.root[i][j])):
+                            output = "{0}: root[{1}][{2}][{3}]: {4}, {5}\n".format(item.name, i, j, k, item.root[i][j][k].tag, item.root[i][j][k].attrib) #pylint: disable=invalid-name, line-too-long
+                            dumpfile.write(output)
 
-    def read_attributes(self):
+    def read_attributes(self, root):
         """return list [name, value], eg: ['Mut', 15]"""
         output_list = []
-        for i in range(len(self.root[0][2])):
-            attr = Attribute(self.root[0][2][i])
+        for i in range(len(root[0][2])):
+            attr = Attribute(root[0][2][i])
             output_list.append(attr)
         return output_list
 
-    def read_skills(self):
+    def read_skills(self, root):
         """return list [name, value, test1, test2, test3, handicap], eg: ['Zechen', 6, 'IN', 'KO', 'KK', 0]""" #pylint: disable=line-too-long
 
         output_list = []
-        for i in range(len(self.root[0][6])):
-    #        skill = Skill(root[0][6][i])
-            output_list.append(Skill(self.root[0][6][i]))
-
+        for i in range(len(root[0][6])):
+            output_list.append(Skill(root[0][6][i]))
         return output_list
 
-    def read_spells(self):
+    def read_spells(self, root):
         output_list = []
-        for i in range(len(self.root[0][7])):
-            output_list.append(Spell(self.root[0][7][i]))
+        for i in range(len(root[0][7])):
+            output_list.append(Spell(root[0][7][i]))
         return output_list
 
-    def read_fight_talents(self):
+    def read_fight_talents(self, root):
         output_list = []
-        for i in range(len(self.root[0][8])):
-            output_list.append(FightTalent(self.root[0][8][i], "AT"))
-            output_list.append(FightTalent(self.root[0][8][i], "PA"))
+        for i in range(len(root[0][8])):
+            output_list.append(FightTalent(root[0][8][i], "AT"))
+            output_list.append(FightTalent(root[0][8][i], "PA"))
         return output_list
 
     def test(self, state):
         if state.dice == "manual" and (state.rolls is None or state.rolls == []):
             return state
 
+        hero = self.heroes[state.current_hero]
+
         if state.category == "attr":
-            for attr in self.attributes:
+            for attr in hero.attrs:
                 if state.name == attr.name:
                     state = self.test_attr(attr, state)
         if state.category == "fight_talent":
-            for fight_talent in self.fight_talents:
+            for fight_talent in hero.fight_talents:
                 if state.name == fight_talent.name:
                     state = self.test_fight_talent(fight_talent, state)
         elif state.category == "skill":
-            for skill in self.skills:
+            for skill in hero.skills:
                 if state.name == skill.name:
                     state = self.test_skill(skill, state)
         elif state.category == "spell":
-            for spell in self.spells:
+            for spell in hero.spells:
                 if state.name == spell.name:
                     state = self.test_skill(spell, state)
         elif state.category == "misc":
@@ -221,7 +233,9 @@ class GameLogic:
         attr_values = []
         attr_abbrs = []
 
-        for attr in self.attributes:
+        hero = self.heroes[state.current_hero]
+
+        for attr in hero.attrs:
             for _, skill_attr in enumerate(skill.test):
                 if attr.abbr == skill_attr:
                     attr_values.append(attr.value)
@@ -272,24 +286,33 @@ class GameLogic:
     def autocomplete(self, state):
         output_list = []
 
-        for attr in self.attributes:
+        hero = self.heroes[state.current_hero]
+
+        for attr in hero.attrs:
             if state.first_input.lower() in attr.name.lower() or state.first_input in attr.abbr:
                 if attr.name in ("at", "pa"):
                     continue
                 output_list.append([attr.name, "attr"])
-        for skill in self.skills:
+        for skill in hero.skills:
             if state.first_input.lower() in skill.name.lower():
                 output_list.append([skill.name, "skill"])
-        for spell in self.spells:
+        for spell in hero.spells:
             if state.first_input.lower() in spell.name.lower():
                 output_list.append([spell.name, "spell"])
 
-        for fight_talent in self.fight_talents:
+        for fight_talent in hero.fight_talents:
             if state.first_input.lower() in fight_talent.name.lower():
                 output_list.append([fight_talent.name, "fight_talent"])
 
         state.option_list = output_list
         return state
+
+    def get_heroes(self):
+        outlist = []
+        for key, value in self.heroes.items():
+            outlist.append(key)
+        outlist.sort()
+        return outlist
 
 if __name__ == '__main__':
     game = GameLogic()
