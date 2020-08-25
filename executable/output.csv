@@ -1,5 +1,0 @@
-Hero file,Test type,Rolls,Attribute/Skill,Attribute/Skill value,Modifier,Result,Description,Timestamp
-testchar_01.xml,attr,6,Klugheit,8,-2,0,Roll#1: attr test,2020-08-24 19:55:16.030255
-testchar_01.xml,skill,13; 17; 17,Körperbeherrschung,0,2,-13,Roll#2: skill test,2020-08-24 19:55:52.570438
-testchar_01.xml,fight_talent,9,AT Speere,6,0,-3,Roll#3: at test,2020-08-24 19:56:38.795632
-testchar_01.xml,spell,15; 14; 6,Zauberzwang,3,-10,-20,Roll#4: spell test,2020-08-24 19:57:40.370027
