@@ -129,7 +129,7 @@ class GameLogic:
 
         printable_rolls = "; ".join(map(str, state.rolls))
 
-        save_values = [self.hero_xml,
+        save_values = [state.current_hero,
                        state.category,
                        printable_rolls,
                        state.name,
@@ -307,7 +307,7 @@ class GameLogic:
         state.option_list = output_list
         return state
 
-    def get_heroes(self):
+    def get_hero_list(self):
         outlist = []
         for key, value in self.heroes.items():
             outlist.append(key)

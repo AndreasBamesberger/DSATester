@@ -111,7 +111,7 @@ class CLI:
 
     def get_hero(self):
         pattern = "^\d+$"
-        hero_options = self.game.get_heroes()
+        hero_options = self.game.get_hero_list()
         while True:
             print("Available heroes: ")
             for index, value in enumerate(hero_options):

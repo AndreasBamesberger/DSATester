@@ -7,7 +7,6 @@ class GUI():
     def __init__(self, game, state):
         self.game = game
         self.state = state
-        self.state.current_hero = "testchar_01"
         self.read_config("config.txt")
 
         self.window = tk.Tk()
@@ -17,15 +16,20 @@ class GUI():
 
         self.old_category = None
         self.old_input = None
+        self.old_hero_input = None
         self.printable_options = None
 
         self.text_outputs = {}
         self.text_inputs = {}
         self.buttons = {}
 
-        # text input for first_input
-        self.input_firstinput = tk.Entry(self.window, width=20, bg="white")
-        self.input_firstinput.grid(row=1, column=1, sticky=tk.W)
+        # text input for hero input
+        self.input_hero = tk.Entry(self.window, width=20, bg="white")
+        self.input_hero.grid(row=1, column=1, sticky=tk.W)
+
+        # text input for test input
+        self.input_test = tk.Entry(self.window, width=20, bg="white")
+        self.input_test.grid(row=3, column=1, sticky=tk.W)
 
         self.setup_window()
         self.update()
@@ -34,14 +38,23 @@ class GUI():
         """ gets executed by main.py, reads inputs, sends inputs to GameLogic,
         shows results in tkinter window """
         while True:
+            self.get_hero()
             self.get_first_input()
 
             if self.old_category != self.state.category:
                 self.clear_screen()
                 self.setup_window()
+                self.state.result = None
                 self.old_category = self.state.category
 
+            if self.old_hero_input != self.state.current_hero:
+                self.clear_screen()
+                self.setup_window()
+                self.state.result = None
+                self.old_hero_input = self.state.current_hero
+
             self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
+            self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
 
             if self.state.category in ("attr", "skill", "spell", "fight_talent"):
                 self.text_outputs["var_matching"].configure(text=self.state.name)
@@ -72,7 +85,7 @@ class GUI():
         self.state.option_list = None
         self.state.selection = None
 
-        self.input_firstinput.delete(0, 'end')
+        self.input_test.delete(0, 'end')
 
     def update(self):
         """ components of tk.mainloop """
@@ -87,12 +100,23 @@ class GUI():
             field.destroy()
 
         for key, field in self.text_inputs.items():
-            if key == "first_input":
+            if key in ("first_input", "hero_input"):
                 continue
             field.destroy()
 
         for key, field in self.buttons.items():
             field.destroy()
+
+    def get_hero(self):
+        hero_input = self.text_inputs["hero_input"].get().lower()
+        hero_options = self.game.get_hero_list()
+        templist = []
+        for index, value in enumerate(hero_options):
+            if hero_input in value:
+                templist.append(value)
+        if len(templist) == 1:
+            self.state.current_hero = templist[0]
+
 
     def get_first_input(self):
         """ checks input for misc input regular expressions, if it matches sets
@@ -294,9 +318,12 @@ class GUI():
         """ create tkinter widgets """
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["input_prompt", "Input: ", 1, 0, tk.E],
-                   ["matching", "Matching: ", 2, 0, tk.NE],
-                   ["var_matching", '', 2, 1, tk.W]]
+                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
+                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["var_matching_hero", '', 2, 1, tk.W],
+                   ["input_prompt", "Input: ", 3, 0, tk.E],
+                   ["matching", "Matching: ", 4, 0, tk.NE],
+                   ["var_matching", '', 4, 1, tk.W]]
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -310,27 +337,32 @@ class GUI():
 
             self.text_outputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_firstinput})
+        self.text_inputs.update({"first_input": self.input_test})
+        self.text_inputs.update({"hero_input": self.input_hero})
 
     def setup_attr_screen(self):
         """ create tkinter widgets """
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["matching", "Matching: ", 2, 0, tk.E],
-                   ["var_matching", '', 2, 1, tk.W],
-                   ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested attribute: ", 6, 0, tk.E],
-                   ["var_tested", '', 6, 1, tk.W],
-                   ["value", "Value: ", 7, 0, tk.E],
-                   ["var_value", '', 7, 1, tk.W],
-                   ["rolls", "Rolls: ", 8, 0, tk.E],
-                   ["var_rolls", '', 8, 1, tk.W],
-                   ["result", "Result: ", 10, 0, tk.E],
-                   ["var_result", '', 10, 1, tk.W],
-                   ["desc", "Description: ", 11, 0, tk.E]]
+                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
+                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["var_matching_hero", '', 2, 1, tk.W],
+                   ["input_prompt", "Input: ", 3, 0, tk.E],
+                   ["matching", "Matching: ", 4, 0, tk.E],
+                   ["var_matching", '', 4, 1, tk.W],
+                   ["mod", "Modifier: ", 5, 0, tk.E],
+                   ["tested", "Tested attribute: ", 8, 0, tk.E],
+                   ["var_tested", '', 8, 1, tk.W],
+                   ["value", "Value: ", 9, 0, tk.E],
+                   ["var_value", '', 9, 1, tk.W],
+                   ["rolls", "Rolls: ", 10, 0, tk.E],
+                   ["var_rolls", '', 10, 1, tk.W],
+                   ["result", "Result: ", 12, 0, tk.E],
+                   ["var_result", '', 12, 1, tk.W],
+                   ["desc", "Description: ", 13, 0, tk.E]]
 
         if self.state.dice == "manual":
-            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
+            outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -349,15 +381,15 @@ class GUI():
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
         inputs = []
-        inputs.append(["mod", 20, 3, 1, tk.W])
+        inputs.append(["mod", 20, 5, 1, tk.W])
 
 #        inputs = [["mod", 20, 3, 1, tk.W],
 #                  ["desc", 20, 11, 1, tk.W]]
 
         if self.state.dice == "manual":
-            inputs.append(["dice_input", 20, 4, 1, tk.W])
+            inputs.append(["dice_input", 20, 6, 1, tk.W])
 
-        inputs.append(["desc", 20, 11, 1, tk.W])
+        inputs.append(["desc", 20, 13, 1, tk.W])
 
         for _, value in enumerate(inputs):
             key = value[0]
@@ -371,10 +403,11 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_firstinput})
+        self.text_inputs.update({"first_input": self.input_test})
+        self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
-                   ["save", "Save", 4, self.button_save, 12, 0, False]]
+        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
+                   ["save", "Save", 4, self.button_save, 14, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
@@ -397,21 +430,25 @@ class GUI():
         """ create tkinter widgets """
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["matching", "Matching: ", 2, 0, tk.E],
-                   ["var_matching", '', 2, 1, tk.W],
-                   ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested fight talent: ", 6, 0, tk.E],
-                   ["var_tested", '', 6, 1, tk.W],
-                   ["value", "Value: ", 7, 0, tk.E],
-                   ["var_value", '', 7, 1, tk.W],
-                   ["rolls", "Rolls: ", 8, 0, tk.E],
-                   ["var_rolls", '', 8, 1, tk.W],
-                   ["result", "Result: ", 9, 0, tk.E],
-                   ["var_result", '', 9, 1, tk.W],
-                   ["desc", "Description: ", 10, 0, tk.E]]
+                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
+                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["var_matching_hero", '', 2, 1, tk.W],
+                   ["input_prompt", "Input: ", 3, 0, tk.E],
+                   ["matching", "Matching: ", 4, 0, tk.E],
+                   ["var_matching", '', 4, 1, tk.W],
+                   ["mod", "Modifier: ", 5, 0, tk.E],
+                   ["tested", "Tested fight talent: ", 8, 0, tk.E],
+                   ["var_tested", '', 8, 1, tk.W],
+                   ["value", "Value: ", 9, 0, tk.E],
+                   ["var_value", '', 9, 1, tk.W],
+                   ["rolls", "Rolls: ", 10, 0, tk.E],
+                   ["var_rolls", '', 10, 1, tk.W],
+                   ["result", "Result: ", 11, 0, tk.E],
+                   ["var_result", '', 11, 1, tk.W],
+                   ["desc", "Description: ", 12, 0, tk.E]]
 
         if self.state.dice == "manual":
-            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
+            outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -429,12 +466,12 @@ class GUI():
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
         inputs = []
-        inputs.append(["mod", 20, 3, 1, tk.W])
+        inputs.append(["mod", 20, 5, 1, tk.W])
 
         if self.state.dice == "manual":
-            inputs.append(["dice_input", 20, 4, 1, tk.W])
+            inputs.append(["dice_input", 20, 6, 1, tk.W])
 
-        inputs.append(["desc", 20, 10, 1, tk.W])
+        inputs.append(["desc", 20, 12, 1, tk.W])
 
         for _, value in enumerate(inputs):
             key = value[0]
@@ -448,10 +485,11 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_firstinput})
+        self.text_inputs.update({"first_input": self.input_test})
+        self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
-                   ["save", "Save", 4, self.button_save, 11, 0, False]]
+        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
+                   ["save", "Save", 4, self.button_save, 13, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
@@ -474,25 +512,29 @@ class GUI():
         """ create tkinter widgets """
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["matching", "Matching: ", 2, 0, tk.E],
-                   ["var_matching", '', 2, 1, tk.W],
-                   ["mod", "Modifier: ", 3, 0, tk.E],
-                   ["tested", "Tested skill/spell: ", 6, 0, tk.E],
-                   ["var_tested", '', 6, 1, tk.W],
-                   ["tested_attrs", "Tested attributes: ", 7, 0, tk.E],
-                   ["var_tested_attrs", '', 7, 1, tk.W],
-                   ["value", "Value: ", 8, 0, tk.E],
-                   ["var_value", '', 8, 1, tk.W],
-                   ["rolls", "Rolls: ", 9, 0, tk.E],
-                   ["var_rolls", '', 9, 1, tk.W],
-                   ["remaining", "Attribute values remaining: ", 10, 0, tk.E],
-                   ["var_remaining", '', 10, 1, tk.W],
-                   ["result", "Result: ", 11, 0, tk.E],
-                   ["var_result", '', 11, 1, tk.W],
-                   ["desc", "Description: ", 12, 0, tk.E]]
+                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
+                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["var_matching_hero", '', 2, 1, tk.W],
+                   ["input_prompt", "Input: ", 3, 0, tk.E],
+                   ["matching", "Matching: ", 4, 0, tk.E],
+                   ["var_matching", '', 4, 1, tk.W],
+                   ["mod", "Modifier: ", 5, 0, tk.E],
+                   ["tested", "Tested skill/spell: ", 8, 0, tk.E],
+                   ["var_tested", '', 8, 1, tk.W],
+                   ["tested_attrs", "Tested attributes: ", 9, 0, tk.E],
+                   ["var_tested_attrs", '', 9, 1, tk.W],
+                   ["value", "Value: ", 10, 0, tk.E],
+                   ["var_value", '', 10, 1, tk.W],
+                   ["rolls", "Rolls: ", 11, 0, tk.E],
+                   ["var_rolls", '', 11, 1, tk.W],
+                   ["remaining", "Attribute values remaining: ", 12, 0, tk.E],
+                   ["var_remaining", '', 12, 1, tk.W],
+                   ["result", "Result: ", 13, 0, tk.E],
+                   ["var_result", '', 13, 1, tk.W],
+                   ["desc", "Description: ", 14, 0, tk.E]]
 
         if self.state.dice == "manual":
-            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
+            outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -510,12 +552,12 @@ class GUI():
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
         inputs = []
-        inputs.append(["mod", 20, 3, 1, tk.W])
+        inputs.append(["mod", 20, 5, 1, tk.W])
 
         if self.state.dice == "manual":
-            inputs.append(["dice_input", 20, 4, 1, tk.W])
+            inputs.append(["dice_input", 20, 6, 1, tk.W])
 
-        inputs.append(["desc", 20, 12, 1, tk.W])
+        inputs.append(["desc", 20, 14, 1, tk.W])
 
         for _, value in enumerate(inputs):
             key = value[0]
@@ -529,10 +571,11 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_firstinput})
+        self.text_inputs.update({"first_input": self.input_test})
+        self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
-                   ["save", "Save", 4, self.button_save, 13, 0, False]]
+        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
+                   ["save", "Save", 4, self.button_save, 15, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
@@ -554,14 +597,17 @@ class GUI():
 
     def setup_misc_screen(self):
         """ create tkinter widgets """
-        outputs = [["input_prompt", "Input: ", 1, 0, tk.E],
-                   ["roll_nr", "Roll #", 0, 0, tk.E],
+        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["rolls", "Rolls: ", 7, 0, tk.E],
-                   ["var_rolls", '', 7, 1, tk.W],
-                   ["result", "Result: ", 9, 0, tk.E],
-                   ["var_result", '', 9, 1, tk.W],
-                   ["desc", "Description: ", 10, 0, tk.E]]
+                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
+                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["var_matching_hero", '', 2, 1, tk.W],
+                   ["input_prompt", "Input: ", 3, 0, tk.E],
+                   ["rolls", "Rolls: ", 5, 0, tk.E],
+                   ["var_rolls", '', 5, 1, tk.W],
+                   ["result", "Result: ", 6, 0, tk.E],
+                   ["var_result", '', 6, 1, tk.W],
+                   ["desc", "Description: ", 7, 0, tk.E]]
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -575,7 +621,7 @@ class GUI():
 
             self.text_outputs.update({key:temp})
 
-        inputs = [["desc", 20, 10, 1, tk.W]]
+        inputs = [["desc", 20, 7, 1, tk.W]]
         for _, value in enumerate(inputs):
             key = value[0]
             width = value[1]
@@ -588,10 +634,11 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_firstinput})
+        self.text_inputs.update({"first_input": self.input_test})
+        self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 3, 0, False],
-                   ["save", "Save", 4, self.button_save, 11, 0, False]]
+        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
+                   ["save", "Save", 4, self.button_save, 8, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]

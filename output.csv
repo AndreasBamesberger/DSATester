@@ -12,3 +12,21 @@ testchar_01.xml,skill,6; 15; 6,Überreden,5,0,2,Roll#1: skill test,2020-08-25 12
 testchar_01.xml,spell,9; 19; 12,Harmlose Gestalt,2,2,-8,Roll#2: spell test,2020-08-25 12:47:48.883946
 testchar_01.xml,skill,16; 18; 20,Klettern,3,1,-7,Roll#1: skill test,2020-08-25 13:06:57.425847
 testchar_01.xml,skill,3; 3; 13,Klettern,0,1,-4,Roll#2: skill test,2020-08-25 13:07:11.490688
+testchar_01.xml,attr,10,Klugheit,14,0,4,Roll#1: asdf,2020-08-25 15:43:30.197840
+testchar_01.xml,skill,18; 11; 1,Sinnenschärfe,3,-2,-9,Roll#1: asdf,2020-08-25 15:58:18.892142
+testchar_01.xml,misc,1; 3; 2; 1; 2; 3; 1; 2,,,2,17,Roll#1: asdf,2020-08-25 16:04:19.448524
+testchar_01.xml,skill,1; 18; 3,Klettern,0,-2,-12,Roll#1: asdf,2020-08-25 16:06:28.909402
+testchar_01.xml,skill,5; 5; 20,Klettern,0,-2,-14,Roll#2: asdfasdf,2020-08-25 16:06:47.583511
+testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16:06:58.164592
+02_testchar,skill,20; 13; 4,Klettern,3,0,-3,Roll#1: 2char klettern test,2020-08-25 16:09:15.553665
+01_testchar,skill,7; 2; 10,Klettern,0,0,-2,Roll#2: 1char klettern test,2020-08-25 16:09:28.329910
+03_testchar,skill,10; 8; 12,Klettern,0,0,-6,Roll#3: 3char klettern test,2020-08-25 16:09:44.287336
+02_testchar,skill,3; 19; 18,Klettern,0,0,-14,Roll#4: ,2020-08-25 16:10:11.797099
+01_testchar,skill,9; 20; 9,Klettern,3,0,-3,Roll#5: ,2020-08-25 16:10:30.503542
+01_testchar,skill,18; 1; 16,Klettern,0,0,-14,Roll#1: ,2020-08-25 16:13:25.905362
+02_testchar,skill,13; 4; 1,Klettern,0,0,-1,Roll#2: ,2020-08-25 16:13:40.004921
+02_testchar,skill,15; 11; 8,Sinnenschärfe,3,0,2,Roll#3: ,2020-08-25 16:14:00.147035
+01_testchar,skill,6; 9; 5,Klettern,0,2,1,Roll#1: normal save,2020-08-25 16:15:05.964000
+02_testchar,attr,8,Klugheit,7,-2,-3,Roll#2: normal save,2020-08-25 16:16:00.378297
+02_testchar,skill,8; 12; 3,Bogenbau,2,-2,-1,Roll#1: test,2020-08-25 16:18:27.784538
+02_testchar,skill,3; 2; 12,Klettern,3,0,3,Roll#1: test,2020-08-25 16:18:58.253053
