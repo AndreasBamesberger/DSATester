@@ -50,9 +50,13 @@ class GameLogic:
 
         print(repr(self.xml_list))
 
+        for index, value in enumerate(self.xml_list):
+            pass
+
+
         self.read_config("config.txt")
         self.setup_output_file()
-        self.root = self.parse_xml()
+        self.root = self.parse_xml(self.hero_xml)
 
         self.attributes = self.read_attributes()
         self.skills = self.read_skills()
@@ -74,13 +78,13 @@ class GameLogic:
                     split = line.split()
                     self.result_csv = split[-1]
 
-    def parse_xml(self):
+    def parse_xml(self, hero_file):
         """open and parse xml file with hero data"""
 
         # get input file from config
         # line should be something like: "input file: heroname.xml"
 
-        tree = ET.parse(self.hero_xml)
+        tree = ET.parse(hero_file)
         root = tree.getroot()
         return root
 
