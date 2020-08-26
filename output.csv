@@ -34,3 +34,5 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 02_testchar,skill,6; 13; 3,Schwimmen,2,-2,0,Roll#1: skill test,2020-08-26 11:41:07.377480
 03_testchar,spell,19; 9; 8,Blitz dich find,17,-5,7,Roll#2: spelltest,2020-08-26 11:41:44.685490
 01_testchar,fight_talent,15,AT Raufen,6,-8,-17,Roll#3: fight talent test,2020-08-26 11:42:16.028995
+02_testchar,skill,6; 18; 18,Sich verstecken,6,-2,-4,Roll#1: skill test,2020-08-26 12:15:21.038506
+02_testchar,attr,13,Fingerfertigkeit,14,-2,-1,Roll#1: attr test,2020-08-26 12:20:18.952071

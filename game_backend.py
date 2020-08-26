@@ -36,10 +36,9 @@ Hero = namedtuple("Hero", ["name", "root", "attrs", "skills", "spells", "fight_t
 
 class GameLogic:
     """ DSA rules for testing, called upon by interfaces """
-    def __init__(self):
+    def __init__(self, configs):
         random.seed(a=None, version=2)
-        self.hero_xml = None
-        self.result_csv = None
+        self.result_csv = configs["output file"]
 
         self.heroes = {}
 
@@ -58,36 +57,7 @@ class GameLogic:
             fight_talents = self.read_fight_talents(hero_root)
             self.heroes.update({name: Hero(name, hero_root, attrs, skills, spells, fight_talents)})
 
-#        print(repr(self.heroes["testchar_01"].name))
-#        print(repr(self.heroes["testchar_01"].attrs))
-#        print(repr(self.heroes["testchar_01"].skills))
-#        print(repr(self.heroes["testchar_01"].spells))
-#        print(repr(self.heroes["testchar_01"].fight_talents))
-
-#        self.write_all()
-        self.read_config("config.txt")
         self.setup_output_file()
-#        self.root = self.parse_xml(self.hero_xml)
-#
-#        self.attributes = self.read_attributes(self.root)
-#        self.skills = self.read_skills(self.root)
-#        self.spells = self.read_spells(self.root)
-#        self.fight_talents = self.read_fight_talents(self.root)
-
-    def read_config(self, configname):
-        """ input = string, name of config-file. scans config-file for names of
-        input and output files """
-        with open(configname, "r", encoding="utf-8") as configfile:
-            for line in configfile.readlines():
-                if line.startswith('#'):
-                    continue
-                if "input file" in line:
-                    split = line.split()
-                    self.hero_xml = split[-1]
-
-                if "output file" in line:
-                    split = line.split()
-                    self.result_csv = split[-1]
 
     def parse_xml(self, hero_file):
         """open and parse xml file with hero data"""

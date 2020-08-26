@@ -4,14 +4,14 @@ import tkinter as tk
 
 class GUI():
     """ creates window using tkinter, communicates with GameLogic through the dataclass GameState"""
-    def __init__(self, game, state):
+    def __init__(self, game, state, configs):
         self.game = game
         self.state = state
-        self.font = None
-        self.scaling = None
-        self.width = None
-        self.height = None
-        self.read_config("config.txt")
+        self.font = "none " + str(configs["font size"]) + " bold"
+        self.scaling = configs["scaling"]
+        self.width = configs["width"]
+        self.height = configs["height"]
+        self.state.dice = configs["dice"]
 
         self.window = tk.Tk()
         self.window.geometry(str(self.width) + 'x' + str(self.height))
@@ -300,31 +300,6 @@ class GUI():
         self.state.save = True
         self.state = self.game.save_to_csv(self.state)
         self.reset()
-
-    def read_config(self, configname):
-        """ input = string, name of config-file. scans config-file for
-        "scaling" and "font" entries and sets variables accordingly """
-        with open(configname, "r", encoding="utf-8") as configfile:
-            for line in configfile.readlines():
-                if line.startswith('#'):
-                    continue
-                if "dice" in line:
-                    split = line.split()
-                    self.state.dice = split[-1]
-                if "scaling" in line:
-                    split = line.split()
-                    self.scaling = float(split[-1])
-                if "font" in line:
-                    line = line.replace("font: ", '')
-                    line = line.rstrip()
-                    self.font = line
-                if "width" in line:
-                    split = line.split()
-                    self.width = int(split[-1])
-                if "height" in line:
-                    split = line.split()
-                    self.height = int(split[-1])
-
 
     def setup_input_screen(self):
         """ create tkinter widgets """

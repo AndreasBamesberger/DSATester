@@ -4,27 +4,32 @@ from gui import GUI
 from game_backend import GameLogic, GameState
 
 def read_config(configname):
-    """ input = string, name of config file.
-        output = string, name of chosen interface.
-        searches config file for "interface" """
-
-    output = ''
-
+    outdict = {}
+    str_entries = ("output file", "interface", "dice")
+    int_entries = ("font size", "width", "height")
+    float_entries = ("scaling")
     with open(configname, "r", encoding="utf-8") as configfile:
         for line in configfile.readlines():
-            # ignore comment lines
-            if "interface" in line and not line.startswith('#'):
-                output = line.split()[-1]
+            if line.startswith('#') or line == '\n':
+                continue
+            split = line.split(': ')
+            split[-1] = split[-1].rstrip()
+            if split[0] in str_entries:
+                outdict.update({split[0]: split[-1]})
+            elif split[0] in int_entries:
+                outdict.update({split[0]: int(split[-1])})
+            elif split[0] in float_entries:
+                outdict.update({split[0]: float(split[-1])})
 
-    return output
+    return outdict
 
 if __name__ == '__main__':
-    interface_input = read_config("config.txt")
-    game = GameLogic()
+    configs = read_config("config.txt")
+    game = GameLogic(configs)
     state = GameState()
-    if interface_input == "CLI":
-        interface = CLI(game, state)
-    elif interface_input == "GUI":
-        interface = GUI(game, state)
+    if configs["interface"] == "CLI":
+        interface = CLI(game, state, configs)
+    elif configs["interface"] == "GUI":
+        interface = GUI(game, state, configs)
 
     interface.loop()

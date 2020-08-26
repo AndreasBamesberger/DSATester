@@ -4,11 +4,10 @@ import re
 
 class CLI:
     """ command line interface, communicates with GameLogic """
-    def __init__(self, game, state):
+    def __init__(self, game, state, configs):
         self.game = game
         self.state = state
-        self.state.current_hero = "testchar_01"
-        self.read_config("config.txt")
+        self.state.dice = configs["dice"]
 
     def loop(self):
         while True:
@@ -40,17 +39,6 @@ class CLI:
         self.state.first_input = None
         self.state.option_list = None
         self.state.selection = None
-
-    def read_config(self, configname):
-        """ input = string, name of config-file. scans config-file for
-        "scaling" and "font" entries and sets variables accordingly """
-        with open(configname, "r", encoding="utf-8") as configfile:
-            for line in configfile.readlines():
-                if line.startswith('#'):
-                    continue
-                if "dice" in line:
-                    split = line.split()
-                    self.state.dice = split[-1]
 
     def get_test_input(self):
         return_value = None
