@@ -27,3 +27,7 @@ font: none 14 bold
 #4k display
 #scaling: 0.5
 #font: none 20 bold
+
+# choose size of the tkinter window
+width: 650
+height: 400

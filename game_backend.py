@@ -27,7 +27,7 @@ class GameState:
     misc: tuple = None        # dice count and eyes on dice
     desc: str = None          # text to save in csv
     first_input: str = None   # user input to match tests to or declare misc test
-    option_list: tuple = None # list of tests matching first input
+    option_list: list = None  # list of tests matching first input
     selection: list = None    # single entry from option_list
 
 

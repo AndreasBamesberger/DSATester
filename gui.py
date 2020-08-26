@@ -7,9 +7,14 @@ class GUI():
     def __init__(self, game, state):
         self.game = game
         self.state = state
+        self.font = None
+        self.scaling = None
+        self.width = None
+        self.height = None
         self.read_config("config.txt")
 
         self.window = tk.Tk()
+        self.window.geometry(str(self.width) + 'x' + str(self.height))
         self.window.tk.call('tk', 'scaling', self.scaling)
         self.window.title("DSA rng")
         self.window.configure(background="black")
@@ -313,6 +318,13 @@ class GUI():
                     line = line.replace("font: ", '')
                     line = line.rstrip()
                     self.font = line
+                if "width" in line:
+                    split = line.split()
+                    self.width = int(split[-1])
+                if "height" in line:
+                    split = line.split()
+                    self.height = int(split[-1])
+
 
     def setup_input_screen(self):
         """ create tkinter widgets """
