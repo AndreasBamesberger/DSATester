@@ -1,3 +1,4 @@
+""" this module features a class for every hero entry that is covered by DSATester """
 abbr = [['Mut', 'MU'],
         ['Klugheit', 'KL'],
         ['Intuition', 'IN'],
@@ -114,6 +115,7 @@ class Skill:
         return outstring
 
 class Spell:
+    """object for spells"""
     def __init__(self, spell_entry):
         spell_dict = spell_entry.attrib
 
@@ -205,6 +207,7 @@ class Spell:
         return outstring
 
 class FightTalent:
+    """ object for fight talents like raufen, ringen, hiebwaffen """
     def __init__(self, fight_entry, mode):
         if mode == "AT":
             try:

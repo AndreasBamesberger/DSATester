@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET # to parse input xml file
 from collections import namedtuple
 from dataclasses import dataclass # to create GameState
 import operator # to subtract list from list
-from DSA_data import Attribute, Skill, Spell, FightTalent
+from dsa_data import Attribute, Skill, Spell, FightTalent
 
 @dataclass
 class GameState:
@@ -196,55 +196,55 @@ class GameLogic:
         if state.category == "attr":
             for attr in hero.attrs:
                 if state.name == attr.name:
-                    state = self.test_attr(attr, state)
+                    state = self.test_1dice(attr, state)
         if state.category == "fight_talent":
             for fight_talent in hero.fight_talents:
                 if state.name == fight_talent.name:
-                    state = self.test_fight_talent(fight_talent, state)
+                    state = self.test_1dice(fight_talent, state)
         elif state.category == "skill":
             for skill in hero.skills:
                 if state.name == skill.name:
-                    state = self.test_skill(skill, state)
+                    state = self.test_3dice(skill, state)
         elif state.category == "spell":
             for spell in hero.spells:
                 if state.name == spell.name:
-                    state = self.test_skill(spell, state)
+                    state = self.test_3dice(spell, state)
         elif state.category == "misc":
             state = self.test_misc(state)
 
         return state
 
-    def test_attr(self, attr, state):
-        state.value = attr.value
+    def test_1dice(self, entry, state):
+        state.value = entry.value
         if state.dice == "auto":
             state.rolls = self.roll_dice(1, 1, 20)
 
-        state.result = attr.value + state.mod - state.rolls[0]
+        state.result = entry.value + state.mod - state.rolls[0]
         return state
 
-    def test_fight_talent(self, fight_talent, state):
-        state.value = fight_talent.value
-        if state.dice == "auto":
-            state.rolls = self.roll_dice(1, 1, 20)
-        state.result = state.value + state.mod - state.rolls[0]
-        return state
+#    def test_1dice(self, fight_talent, state):
+#        state.value = fight_talent.value
+#        if state.dice == "auto":
+#            state.rolls = self.roll_dice(1, 1, 20)
+#        state.result = state.value + state.mod - state.rolls[0]
+#        return state
 
-    def test_skill(self, skill, state):
+    def test_3dice(self, entry, state):
         attr_values = []
         attr_abbrs = []
 
         hero = self.heroes[state.current_hero]
 
         for attr in hero.attrs:
-            for _, skill_attr in enumerate(skill.test):
-                if attr.abbr == skill_attr:
+            for _, entry_attr in enumerate(entry.test):
+                if attr.abbr == entry_attr:
                     attr_values.append(attr.value)
                     attr_abbrs.append(attr.abbr)
 
         attr_values_orig = attr_values
 
-        state.value = skill.value
-        modded_value = skill.value + state.mod
+        state.value = entry.value
+        modded_value = entry.value + state.mod
 
         if modded_value < 0:
             attr_values = [x + modded_value for x in attr_values]
@@ -262,8 +262,8 @@ class GameLogic:
 
         state.attrs = []
         for i in range(3):
-            skill_attr = SkillAttr(attr_abbrs[i], attr_values_orig[i], attr_values[i], remaining[i])
-            state.attrs.append(skill_attr)
+            entry_attr = SkillAttr(attr_abbrs[i], attr_values_orig[i], attr_values[i], remaining[i])
+            state.attrs.append(entry_attr)
 
         return state
 
