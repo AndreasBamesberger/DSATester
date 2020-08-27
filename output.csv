@@ -36,3 +36,16 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 01_testchar,fight_talent,15,AT Raufen,6,-8,-17,Roll#3: fight talent test,2020-08-26 11:42:16.028995
 02_testchar,skill,6; 18; 18,Sich verstecken,6,-2,-4,Roll#1: skill test,2020-08-26 12:15:21.038506
 02_testchar,attr,13,Fingerfertigkeit,14,-2,-1,Roll#1: attr test,2020-08-26 12:20:18.952071
+02_testchar,skill,9; 15; 17,Klettern,3,0,0,Roll#1: None,2020-08-27 11:54:54.740702
+02_testchar,attr,1,Klugheit,7,-2,4,Roll#1: None,2020-08-27 12:01:16.166278
+02_testchar,attr,6,Klugheit,7,-2,-1,Roll#1: None,2020-08-27 12:02:30.721783
+02_testchar,skill,10; 2; 5,Sinnenschärfe,7,-10,-6,Roll#1: None,2020-08-27 12:04:21.340961
+02_testchar,attr,16,Fingerfertigkeit,14,-2,-4,Roll#2: None,2020-08-27 12:04:36.986909
+02_testchar,skill,6; 3; 6,Schwimmen,2,-2,0,Roll#1: None,2020-08-27 12:06:11.013609
+02_testchar,fight_talent,7,AT Hiebwaffen,9,0,2,Roll#2: None,2020-08-27 12:06:30.619351
+02_testchar,skill,14; 7; 18,Klettern,3,-3,-3,Roll#1: None,2020-08-27 12:08:55.276937
+03_testchar,spell,4; 5; 13,Hexenholz,3,-5,-7,Roll#1: None,2020-08-27 12:11:09.721941
+03_testchar,attr,7,Fingerfertigkeit,11,0,4,Roll#2: None,2020-08-27 12:11:56.739407
+01_testchar,fight_talent,3,PA Säbel,6,3,6,Roll#3: None,2020-08-27 12:12:34.684696
+02_testchar,skill,20; 8; 15,Klettern,3,-2,-5,Roll#1: None,2020-08-27 12:20:08.133028
+03_testchar,attr,4,Klugheit,14,0,10,Roll#1: None,2020-08-27 12:20:59.997220

@@ -37,41 +37,44 @@ class GUI():
         self.input_test.grid(row=3, column=1, sticky=tk.W)
 
         self.setup_window()
-        self.update()
+#        self.update()
+        self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
 
     def loop(self):
         """ gets executed by main.py, reads inputs, sends inputs to GameLogic,
         shows results in tkinter window """
-        while True:
-            self.get_hero()
-            self.get_first_input()
 
-            if self.old_category != self.state.category:
-                self.clear_screen()
-                self.setup_window()
-                self.state.result = None
-                self.old_category = self.state.category
-
-            if self.old_hero_input != self.state.current_hero:
-                self.clear_screen()
-                self.setup_window()
-                self.state.result = None
-                self.old_hero_input = self.state.current_hero
-
-            self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
-            self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
-
-            if self.state.category in ("attr", "skill", "spell", "fight_talent"):
-                self.text_outputs["var_matching"].configure(text=self.state.name)
-                self.get_mod(self.text_inputs["mod"].get().lower())
-
-            if self.state.category:
-                self.state.desc = self.text_inputs["desc"].get()
-
-            if not self.state.category:
-                self.text_outputs["var_matching"].configure(text=self.printable_options)
-
-            self.update()
+        self.window.mainloop()
+#        while True:
+#            self.get_hero()
+#            self.get_first_input()
+#
+#            if self.old_category != self.state.category:
+#                self.clear_screen()
+#                self.setup_window()
+#                self.state.result = None
+#                self.old_category = self.state.category
+#
+#            if self.old_hero_input != self.state.current_hero:
+#                self.clear_screen()
+#                self.setup_window()
+#                self.state.result = None
+#                self.old_hero_input = self.state.current_hero
+#
+#            self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
+#            self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
+#
+#            if self.state.category in ("attr", "skill", "spell", "fight_talent"):
+#                self.text_outputs["var_matching"].configure(text=self.state.name)
+#                self.get_mod(self.text_inputs["mod"].get().lower())
+#
+#            if self.state.category:
+#                self.state.desc = self.text_inputs["desc"].get()
+#
+#            if not self.state.category:
+#                self.text_outputs["var_matching"].configure(text=self.printable_options)
+#
+#            self.update()
 
     def reset(self):
         """ every variable of GameState back to None (save is set to False),
@@ -132,6 +135,9 @@ class GUI():
         pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
         pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
 
+        if self.state.current_hero is None:
+            print("need to match a hero file first")
+            return False
 
         self.state.first_input = self.text_inputs["first_input"].get().lower()
 
@@ -244,6 +250,8 @@ class GUI():
         """ method that gets executed when "test" button is clicked. calls
         GameLogic.test and displays result """
 
+        self.get_mod(self.text_inputs["mod"].get().lower())
+
         if self.state.dice == "manual":
             self.get_manual_dice(self.text_inputs["dice_input"].get())
 
@@ -300,6 +308,35 @@ class GUI():
         self.state.save = True
         self.state = self.game.save_to_csv(self.state)
         self.reset()
+        self.clear_screen()
+        self.setup_window()
+        self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
+        self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
+
+    def button_hero(self):
+        self.get_hero()
+        if self.old_hero_input != self.state.current_hero:
+            self.clear_screen()
+            self.setup_window()
+            self.state.result = None
+            self.old_hero_input = self.state.current_hero
+        self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
+
+    def button_input(self):
+        self.get_first_input()
+        if self.old_category != self.state.category:
+            self.clear_screen()
+            self.setup_window()
+            self.state.result = None
+            self.old_category = self.state.category
+
+        if self.state.category in ("attr", "skill", "spell", "fight_talent"):
+            self.text_outputs["var_matching"].configure(text=self.state.name)
+        else:
+            self.text_outputs["var_matching"].configure(text=self.printable_options)
+
+        self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
+
 
     def setup_input_screen(self):
         """ create tkinter widgets """
@@ -326,6 +363,27 @@ class GUI():
 
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
+
+        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   ["input", "Submit", 4, self.button_input, 3, 2, False]]
+
+        for _, value in enumerate(buttons):
+            key = value[0]
+            text = value[1]
+            width = value[2]
+            command = value[3]
+            row = value[4]
+            column = value[5]
+            sticky = value[6]
+            font = self.font
+
+            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
+            if sticky:
+                temp.grid(row=row, column=column, sticky=sticky)
+            else:
+                temp.grid(row=row, column=column)
+
+            self.buttons.update({key: temp})
 
     def setup_attr_screen(self):
         """ create tkinter widgets """
@@ -393,7 +451,9 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
+        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+                   ["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
         for _, value in enumerate(buttons):
@@ -404,8 +464,9 @@ class GUI():
             row = value[4]
             column = value[5]
             sticky = value[6]
+            font = self.font
 
-            temp = tk.Button(self.window, text=text, width=width, command=command)
+            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
             if sticky:
                 temp.grid(row=row, column=column, sticky=sticky)
             else:
@@ -475,8 +536,10 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
-                   ["save", "Save", 4, self.button_save, 13, 0, False]]
+        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+                   ["test", "Test", 4, self.button_test, 7, 0, False],
+                   ["save", "Save", 4, self.button_save, 14, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
@@ -486,8 +549,9 @@ class GUI():
             row = value[4]
             column = value[5]
             sticky = value[6]
+            font = self.font
 
-            temp = tk.Button(self.window, text=text, width=width, command=command)
+            temp = tk.Button(self.window, text=text, width=width, command=command, font = font)
             if sticky:
                 temp.grid(row=row, column=column, sticky=sticky)
             else:
@@ -561,7 +625,9 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
+        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+                   ["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 15, 0, False]]
 
         for _, value in enumerate(buttons):
@@ -572,8 +638,9 @@ class GUI():
             row = value[4]
             column = value[5]
             sticky = value[6]
+            font = self.font
 
-            temp = tk.Button(self.window, text=text, width=width, command=command)
+            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
             if sticky:
                 temp.grid(row=row, column=column, sticky=sticky)
             else:
@@ -624,8 +691,10 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["test", "Test", 4, self.button_test, 4, 0, False],
-                   ["save", "Save", 4, self.button_save, 8, 0, False]]
+        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+                   ["test", "Test", 4, self.button_test, 7, 0, False],
+                   ["save", "Save", 4, self.button_save, 14, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
@@ -635,8 +704,9 @@ class GUI():
             row = value[4]
             column = value[5]
             sticky = value[6]
+            font = self.font
 
-            temp = tk.Button(self.window, text=text, width=width, command=command)
+            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
             if sticky:
                 temp.grid(row=row, column=column, sticky=sticky)
             else:

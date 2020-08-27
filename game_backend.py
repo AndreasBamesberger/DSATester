@@ -188,6 +188,8 @@ class GameLogic:
         state.value = entry.value
         if state.dice == "auto":
             state.rolls = self.roll_dice(1, 1, 20)
+        if state.mod is None:
+            state.mod = 0
 
         state.result = entry.value + state.mod - state.rolls[0]
         return state
@@ -214,6 +216,8 @@ class GameLogic:
         attr_values_orig = attr_values
 
         state.value = entry.value
+        if state.mod is None:
+            state.mod = 0
         modded_value = entry.value + state.mod
 
         if modded_value < 0:
@@ -256,7 +260,11 @@ class GameLogic:
     def autocomplete(self, state):
         output_list = []
 
-        hero = self.heroes[state.current_hero]
+        try:
+            hero = self.heroes[state.current_hero]
+        except KeyError:
+            print("KeyError, no hero matched")
+            return state
 
         for attr in hero.attrs:
             if state.first_input.lower() in attr.name.lower() or state.first_input in attr.abbr:
