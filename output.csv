@@ -52,3 +52,5 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 03_testchar,spell,11; 11; 14,Hexenblick,2,-4,-2,Roll#1: None,2020-08-27 12:40:13.133350
 02_testchar,misc,4; 2; 5; 4; 5; 5; 6; 5,,,-3,33,Roll#1: None,2020-08-27 14:37:37.870300
 02_testchar,misc,13; 7; 11,,,-3,28,Roll#2: None,2020-08-27 14:37:54.977101
+02_testchar,attr,9,Klugheit,7,-2,-4,Roll#1: None,2020-08-27 14:40:09.945222
+02_testchar,misc,8; 2; 4; 2,,,-10,6,Roll#1: None,2020-08-27 15:00:52.540955

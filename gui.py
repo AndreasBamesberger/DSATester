@@ -212,14 +212,17 @@ class GUI():
 
     def get_manual_dice(self, rolls_string):
         """ take manual dice input and save it into self.state.rolls """
-        pattern = "\d+" #pylint: disable=anomalous-backslash-in-string
+        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
         outlist = []
 
         if self.state.category in ("attr", "fight_talent"):
             dice_count = 1
         elif self.state.category in ("skill", "spell"):
             dice_count = 3
+        elif self.state.category == "misc":
+            dice_count, _ = self.state.misc
 
+        rolls_string = rolls_string.replace(',', '')
         rolls_list = rolls_string.split(' ')
 
         for item in rolls_list:
@@ -667,11 +670,14 @@ class GUI():
                    ["matching_hero", "Matching hero: ", 2, 0, tk.E],
                    ["var_matching_hero", '', 2, 1, tk.W],
                    ["input_prompt", "Input: ", 3, 0, tk.E],
-                   ["rolls", "Rolls: ", 5, 0, tk.E],
-                   ["var_rolls", '', 5, 1, tk.W],
-                   ["result", "Result: ", 6, 0, tk.E],
-                   ["var_result", '', 6, 1, tk.W],
-                   ["desc", "Description: ", 7, 0, tk.E]]
+                   ["rolls", "Rolls: ", 6, 0, tk.E],
+                   ["var_rolls", '', 6, 1, tk.W],
+                   ["result", "Result: ", 7, 0, tk.E],
+                   ["var_result", '', 7, 1, tk.W],
+                   ["desc", "Description: ", 8, 0, tk.E]]
+
+        if self.state.dice == "manual":
+            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
 
         for _, value in enumerate(outputs):
             key = value[0]
@@ -685,7 +691,11 @@ class GUI():
 
             self.text_outputs.update({key:temp})
 
-        inputs = [["desc", 20, 7, 1, tk.W]]
+        inputs = []
+        if self.state.dice == "manual":
+            inputs.append(["dice_input", 20, 4, 1, tk.W])
+        inputs.append(["desc", 20, 8, 1, tk.W])
+
         for _, value in enumerate(inputs):
             key = value[0]
             width = value[1]
@@ -703,8 +713,8 @@ class GUI():
 
         buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
                    #["input", "Submit", 4, self.button_input, 3, 2, False],
-                   ["test", "Test", 4, self.button_test, 4, 0, False],
-                   ["save", "Save", 4, self.button_save, 8, 0, False]]
+                   ["test", "Test", 4, self.button_test, 5, 0, False],
+                   ["save", "Save", 4, self.button_save, 9, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]

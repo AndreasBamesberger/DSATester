@@ -13,7 +13,7 @@ interface: GUI
 # current options: 
 #   auto
 #   manual
-dice: auto
+dice: manual
 
 # choose scaling of the tkinter window and the text font
 # current options:
@@ -24,7 +24,7 @@ dice: auto
 scaling: 1.5
 font size: 14
 width: 650
-height: 400
+height: 500
 
 #4k display
 #scaling: 0.5

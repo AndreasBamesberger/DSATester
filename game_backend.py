@@ -245,7 +245,8 @@ class GameLogic:
         state.result = 0
         dice_count, dice_eyes = state.misc
 
-        state.rolls = self.roll_dice(dice_count, 1, dice_eyes)
+        if state.dice == "auto":
+            state.rolls = self.roll_dice(dice_count, 1, dice_eyes)
 
         for _, value in enumerate(state.rolls):
             state.result += value
