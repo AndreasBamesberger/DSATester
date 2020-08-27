@@ -20,7 +20,7 @@ Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 
 ## Launch
 ### Launching the executable
-1. Place your xml file in the "executable" folder
+1. Place your xml file(s) in the "executable" folder
 2. Change the values in "config.txt" based on your preferences
 3. Launch "main.exe"
 
