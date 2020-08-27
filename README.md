@@ -28,7 +28,7 @@ Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 The program relies on the following modules:
 re, tkinter, random, csv, os, datetime, xml, collections, dataclasses, operator
 
-1. Place your xml file in the main folder
+1. Place your xml file(s) in the main folder
 2. Change the values in "config.txt" based on your preferences
 3. Launch "main.py"
 
