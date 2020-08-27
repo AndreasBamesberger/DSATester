@@ -217,10 +217,13 @@ class GUI():
 
         if self.state.category in ("attr", "fight_talent"):
             dice_count = 1
+            dice_max = 21
         elif self.state.category in ("skill", "spell"):
             dice_count = 3
+            dice_max = 21
         elif self.state.category == "misc":
-            dice_count, _ = self.state.misc
+            dice_count, dice_max = self.state.misc
+            dice_max += 1
 
         rolls_string = rolls_string.replace(',', '')
         rolls_list = rolls_string.split(' ')
@@ -228,7 +231,7 @@ class GUI():
         for item in rolls_list:
             match = re.match(pattern, item)
             if match:
-                if int(item) in range(1, 21):
+                if int(item) in range(1, dice_max):
                     outlist.append(int(item))
 
         self.state.rolls = outlist

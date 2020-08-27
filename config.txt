@@ -5,7 +5,7 @@ output file: output.csv
 # current options: 
 #   GUI, graphical user interface
 #   CLI, command line interface
-interface: GUI
+interface: CLI
 
 # choose whether you want to generate dice rolls automatically or manually
 # input dice rolls you got IRL ("misc" tests always roll dice automatically)

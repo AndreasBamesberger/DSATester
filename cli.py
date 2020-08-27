@@ -16,7 +16,7 @@ class CLI:
             if self.get_test_input():
                 if self.state.category != "misc":
                     self.get_mod()
-                if self.state.dice == "manual" and self.state.category != "misc":
+                if self.state.dice == "manual":
                     self.get_manual_dice()
                 self.state = self.game.test(self.state)
                 self.show_result()
@@ -195,18 +195,24 @@ class CLI:
         if self.state.category in ("attr", "fight_talent"):
             prompt_string = "Input 1 dice value: "
             dice_count = 1
+            dice_max = 21
         elif self.state.category in ("skill", "spell"):
             prompt_string = "Input 3 dice values, separated by whitespace: "
             dice_count = 3
+            dice_max = 21
+        elif self.state.category == "misc":
+            dice_count, dice_max = self.state.misc
+            dice_max += 1
+            prompt_string = "Input {} dice values, separated by whitespace: ".format(str(dice_count))
 
         while True:
             outlist = []
-            input_list = input(prompt_string).split(' ')
+            input_list = input(prompt_string).replace(',', '').split(' ')
 
             for item in input_list:
                 match = re.match(pattern, item)
                 if match:
-                    if int(item) in range(1, 21):
+                    if int(item) in range(1, dice_max):
                         outlist.append(int(item))
 
             if len(outlist) == dice_count:
