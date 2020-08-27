@@ -21,17 +21,13 @@ dice: auto
 #   font: some existing font (standard is "none 14 bold")
 
 #1k display
-#scaling: 1.5
-#font size: 14
-#font: none 14 bold
+scaling: 1.5
+font size: 14
+width: 650
+height: 400
 
 #4k display
-scaling: 0.5
-font size: 20
-##font: none 20 bold
-
-# choose size of the tkinter window
-#width: 650
-#height: 400
-width: 1600
-height: 1200
+#scaling: 0.5
+#font size: 20
+#width: 1600
+#height: 1200

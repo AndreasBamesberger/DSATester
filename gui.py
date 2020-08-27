@@ -257,7 +257,8 @@ class GUI():
         """ method that gets executed when "test" button is clicked. calls
         GameLogic.test and displays result """
 
-        self.get_mod(self.text_inputs["mod"].get().lower())
+        if self.state.category in ("attr", "skill", "spell", "fight_talent"):
+            self.get_mod(self.text_inputs["mod"].get().lower())
 
         if self.state.dice == "manual":
             self.get_manual_dice(self.text_inputs["dice_input"].get())
@@ -341,7 +342,7 @@ class GUI():
 
         if self.state.category in ("attr", "skill", "spell", "fight_talent"):
             self.text_outputs["var_matching"].configure(text=self.state.name)
-        else:
+        elif self.state.category is None:
             self.text_outputs["var_matching"].configure(text=self.printable_options)
 
         self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
@@ -702,8 +703,8 @@ class GUI():
 
         buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
                    #["input", "Submit", 4, self.button_input, 3, 2, False],
-                   ["test", "Test", 4, self.button_test, 7, 0, False],
-                   ["save", "Save", 4, self.button_save, 14, 0, False]]
+                   ["test", "Test", 4, self.button_test, 4, 0, False],
+                   ["save", "Save", 4, self.button_save, 8, 0, False]]
 
         for _, value in enumerate(buttons):
             key = value[0]
