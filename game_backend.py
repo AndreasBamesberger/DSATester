@@ -292,6 +292,3 @@ class GameLogic:
         outlist.sort()
         return outlist
 
-if __name__ == '__main__':
-    game = GameLogic()
-    game.write_all()

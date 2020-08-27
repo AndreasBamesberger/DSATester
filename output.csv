@@ -49,3 +49,4 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 01_testchar,fight_talent,3,PA Säbel,6,3,6,Roll#3: None,2020-08-27 12:12:34.684696
 02_testchar,skill,20; 8; 15,Klettern,3,-2,-5,Roll#1: None,2020-08-27 12:20:08.133028
 03_testchar,attr,4,Klugheit,14,0,10,Roll#1: None,2020-08-27 12:20:59.997220
+03_testchar,spell,11; 11; 14,Hexenblick,2,-4,-2,Roll#1: None,2020-08-27 12:40:13.133350

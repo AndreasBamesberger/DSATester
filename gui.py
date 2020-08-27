@@ -29,12 +29,19 @@ class GUI():
         self.buttons = {}
 
         # text input for hero input
-        self.input_hero = tk.Entry(self.window, width=20, bg="white")
+        self.var_hero = tk.StringVar()
+        self.var_hero.set('')
+        self.input_hero = tk.Entry(self.window, textvariable=self.var_hero, width=20, bg="white")
         self.input_hero.grid(row=1, column=1, sticky=tk.W)
 
         # text input for test input
-        self.input_test = tk.Entry(self.window, width=20, bg="white")
+        self.var_input = tk.StringVar()
+        self.var_input.set('')
+        self.input_test = tk.Entry(self.window, textvariable=self.var_input, width=20, bg="white")
         self.input_test.grid(row=3, column=1, sticky=tk.W)
+
+        self.var_hero.trace('w', self.button_hero)
+        self.var_input.trace('w', self.button_input)
 
         self.setup_window()
 #        self.update()
@@ -313,7 +320,8 @@ class GUI():
         self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
         self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
 
-    def button_hero(self):
+    # tkinter trace method passes 3 arguments that are not used
+    def button_hero(self, a=None, b=None, c=None):
         self.get_hero()
         if self.old_hero_input != self.state.current_hero:
             self.clear_screen()
@@ -322,7 +330,8 @@ class GUI():
             self.old_hero_input = self.state.current_hero
         self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
 
-    def button_input(self):
+    # tkinter trace method passes 3 arguments that are not used
+    def button_input(self, a=None, b=None, c=None):
         self.get_first_input()
         if self.old_category != self.state.category:
             self.clear_screen()
@@ -364,26 +373,26 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   ["input", "Submit", 4, self.button_input, 3, 2, False]]
-
-        for _, value in enumerate(buttons):
-            key = value[0]
-            text = value[1]
-            width = value[2]
-            command = value[3]
-            row = value[4]
-            column = value[5]
-            sticky = value[6]
-            font = self.font
-
-            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
-            if sticky:
-                temp.grid(row=row, column=column, sticky=sticky)
-            else:
-                temp.grid(row=row, column=column)
-
-            self.buttons.update({key: temp})
+#        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
+#                   ["input", "Submit", 4, self.button_input, 3, 2, False]]
+#
+#        for _, value in enumerate(buttons):
+#            key = value[0]
+#            text = value[1]
+#            width = value[2]
+#            command = value[3]
+#            row = value[4]
+#            column = value[5]
+#            sticky = value[6]
+#            font = self.font
+#
+#            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
+#            if sticky:
+#                temp.grid(row=row, column=column, sticky=sticky)
+#            else:
+#                temp.grid(row=row, column=column)
+#
+#            self.buttons.update({key: temp})
 
     def setup_attr_screen(self):
         """ create tkinter widgets """
@@ -451,8 +460,8 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   #["input", "Submit", 4, self.button_input, 3, 2, False],
                    ["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
@@ -536,8 +545,8 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   #["input", "Submit", 4, self.button_input, 3, 2, False],
                    ["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
@@ -625,8 +634,8 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   #["input", "Submit", 4, self.button_input, 3, 2, False],
                    ["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 15, 0, False]]
 
@@ -691,8 +700,8 @@ class GUI():
         self.text_inputs.update({"first_input": self.input_test})
         self.text_inputs.update({"hero_input": self.input_hero})
 
-        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   ["input", "Submit", 4, self.button_input, 3, 2, False],
+        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
+                   #["input", "Submit", 4, self.button_input, 3, 2, False],
                    ["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
