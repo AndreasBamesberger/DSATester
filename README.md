@@ -14,7 +14,7 @@ Current supported entries which can be tested include:
 Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 
 ## Technologies
-* helden-software 5.5.3-1 (for character creation)
+* helden-software 5.5.3-1 from Archlinux User Repository (for character creation)
 * Python3.8.5
 * pyinstaller (to create executable)
 
