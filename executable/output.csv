@@ -1,0 +1,3 @@
+Hero file,Test type,Rolls,Attribute/Skill,Attribute/Skill value,Modifier,Result,Description,Timestamp
+02_testchar,attr,4,Fingerfertigkeit,14,-2,8,Roll#1: None,2020-08-27 21:18:09.637069
+02_testchar,misc,1; 10; 14,,,4,29,Roll#2: None,2020-08-27 21:18:37.052657

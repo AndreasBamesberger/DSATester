@@ -1,0 +1,33 @@
+# choose name of the output csv file where dice rolls are stored
+output file: output.csv
+
+# choose what interface you want
+# current options: 
+#   GUI, graphical user interface
+#   CLI, command line interface
+interface: GUI
+
+# choose whether you want to generate dice rolls automatically or manually
+# input dice rolls you got IRL ("misc" tests always roll dice automatically)
+# for manual dice input, type in dice separated by whitespace, e.g. "8 4 14"
+# current options: 
+#   auto
+#   manual
+dice: auto
+
+# choose scaling of the tkinter window and the text font
+# current options:
+#   scaling: some positive decimal number
+#   font: some existing font (standard is "none 14 bold")
+
+#1k display
+scaling: 1.5
+font size: 14
+width: 650
+height: 500
+
+#4k display
+#scaling: 0.5
+#font size: 20
+#width: 1600
+#height: 1200

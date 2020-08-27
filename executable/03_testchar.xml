@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="helden.xsl"?>
+<helden Version="5.5.3">
+    <held key="1598347832825" name="testchar_03" stand="1598347838840">
+        <mods/>
+        <basis>
+            <geschlecht name="weiblich"/>
+            <settings name="DSA4.1">
+                <inc name="Spielhilfen"/>
+                <inc name="Wege der Alchimie"/>
+                <inc name="Unter dem Westwind"/>
+                <inc name="Aventurischer Bote"/>
+                <inc name="Abenteuer"/>
+            </settings>
+            <rasse name="helden.model.rasse.Mittellaender" string="Mittelländerin">
+                <groesse gewicht="98" value="198"/>
+                <aussehen alter="19" augenfarbe="dunkelbraun" aussehentext0="" aussehentext1="" aussehentext2="" aussehentext3="" familietext0="" familietext1="" familietext2="" familietext3="" familietext4="" familietext5="" gbjahr="1003" gbmonat="8" gbtag="23" gprest="0" gpstart="110" haarfarbe="schwarz" kalender="Bosparans Fall" stand="" titel=""/>
+            </rasse>
+            <kultur name="helden.model.kultur.Bukanier" string="Bukanier"/>
+            <ausbildungen>
+                <ausbildung art="Hauptprofession" name="helden.model.profession.Hexe" string="Hexe: Schwester der Fahrenden Gemeinschaft" tarnidentitaet="">
+                    <variante name="Schwester der Fahrenden Gemeinschaft"/>
+                </ausbildung>
+            </ausbildungen>
+            <verify value="1"/>
+            <notiz notiz0="Notizen" notiz1="" notiz10="" notiz11="" notiz2="" notiz3="" notiz4="" notiz5="" notiz6="" notiz7="" notiz8="" notiz9=""/>
+            <portraet value=""/>
+            <abenteuerpunkte value="560"/>
+            <freieabenteuerpunkte value="0"/>
+        </basis>
+        <eigenschaften>
+            <eigenschaft mod="0" name="Mut" startwert="8" value="8"/>
+            <eigenschaft mod="0" name="Klugheit" startwert="14" value="14"/>
+            <eigenschaft mod="0" name="Intuition" startwert="14" value="14"/>
+            <eigenschaft mod="0" name="Charisma" startwert="14" value="14"/>
+            <eigenschaft mod="0" name="Fingerfertigkeit" startwert="11" value="11"/>
+            <eigenschaft mod="0" name="Gewandtheit" startwert="14" value="14"/>
+            <eigenschaft mod="0" name="Konstitution" startwert="8" value="8"/>
+            <eigenschaft mod="0" name="Körperkraft" startwert="8" value="8"/>
+            <eigenschaft mod="0" name="Sozialstatus" startwert="5" value="5"/>
+            <eigenschaft mod="11" name="Lebensenergie" value="0"/>
+            <eigenschaft mod="12" name="Ausdauer" value="0"/>
+            <eigenschaft grossemeditation="0" mod="13" mrmod="-3" name="Astralenergie" value="0"/>
+            <eigenschaft karmalqueste="0" mod="0" name="Karmaenergie" value="0"/>
+            <eigenschaft mod="-3" name="Magieresistenz" value="0"/>
+            <eigenschaft mod="0" name="ini" value="9"/>
+            <eigenschaft mod="0" name="at" value="6"/>
+            <eigenschaft mod="0" name="pa" value="7"/>
+            <eigenschaft mod="0" name="fk" value="7"/>
+        </eigenschaften>
+        <vt>
+            <vorteil name="Vollzauberer"/>
+            <vorteil name="Feste Gewohnheit"/>
+            <vorteil name="Jähzorn" value="6"/>
+            <vorteil name="Randgruppe"/>
+            <vorteil name="Vorurteile gegen">
+                <auswahl position="0" value="6"/>
+                <auswahl position="1" value="Misstrauen gegen Obrigkeit"/>
+            </vorteil>
+        </vt>
+        <sf>
+            <sonderfertigkeit name="Große Meditation"/>
+            <sonderfertigkeit name="Hexenritual: Hexensalbe"/>
+            <sonderfertigkeit name="Kulturkunde">
+                <kultur name="Bukanier"/>
+            </sonderfertigkeit>
+            <sonderfertigkeit name="Merkmalskenntnis: Einfluss"/>
+            <sonderfertigkeit name="Repräsentation: Hexe"/>
+            <sonderfertigkeit name="Ritualkenntnis: Hexe"/>
+            <sonderfertigkeit name="Vertrautenbindung"/>
+        </sf>
+        <ereignisse>
+            <ereignis obj="max GP für Helden: 110" text="EINSTELLUNG" time="1598347838839" version="HS 5.5.3"/>
+            <ereignis obj="max Eigenschafts-GP für Helden: 100" text="EINSTELLUNG" time="1598347838839" version="HS 5.5.3"/>
+            <ereignis obj="max Eigenschafts-Wert für Helden: 14" text="EINSTELLUNG" time="1598347838839" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Rasse: Mittelländerin" text="RKP" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="2 GP" obj="Kultur: Bukanier" text="RKP" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="15 GP" obj="Profession: Hexe: Schwester der Fahrenden Gemeinschaft" text="RKP" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Mut: 8" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="14" kommentar="14 GP" obj="Klugheit: 14" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="14" kommentar="14 GP" obj="Intuition: 14" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="14" kommentar="14 GP" obj="Charisma: 14" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="11" kommentar="11 GP" obj="Fingerfertigkeit: 11" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="14" kommentar="14 GP" obj="Gewandtheit: 14" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Konstitution: 8" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="8 GP" obj="Körperkraft: 8" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="5" kommentar="2 GP" obj="Sozialstatus: 5" text="EIGENSCHAFTEN" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="1 AP" obj="Blitz dich find [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="1" kommentar="1 AP" obj="Blitz dich find [Hexe]: 1" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="2" kommentar="2 AP" obj="Blitz dich find [Hexe]: 2" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="3" kommentar="3 AP" obj="Blitz dich find [Hexe]: 3" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="4" kommentar="4 AP" obj="Blitz dich find [Hexe]: 4" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="5" kommentar="6 AP" obj="Blitz dich find [Hexe]: 5" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="6" kommentar="7 AP" obj="Blitz dich find [Hexe]: 6" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="7" kommentar="8 AP" obj="Blitz dich find [Hexe]: 7" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="10 AP" obj="Blitz dich find [Hexe]: 8" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="9" kommentar="11 AP" obj="Blitz dich find [Hexe]: 9" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="10" kommentar="13 AP" obj="Blitz dich find [Hexe]: 10" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="11" kommentar="14 AP" obj="Blitz dich find [Hexe]: 11" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="12" kommentar="16 AP" obj="Blitz dich find [Hexe]: 12" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="13" kommentar="17 AP" obj="Blitz dich find [Hexe]: 13" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="14" kommentar="19 AP" obj="Blitz dich find [Hexe]: 14" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="15" kommentar="21 AP" obj="Blitz dich find [Hexe]: 15" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="16" kommentar="22 AP" obj="Blitz dich find [Hexe]: 16" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="17" kommentar="24 AP" obj="Blitz dich find [Hexe]: 17" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="1 AP" obj="Flim Flam Funkel [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="3 AP" obj="Abvenenum reine Speise [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="3 AP" obj="Claudibus Clavistibor [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="1" kommentar="2 AP" obj="Claudibus Clavistibor [Hexe]: 1" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="2" kommentar="6 AP" obj="Claudibus Clavistibor [Hexe]: 2" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="3" kommentar="9 AP" obj="Claudibus Clavistibor [Hexe]: 3" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="4" kommentar="13 AP" obj="Claudibus Clavistibor [Hexe]: 4" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="5" kommentar="17 AP" obj="Claudibus Clavistibor [Hexe]: 5" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="6" kommentar="21 AP" obj="Claudibus Clavistibor [Hexe]: 6" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="7" kommentar="25 AP" obj="Claudibus Clavistibor [Hexe]: 7" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="8" kommentar="29 AP" obj="Claudibus Clavistibor [Hexe]: 8" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="9" kommentar="34 AP" obj="Claudibus Clavistibor [Hexe]: 9" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="10" kommentar="38 AP" obj="Claudibus Clavistibor [Hexe]: 10" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="11" kommentar="43 AP" obj="Claudibus Clavistibor [Hexe]: 11" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="12" kommentar="47 AP" obj="Claudibus Clavistibor [Hexe]: 12" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="13" kommentar="51 AP" obj="Claudibus Clavistibor [Hexe]: 13" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="3 AP" obj="Eigenschaft wiederherstellen [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="3 AP" obj="Gefunden! [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="3 AP" obj="Geisterbann [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="3 AP" obj="Hellsicht trüben [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="3 AP" obj="Hexenspeichel [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="4 AP" obj="Blick in die Gedanken [Hexe]: 0" text="ZAUBER" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Feste Gewohnheit" text="VORTEILE" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Jähzorn: 6" text="VORTEILE" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Randgruppe" text="VORTEILE" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Vollzauberer" text="VORTEILE" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Alt="0" Neu="0" kommentar="0 GP" obj="Vorurteile gegen: Misstrauen gegen Obrigkeit 6" text="VORTEILE" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis obj="Auswahl" text="Jähzorn" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Neu="1" obj="Auswahl" text="Hiebwaffen" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Neu="4" obj="Auswahl" text="Sprachen kennen Bosparano" time="1598347838840" version="HS 5.5.3"/>
+            <ereignis Neu="3" obj="Auswahl" text="Sprachen kennen Alt-Imperial/Aureliani" time="1598347838840" version="HS 5.5.3"/>
+        </ereignisse>
+        <talentliste>
+            <talent lernmethode="Gegenseitiges Lehren" name="Bogen" probe=" (GE/FF/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Dolche" probe=" (GE/GE/KK)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Hiebwaffen" probe=" (GE/GE/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Raufen" probe=" (GE/GE/KK)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Ringen" probe=" (GE/GE/KK)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Säbel" probe=" (GE/GE/KK)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Wurfmesser" probe=" (GE/FF/KK)" value="2"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Athletik" probe=" (GE/KO/KK)" value="0"/>
+            <talent be="BE" lernmethode="Gegenseitiges Lehren" name="Fliegen" probe=" (MU/IN/GE)" value="5"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Gaukeleien" probe=" (MU/CH/FF)" value="3"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Klettern" probe=" (MU/GE/KK)" value="0"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Körperbeherrschung" probe=" (MU/IN/GE)" value="4"/>
+            <talent be="BE" lernmethode="Gegenseitiges Lehren" name="Schleichen" probe=" (MU/IN/GE)" value="5"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Schwimmen" probe=" (GE/KO/KK)" value="3"/>
+            <talent be="" lernmethode="Gegenseitiges Lehren" name="Selbstbeherrschung" probe=" (MU/KO/KK)" value="0"/>
+            <talent be="BE-2" lernmethode="Gegenseitiges Lehren" name="Sich verstecken" probe=" (MU/IN/GE)" value="4"/>
+            <talent be="BE-3" lernmethode="Gegenseitiges Lehren" name="Singen" probe=" (IN/CH/CH)" value="0"/>
+            <talent be="0-&gt;BE" lernmethode="Gegenseitiges Lehren" name="Sinnenschärfe" probe=" (KL/IN/IN)" value="1"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Tanzen" probe=" (CH/GE/GE)" value="4"/>
+            <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Taschendiebstahl" probe=" (MU/IN/FF)" value="3"/>
+            <talent be="" lernmethode="Gegenseitiges Lehren" name="Zechen" probe=" (IN/KO/KK)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Betören" probe=" (IN/CH/CH)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Gassenwissen" probe=" (KL/IN/CH)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Menschenkenntnis" probe=" (KL/IN/CH)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Sich verkleiden" probe=" (MU/CH/GE)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Überreden" probe=" (MU/IN/CH)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Fährtensuchen" probe=" (KL/IN/KO)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Fallen stellen" probe=" (KL/FF/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Fesseln/Entfesseln" probe=" (FF/GE/KK)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Fischen/Angeln" probe=" (IN/FF/KK)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Orientierung" probe=" (KL/IN/IN)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Wildnisleben" probe=" (IN/GE/KO)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Geografie" probe=" (KL/KL/IN)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Götter und Kulte" probe=" (KL/KL/IN)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Magiekunde" probe=" (KL/KL/IN)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Pflanzenkunde" probe=" (KL/IN/FF)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Rechnen" probe=" (KL/KL/IN)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Sagen und Legenden" probe=" (KL/IN/CH)" value="5"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Sternkunde" probe=" (KL/KL/IN)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Tierkunde" probe=" (MU/KL/IN)" value="4"/>
+            <talent k="21" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Alt-Imperial/Aureliani" probe=" (KL/IN/CH)" value="3"/>
+            <talent k="21" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Bosparano" probe=" (KL/IN/CH)" value="4"/>
+            <talent k="18" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Garethi" probe=" (KL/IN/CH)" value="12"/>
+            <talent k="15" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Mohisch" probe=" (KL/IN/CH)" value="2"/>
+            <talent k="18" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Thorwalsch" probe=" (KL/IN/CH)" value="2"/>
+            <talent k="18" lernmethode="Gegenseitiges Lehren" name="Sprachen kennen Tulamidya" probe=" (KL/IN/CH)" value="2"/>
+            <talent k="10" lernmethode="Gegenseitiges Lehren" name="Lesen/Schreiben Kusliker Zeichen" probe=" (KL/KL/FF)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Abrichten" probe=" (MU/IN/CH)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Boote fahren" probe=" (GE/KO/KK)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Fahrzeug lenken" probe=" (IN/CH/FF)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Fleischer" probe=" (KL/FF/KK)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Gerber/Kürschner" probe=" (KL/FF/KO)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Heilkunde: Krankheiten" probe=" (MU/KL/CH)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Heilkunde: Wunden" probe=" (KL/CH/FF)" value="1"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Holzbearbeitung" probe=" (KL/FF/KK)" value="2"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Kochen" probe=" (KL/IN/FF)" value="4"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Lederarbeiten" probe=" (KL/FF/FF)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Malen/Zeichnen" probe=" (KL/IN/FF)" value="0"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Schneidern" probe=" (KL/FF/FF)" value="3"/>
+            <talent lernmethode="Gegenseitiges Lehren" name="Ritualkenntnis: Hexe" probe=" (--/--/--)" value="3"/>
+        </talentliste>
+        <zauberliste>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Abvenenum reine Speise" probe=" (KL/KL/FF)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Ängste lindern" probe=" (MU/IN/CH)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Attributo" probe=" (KL/CH/**)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Blick aufs Wesen" probe=" (KL/IN/CH)" reichweite="" repraesentation="Hexe" value="4" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="D" kosten="" lernmethode="Gegenseitiges Lehren" name="Blick in die Gedanken" probe=" (KL/KL/CH)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Blitz dich find" probe=" (KL/IN/GE)" reichweite="" repraesentation="Hexe" value="17" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Claudibus Clavistibor" probe=" (KL/FF/KK)" reichweite="" repraesentation="Hexe" value="13" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Eigenschaft wiederherstellen" probe=" (KL/IN/CH)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Einfluss bannen" probe=" (IN/CH/CH)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="A" kosten="" lernmethode="Gegenseitiges Lehren" name="Flim Flam Funkel" probe=" (KL/KL/FF)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Gefunden!" probe=" (KL/IN/GE)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Geisterbann" probe=" (MU/MU/CH)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Große Gier" probe=" (KL/KL/CH)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Harmlose Gestalt" probe=" (KL/CH/GE)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Hellsicht trüben" probe=" (KL/IN/CH)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Hexenblick" probe=" (IN/IN/CH)" reichweite="" repraesentation="Hexe" value="2" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Hexenholz" probe=" (KL/FF/KK)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Hexenknoten" probe=" (KL/IN/CH)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Hexenspeichel" probe=" (IN/CH/FF)" reichweite="" repraesentation="Hexe" value="0" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Krähenruf" probe=" (MU/CH/CH)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="B" kosten="" lernmethode="Gegenseitiges Lehren" name="Krötensprung" probe=" (IN/GE/KK)" reichweite="" repraesentation="Hexe" value="4" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="false" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Radau" probe=" (MU/CH/KO)" reichweite="" repraesentation="Hexe" value="2" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="D" kosten="" lernmethode="Gegenseitiges Lehren" name="Schleier der Unwissenheit" probe=" (KL/KL/FF)" reichweite="" repraesentation="Hexe" value="3" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Spinnenlauf" probe=" (IN/GE/KK)" reichweite="" repraesentation="Hexe" value="4" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+            <zauber anmerkungen="" hauszauber="true" k="C" kosten="" lernmethode="Gegenseitiges Lehren" name="Tiere besprechen" probe=" (MU/IN/CH)" reichweite="" repraesentation="Hexe" value="5" variante="" wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
+        </zauberliste>
+        <kampf>
+            <kampfwerte name="Dolche">
+                <attacke value="6"/>
+                <parade value="7"/>
+            </kampfwerte>
+            <kampfwerte name="Hiebwaffen">
+                <attacke value="6"/>
+                <parade value="7"/>
+            </kampfwerte>
+            <kampfwerte name="Raufen">
+                <attacke value="6"/>
+                <parade value="7"/>
+            </kampfwerte>
+            <kampfwerte name="Ringen">
+                <attacke value="6"/>
+                <parade value="7"/>
+            </kampfwerte>
+            <kampfwerte name="Säbel">
+                <attacke value="6"/>
+                <parade value="7"/>
+            </kampfwerte>
+        </kampf>
+        <gegenstände/>
+        <BoniWaffenlos/>
+        <kommentare>
+            <sfInfos dauer="" kosten="" probe="" sf="" sfname="Hexenritual: Hexensalbe" wirkung=""/>
+            <sfInfos dauer="" kosten="" probe="" sf="" sfname="Vertrautenbindung" wirkung=""/>
+        </kommentare>
+        <ausrüstungen>
+            <heldenausruestung name="jagtwaffe" nummer="0" set="0"/>
+        </ausrüstungen>
+        <verbindungen/>
+        <extention/>
+        <geldboerse/>
+        <plugindata/>
+    </held>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+            <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+            <Reference URI="">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                <DigestValue>9N3Y0KdHmMYZkNEYvig9HBg+QTc=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>
+            R4Kp9TdL109JNsQotfPab//hO2UClqLTn8rupw8YybuHTRuik/vJCQ==
+        </SignatureValue>
+        <KeyInfo>
+            <KeyValue>
+                <DSAKeyValue>
+                    <P>
+                        /KaCzo4Syrom78z3EQ5SbbB4sF7ey80etKII864WF64B81uRpH5t9jQTxeEu0ImbzRMqzVDZkVG9&#13;
+                        xD7nN1kuFw==
+                    </P>
+                    <Q>li7dzDacuo67Jg7mtqEm2TRuOMU=</Q>
+                    <G>
+                        Z4Rxsnqc9E7pGknFFH2xqaryRPBaQ01khpMdLRQnG541Awtx/XPaF5Bpsy4pNWMOHCBiNU0Nogps&#13;
+                        QW5QvnlMpA==
+                    </G>
+                    <Y>
+                        uVrvWkzIbUdL7E80AiD0PJDX3Ck0beY5StXp1wDAA1/ePpemd6rTBNd8YoCzOovNrX016YMcTSiO&#13;
+                        iExM4RWtJA==
+                    </Y>
+                </DSAKeyValue>
+            </KeyValue>
+        </KeyInfo>
+    </Signature>
+</helden>
