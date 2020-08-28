@@ -144,7 +144,25 @@ class GameLogic:
         output_list = []
         for i in range(len(root[0][6])):
             output_list.append(Skill(root[0][6][i]))
+
+            # check if sinnenschärfe is part of skills
+            if output_list[-1].name == "Sinnenschärfe":
+                output_list = self.add_sinnenschaerfe(output_list, Skill(root[0][6][i]))
+
         return output_list
+
+    def add_sinnenschaerfe(self, skill_list, ss_orig):
+        # remove original attributo and add 1 entry for every attribute
+        attr_list = ["IN", "FF"]
+        skill_list.pop(-1)
+
+        for _, value in enumerate(attr_list):
+            ss_temp = copy.deepcopy(ss_orig)
+            ss_temp.name = value + " Sinnenschärfe"
+            ss_temp.test[2] = value
+            skill_list.append(ss_temp)
+
+        return skill_list
 
     def read_spells(self, root):
         output_list = []
@@ -164,7 +182,7 @@ class GameLogic:
 
         for _, value in enumerate(attr_list):
             attributo_temp = copy.deepcopy(attributo_orig)
-            attributo_temp.name = "Attributo " + value
+            attributo_temp.name = value + " Attributo"
             attributo_temp.test[2] = value
             spell_list.append(attributo_temp)
 

@@ -1,9 +1,12 @@
-""" reads interface choice from config file and starts interface """
+""" reads config file and starts interface """
 from cli import CLI
 from gui import GUI
 from game_backend import GameLogic, GameState
 
 def read_config(configname):
+    """ Opens textfile, looks for keywords and creates a dictionary entry for each match.
+    Input: configname: str, the name of the file, e.g. 'config.txt'
+    Output: outdict: dict, the created dictionary """
     outdict = {}
     str_entries = ("output file", "interface", "dice")
     int_entries = ("font size", "width", "height")
@@ -27,6 +30,7 @@ if __name__ == '__main__':
     configs = read_config("config.txt")
     game = GameLogic(configs)
     state = GameState()
+
     if configs["interface"] == "CLI":
         interface = CLI(game, state, configs)
     elif configs["interface"] == "GUI":
