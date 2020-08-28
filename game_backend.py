@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET # to parse input xml file
 from collections import namedtuple
 from dataclasses import dataclass # to create GameState
 import operator # to subtract list from list
+import copy # to make copies of attributo spell
 from dsa_data import Attribute, Skill, Spell, FightTalent
 
 
@@ -149,7 +150,25 @@ class GameLogic:
         output_list = []
         for i in range(len(root[0][7])):
             output_list.append(Spell(root[0][7][i]))
+
+            # check if attributo is part of spells
+            if output_list[-1].name == "Attributo":
+                output_list = self.add_attributo(output_list, Spell(root[0][7][i]))
+
         return output_list
+
+    def add_attributo(self, spell_list, attributo_orig):
+        # remove original attributo and add 1 entry for every attribute
+        attr_list = ["MU", "KL", "IN", "CH", "FF", "GE", "KO", "KK"]
+        spell_list.pop(-1)
+
+        for _, value in enumerate(attr_list):
+            attributo_temp = copy.deepcopy(attributo_orig)
+            attributo_temp.name = "Attributo " + value
+            attributo_temp.test[2] = value
+            spell_list.append(attributo_temp)
+
+        return spell_list
 
     def read_fight_talents(self, root):
         output_list = []

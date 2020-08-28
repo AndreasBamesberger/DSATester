@@ -59,3 +59,5 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 03_testchar,misc,2; 3; 4,,,1,10,Roll#1: misc test,2020-08-27 18:52:33.006092
 02_testchar,skill,2; 3; 4,Klettern,3,-2,1,Roll#1: skill test,2020-08-27 21:09:20.827632
 01_testchar,skill,8; 7; 20,Klettern,0,-2,-15,Roll#1: None,2020-08-27 21:10:35.496280
+03_testchar,spell,15; 8; 19,Attributo MU,3,0,-9,Roll#1: None,2020-08-28 13:30:23.684465
+03_testchar,spell,2; 11; 3,Attributo KL,3,3,6,Roll#2: None,2020-08-28 13:30:39.651397
