@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type="text/xsl" href="helden.xsl"?>
 <helden Version="5.5.3">
-    <held key="1598347630783" name="testchar_02" stand="1598347634847">
+    <held key="1598347630783" name="testchar_02" stand="1598605061800">
         <mods/>
         <basis>
             <geschlecht name="weiblich"/>
@@ -184,7 +184,7 @@
                 <parade value="9"/>
             </kampfwerte>
             <kampfwerte name="Hiebwaffen">
-                <attacke value="9"/>
+                <attacke value="10"/>
                 <parade value="9"/>
             </kampfwerte>
             <kampfwerte name="Raufen">
@@ -208,10 +208,15 @@
                 <parade value="9"/>
             </kampfwerte>
         </kampf>
-        <gegenstände/>
+        <gegenstände>
+            <gegenstand anzahl="1" name="Brabakbengel" slot="0"/>
+            <gegenstand anzahl="1" name="Brustplatte, Stahl" slot="0"/>
+        </gegenstände>
         <BoniWaffenlos/>
         <kommentare/>
         <ausrüstungen>
+            <heldenausruestung bezeichner="" bfakt="1" bfmin="1" hand="rechts" name="nkwaffe1" schild="0" set="0" slot="0" talent="Hiebwaffen" waffenname="Brabakbengel"/>
+            <heldenausruestung name="ruestung1" ruestungsname="Brustplatte, Stahl" set="0" slot="0"/>
             <heldenausruestung name="jagtwaffe" nummer="0" set="0"/>
         </ausrüstungen>
         <verbindungen/>
@@ -228,11 +233,11 @@
                     <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
                 </Transforms>
                 <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-                <DigestValue>Xk27HyRBNsAXxxgaMkc6uivrsv8=</DigestValue>
+                <DigestValue>E+4Jx9121kIfY3F61aIlbgioDsQ=</DigestValue>
             </Reference>
         </SignedInfo>
         <SignatureValue>
-            Y2oYtRoT+dbhOp0sRxxVSTNZaPcJPxbEXUdaxEtcUEzy65IStGw/Cg==
+            FlMFqiM5nKOve0oBDjuCrNMPQOgcF5RMmKU0GHCOjQzi1st4Bo/LKw==
         </SignatureValue>
         <KeyInfo>
             <KeyValue>
