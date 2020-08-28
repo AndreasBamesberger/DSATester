@@ -9,6 +9,7 @@ from dataclasses import dataclass # to create GameState
 import operator # to subtract list from list
 from dsa_data import Attribute, Skill, Spell, FightTalent
 
+
 @dataclass
 class GameState:
     """ dataclass used to transfer state of game between GameLogic and interfaces """
