@@ -237,6 +237,9 @@ class CLI:
         return outstring
 
     def format_misc_result(self):
+        """ format misc test results
+        output: outstring:str """
+
         dice_string = ", ".join(map(str, self.state.rolls))
         outstring = (f"\tDice count: {self.state.misc[0]}\n"
                      f"\tDice eyes: {self.state.misc[1]}\n"
@@ -246,6 +249,9 @@ class CLI:
         return outstring
 
     def get_save_choice(self):
+        """ ask user if current test should be saved in csv file
+        output: self.state.save:bool, True if it should be saved """
+
         desc = input('Type description to save roll, "no" to discard roll: ')
         if desc.lower() == "no":
             self.state.save = False
@@ -256,21 +262,25 @@ class CLI:
         return self.state.save
 
     def get_manual_dice(self):
-        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
+        """ ask user for number of integers, check if the input fits the
+        current test and save them in the GameState """
 
+        # regex:
+            # ^, $: match from start to end of string
+            # \d+: match one or more integers
+        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
 
         if self.state.category in ("attr", "fight_talent"):
             prompt_string = "Input 1 dice value: "
             dice_count = 1
-            dice_max = 21
+            dice_max = 20
         elif self.state.category in ("skill", "spell"):
             prompt_string = "Input 3 dice values, separated by whitespace: "
             dice_count = 3
-            dice_max = 21
+            dice_max = 20
         elif self.state.category == "misc":
             dice_count, dice_max = self.state.misc
-            dice_max += 1
-            prompt_string = "Input {} dice values, separated by whitespace: ".format(str(dice_count))
+            prompt_string = f"Input {dice_count} dice values, separated by whitespace: "
 
         while True:
             outlist = []
@@ -279,13 +289,11 @@ class CLI:
             for item in input_list:
                 match = re.match(pattern, item)
                 if match:
-                    if int(item) in range(1, dice_max):
+                    if int(item) in range(1, dice_max + 1):
                         outlist.append(int(item))
 
             if len(outlist) == dice_count:
                 break
-            else:
-                print("wrong input, try again")
+            print("wrong input, try again")
 
         self.state.rolls = outlist
-

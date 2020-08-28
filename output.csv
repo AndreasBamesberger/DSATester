@@ -63,3 +63,7 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 03_testchar,spell,2; 11; 3,Attributo KL,3,3,6,Roll#2: None,2020-08-28 13:30:39.651397
 02_testchar,fight_talent,10,AT Anderthalbhänder,9,1,0,Roll#1: fight test,2020-08-28 16:48:26.975091
 01_testchar,attr,12,Klugheit,8,-2,-6,Roll#2: attr test,2020-08-28 16:48:37.711997
+01_testchar,skill,11; 6; 2,IN Sinnenschärfe,3,-2,-2,Roll#1: sinnenschärfe test,2020-08-28 17:37:52.096697
+02_testchar,skill,4; 10; 2,FF Sinnenschärfe,7,-2,5,Roll#2: sinnenschärfe test,2020-08-28 17:38:08.069970
+02_testchar,skill,2; 3; 4,IN Sinnenschärfe,7,-3,4,Roll#1: asdf,2020-08-28 17:59:34.748198
+03_testchar,spell,12; 3; 20,Hellsicht trüben,0,-2,-8,Roll#2: asdf,2020-08-28 18:00:08.518695
