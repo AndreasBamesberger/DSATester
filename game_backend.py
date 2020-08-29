@@ -52,9 +52,6 @@ class GameLogic:
 
         self.setup_output_file()
 
-        print("test.__doc__:")
-        print(self.test.__doc__)
-
     def get_all_xml(self):
         """ checks current working directory for xml files, reads all their
         relevant entries and stores them (using datatypes specified in

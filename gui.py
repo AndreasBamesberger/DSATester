@@ -1,9 +1,9 @@
-""" creates window using tkinter, communicates with GameLogic through the dataclass GameState"""
+""" file that holds the GUI class """
 import re
 import tkinter as tk
 
 class GUI():
-    """ creates window using tkinter, communicates with GameLogic through the dataclass GameState"""
+    """ creates window using tkinter, communicates with GameLogic using the dataclass GameState"""
     def __init__(self, game, state, configs):
         self.game = game
         self.state = state
@@ -14,19 +14,27 @@ class GUI():
         self.state.dice = configs["dice"]
 
         self.window = tk.Tk()
+        # create a predefined window size so that the window doesn't start really tiny
         self.window.geometry(str(self.width) + 'x' + str(self.height))
         self.window.tk.call('tk', 'scaling', self.scaling)
-        self.window.title("DSA rng")
+        self.window.title("DSATester")
         self.window.configure(background="black")
 
+        # variables to see if state has changed
         self.old_category = None
         self.old_input = None
         self.old_hero_input = None
+
         self.printable_options = None
 
+        # these dicts hold all widgets shown in the GUI
         self.text_outputs = {}
         self.text_inputs = {}
         self.buttons = {}
+
+        # these two inputs have to persist through window changes, so they are
+        # created here. tk.StringVar is used to have an event when the strings
+        # change
 
         # text input for hero input
         self.var_hero = tk.StringVar()
@@ -44,48 +52,17 @@ class GUI():
         self.var_input.trace('w', self.button_input)
 
         self.setup_window()
-#        self.update()
         self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
 
     def loop(self):
-        """ gets executed by main.py, reads inputs, sends inputs to GameLogic,
-        shows results in tkinter window """
+        """ gets executed by main.py, only executes the tkinter mainloop, every
+        change is event driven """
 
         self.window.mainloop()
-#        while True:
-#            self.get_hero()
-#            self.get_first_input()
-#
-#            if self.old_category != self.state.category:
-#                self.clear_screen()
-#                self.setup_window()
-#                self.state.result = None
-#                self.old_category = self.state.category
-#
-#            if self.old_hero_input != self.state.current_hero:
-#                self.clear_screen()
-#                self.setup_window()
-#                self.state.result = None
-#                self.old_hero_input = self.state.current_hero
-#
-#            self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
-#            self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
-#
-#            if self.state.category in ("attr", "skill", "spell", "fight_talent"):
-#                self.text_outputs["var_matching"].configure(text=self.state.name)
-#                self.get_mod(self.text_inputs["mod"].get().lower())
-#
-#            if self.state.category:
-#                self.state.desc = self.text_inputs["desc"].get()
-#
-#            if not self.state.category:
-#                self.text_outputs["var_matching"].configure(text=self.printable_options)
-#
-#            self.update()
 
     def reset(self):
         """ every variable of GameState back to None (save is set to False),
-        deletes user input typed into first input field """
+        deletes user input typed into the test input field """
         self.state.save = False
         self.state.category = None
         self.state.name = None
@@ -102,13 +79,9 @@ class GUI():
 
         self.input_test.delete(0, 'end')
 
-    def update(self):
-        """ components of tk.mainloop """
-        self.window.update_idletasks()
-        self.window.update()
-
     def clear_screen(self):
-        """ destroy all widgets except for roll number and input field """
+        """ destroy all widgets except for roll number, test input field and
+        hero input field """
         for key, field in self.text_outputs.items():
             if key == "var_roll_nr":
                 continue
@@ -123,11 +96,15 @@ class GUI():
             field.destroy()
 
     def get_hero(self):
+        """ gets user input from hero input field, gets all available heroes as
+        list from GameLogic and looks for a match. if only one hero matches the
+        input, this hero is selected for the test """
+
         hero_input = self.text_inputs["hero_input"].get().lower()
         hero_options = self.game.get_hero_list()
         templist = []
-        for index, value in enumerate(hero_options):
-            if hero_input in value:
+        for _, value in enumerate(hero_options):
+            if hero_input in value.lower():
                 templist.append(value)
         if len(templist) == 1:
             self.state.current_hero = templist[0]
@@ -137,7 +114,15 @@ class GUI():
         """ checks input for misc input regular expressions, if it matches sets
         test category to misc, else it sends input to game autocomplete to get
         matching entry. if just 1 entry matches then set this as current test
-        """
+        output: bool, False if this method ended prematurely """
+
+        # check for misc dice input using regex
+        # regex:
+           # ^, $: match from start to end of string
+           # \d+: match one or more integers
+           # [dDwW]: match one of those four letters
+           # \+, -: match plus or minus sign
+
         pattern1 = "^(\d+)[dDwW](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
         pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
         pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
@@ -200,6 +185,8 @@ class GUI():
             else:
                 self.state.category = None
                 self.state.name = None
+
+        return True
 
     def get_mod(self, mod_string):
         """ use reg ex to get integer from input field. input = string from input field """

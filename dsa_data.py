@@ -1,22 +1,48 @@
-""" this module features a class for every hero entry that is covered by DSATester """
-abbr = [['Mut', 'MU'],
-        ['Klugheit', 'KL'],
-        ['Intuition', 'IN'],
-        ['Charisma', 'CH'],
-        ['Fingerfertigkeit', 'FF'],
-        ['Gewandtheit', 'GE'],
-        ['Konstitution', 'KO'],
-        ['Körperkraft', 'KK']]
+""" this file features a class for every hero entry that is covered by DSATester """
+import re
+#abbr = [['Mut', 'MU'],
+#        ['Klugheit', 'KL'],
+#        ['Intuition', 'IN'],
+#        ['Charisma', 'CH'],
+#        ['Fingerfertigkeit', 'FF'],
+#        ['Gewandtheit', 'GE'],
+#        ['Konstitution', 'KO'],
+#        ['Körperkraft', 'KK']]
+
+abbr = {'Mut': 'MU',
+        'Klugheit': 'KL',
+        'Intuition': 'IN',
+        'Charisma': 'CH',
+        'Fingerfertigkeit': 'FF',
+        'Gewandtheit': 'GE',
+        'Konstitution': 'KO',
+        'Körperkraft': 'KK'}
+
+def match_attrs(attrs_string):
+    """ the attributes related to a skill test are stored as 3 abbreviations,
+     e.g. " (KL/IN/CH)", this function separates them into a list with 3 entries
+     the string always starts with a whitespace
+     input: attrs_string:str, the string from the xml file
+     output: output_list:list, the 3 separated values """
+
+    # regex: " (KL/IN/CH)" -> KL, IN, CH
+        # ^, $: match from start to end of string
+        # \s*: match any number of whitespaces
+        # \(, \): match the parentheses around the expression
+        # .{2}: match any two characters
+    pattern = "^\s*\((.{2})/(.{2})/(.{2})\)$" #pylint: disable=anomalous-backslash-in-string
+
+    match = re.match(pattern, attrs_string)
+    if match:
+        output_list = [value for _, value in enumerate(match.groups())]
+
+    return output_list
 
 class Attribute:
     """object for attributes like Mut, Klugheit etc"""
     def __init__(self, attr_entry):
         attr_dict = attr_entry.attrib
-
-#        for key, field in attr_dict.items():
-#            print(repr(key), repr(field))
-#        print("---")
-
+    # not every attribute entry has all of these values
 #TODO: rework this
         try:
             self.name = attr_dict['name']
@@ -47,14 +73,16 @@ class Attribute:
         except KeyError:
             self.karmal = None
 
+        # some attribute values change over time, this change is saved in attr_dict['mod']
         if self.dict_value is not None and self.mod is not None:
             self.value = self.dict_value + self.mod
 
         self.abbr = ""
-        if self.name is not None:
-            for ab in abbr:
-                if self.name == ab[0]:
-                    self.abbr = ab[1]
+        if self.name != '':
+            try:
+                self.abbr = abbr[self.name]
+            except KeyError:
+                pass
 
     def __repr__(self):
         outstring = (f"{self.name} ({self.abbr})\n"
@@ -72,10 +100,7 @@ class Skill:
     def __init__(self, skill_entry):
         skill_dict = skill_entry.attrib
 
-#        for key, field in skill_dict.items():
-#            print(repr(key), repr(field))
-#        print("---")
-
+    # not every attribute entry has all of these values
 #TODO: rework this
         try:
             self.learn = skill_dict['lernmethode']
@@ -94,10 +119,10 @@ class Skill:
         except KeyError:
             self.value = None
 
+
         if self.dict_tests is not None:
-            self.test = [self.dict_tests[2:4],
-                         self.dict_tests[5:7],
-                         self.dict_tests[8:10]]
+            self.test = match_attrs(self.dict_tests)
+
         try:
             self.handicap = skill_dict["be"]
         except KeyError:
@@ -115,14 +140,11 @@ class Skill:
         return outstring
 
 class Spell:
-    """object for spells"""
+    """object for spells like attributo, radau etc"""
     def __init__(self, spell_entry):
         spell_dict = spell_entry.attrib
 
-#        for key, field in spell_dict.items():
-#            print(repr(key), repr(field))
-#        print("---")
-
+    # not every attribute entry has all of these values
 #TODO: rework this
         try:
             self.comments = spell_dict['anmerkungen']
@@ -182,9 +204,7 @@ class Spell:
             self.comment = None
 
         if self.dict_tests is not None:
-            self.test = [self.dict_tests[2:4],
-                         self.dict_tests[5:7],
-                         self.dict_tests[8:10]]
+            self.test = match_attrs(self.dict_tests)
 
     def __repr__(self):
         outstring = (f"{self.name}\n"
@@ -209,6 +229,8 @@ class Spell:
 class FightTalent:
     """ object for fight talents like raufen, ringen, hiebwaffen """
     def __init__(self, fight_entry, mode):
+        # for every fight talent, offensive and defensive tests are possible
+        # so every fight talent has 2 entries
         if mode == "AT":
             try:
                 self.name = "AT " + fight_entry.attrib["name"]
