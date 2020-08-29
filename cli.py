@@ -4,6 +4,9 @@ import re
 class CLI:
     """ command line interface, communicates with GameLogic """
     def __init__(self, game, state, configs):
+        """ input: game:GameLogic
+                   state:GameState
+                   configs:dict, config file entries """
         self.game = game
         self.state = state
         self.state.dice = configs["dice"]
@@ -174,7 +177,8 @@ class CLI:
     @classmethod
     def display_message(cls, text):
         """ function to print text to screen, in case the string has to be
-        transformed before being printed """
+        transformed before being printed
+        input: text:str, text to be printed """
         print(text)
 
     def show_result(self):
