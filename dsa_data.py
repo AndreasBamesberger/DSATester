@@ -38,12 +38,11 @@ def match_attrs(attrs_string):
 
     return output_list
 
-class Attribute:
+class Attribute: # pylint: disable=too-many-instance-attributes, too-few-public-methods
     """object for attributes like Mut, Klugheit etc"""
     def __init__(self, attr_entry):
         attr_dict = attr_entry.attrib
     # not every attribute entry has all of these values
-#TODO: rework this
         try:
             self.name = attr_dict['name']
         except KeyError:
@@ -95,13 +94,12 @@ class Attribute:
                      f"\tvalue: {self.value}\n")
         return outstring
 
-class Skill:
+class Skill:# pylint: disable=too-few-public-methods
     """object for skills like Zechen, Schwimmen etc"""
     def __init__(self, skill_entry):
         skill_dict = skill_entry.attrib
 
     # not every attribute entry has all of these values
-#TODO: rework this
         try:
             self.learn = skill_dict['lernmethode']
         except KeyError:
@@ -139,13 +137,12 @@ class Skill:
                      f"\tbe: {self.handicap}\n")
         return outstring
 
-class Spell:
+class Spell:# pylint: disable=too-many-instance-attributes, too-few-public-methods
     """object for spells like attributo, radau etc"""
-    def __init__(self, spell_entry):
+    def __init__(self, spell_entry): # pylint: disable=too-many-branches, too-many-statements
         spell_dict = spell_entry.attrib
 
     # not every attribute entry has all of these values
-#TODO: rework this
         try:
             self.comments = spell_dict['anmerkungen']
         except KeyError:
@@ -226,7 +223,7 @@ class Spell:
                      f"\ttest3: {self.test[2]}\n")
         return outstring
 
-class FightTalent:
+class FightTalent: # pylint: disable= too-few-public-methods
     """ object for fight talents like raufen, ringen, hiebwaffen """
     def __init__(self, fight_entry, mode):
         # for every fight talent, offensive and defensive tests are possible

@@ -151,26 +151,6 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         if len(self.state.rolls) != dice_count:
             self.state.rolls = None
 
-#    def setup_window_old(self):
-#        """ clear all widgets and, based on current test category, set up screen again """
-#        self.text_outputs.clear()
-#        self.text_inputs.clear()
-#        self.buttons.clear()
-#        if not self.state.category:
-#            self.setup_input_screen()
-#
-#        elif self.state.category == "misc":
-#            self.setup_misc_screen()
-#
-#        elif self.state.category == "attr":
-#            self.setup_attr_screen()
-#
-#        elif self.state.category == "fight_talent":
-#            self.setup_fight_talent_screen()
-#
-#        elif self.state.category in ("skill", "spell"):
-#            self.setup_skill_screen()
-
     def button_test(self):
         """ method that gets executed when "test" button is clicked. calls
         GameLogic.test and displays result
