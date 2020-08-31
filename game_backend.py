@@ -12,7 +12,7 @@ import re
 from dsa_data import Attribute, Skill, Spell, FightTalent
 
 @dataclass
-class GameState:
+class GameState: # pylint: disable=too-many-instance-attributes
     """ dataclass used to transfer state of game between GameLogic and interfaces """
     done: bool = False        # exit when True (currently not used)
     save: bool = False        # export roll to csv if True
@@ -240,7 +240,7 @@ class GameLogic:
             output_list.append(FightTalent(root[0][8][i], "PA"))
         return output_list
 
-    def test(self, state):
+    def test(self, state): # pylint: disable=too-many-branches
         """ execute the correct test method based on state.category
         input: state:GameState
         output: state:Gamestate """
@@ -449,7 +449,7 @@ class GameLogic:
         return state
 
     @staticmethod
-    def match_manual_dice(state, input_list):
+    def match_manual_dice(state, rolls_string):
         """ use regular expression to check if the manually typed in dice rolls
         are valid and save them to GameState.rolls
         input: state:GameState
@@ -462,19 +462,31 @@ class GameLogic:
         pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
         outlist = []
 
+        # attribute and fight talent tests take 1D20
         if state.category in ("attr", "fight_talent"):
+            dice_count = 1
             dice_max = 20
+        # skill and spell tests take 3D20
         elif state.category in ("skill", "spell"):
+            dice_count = 3
             dice_max = 20
+        # misc dice roll takes whatever was specified earlier
         elif state.category == "misc":
-            _, dice_max = state.misc
+            dice_count, dice_max = state.misc
 
-        for item in input_list:
+        # allow matches for dice separated by any number of whitespaces and commas
+        rolls_string = rolls_string.replace(',', ' ')
+        rolls_list = rolls_string.split(' ')
+
+        for item in rolls_list:
             match = re.match(pattern, item)
             if match:
                 if int(item) in range(1, dice_max + 1):
                     outlist.append(int(item))
 
         state.rolls = outlist
+
+        if len(state.rolls) != dice_count:
+            state.rolls = None
 
         return state

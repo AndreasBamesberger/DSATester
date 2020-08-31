@@ -2,7 +2,7 @@
 import re
 import tkinter as tk
 
-class GUI():
+class GUI(): # pylint: disable=too-many-instance-attributes
     """ creates window using tkinter, communicates with GameLogic using the dataclass GameState"""
     def __init__(self, game, state, configs):
         self.game = game
@@ -39,13 +39,13 @@ class GUI():
         # text input for hero input
         self.var_hero = tk.StringVar()
         self.var_hero.set('')
-        self.perm_input_hero = tk.Entry(self.window, textvariable=self.var_hero, width=20, bg="white")
+        self.perm_input_hero = tk.Entry(self.window, textvariable=self.var_hero, width=20, bg="white") # pylint: disable=line-too-long
         self.perm_input_hero.grid(row=1, column=1, sticky=tk.W)
 
         # text input for test input
         self.var_input = tk.StringVar()
         self.var_input.set('')
-        self.perm_input_test = tk.Entry(self.window, textvariable=self.var_input, width=20, bg="white")
+        self.perm_input_test = tk.Entry(self.window, textvariable=self.var_input, width=20, bg="white") # pylint: disable=line-too-long
         self.perm_input_test.grid(row=3, column=1, sticky=tk.W)
 
         self.var_hero.trace('w', self.trace_hero)
@@ -181,7 +181,8 @@ class GUI():
             self.get_mod(self.text_inputs["mod"].get().lower())
 
         if self.state.dice == "manual":
-            self.get_manual_dice(self.text_inputs["dice_input"].get())
+            dice_string = self.text_inputs["dice_input"].get()
+            self.state = self.game.match_manual_dice(self.state, dice_string)
 
         self.state = self.game.test(self.state)
 
@@ -214,11 +215,11 @@ class GUI():
                 # change has to be shown on screen
                 if self.state.mod + self.state.value < 0:
                     # value string example "8 -> 5"
-                    value_string = str(self.state.value) + " -> " + str(self.state.value + self.state.mod)
+                    value_string = str(self.state.value) + " -> " + str(self.state.value + self.state.mod) # pylint: disable=line-too-long
                     # attrs_string example: "KL(14->12), IN(13->11), FF(12->10)"
-                    attrs_string = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(self.state.attrs)]
+                    attrs_string = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(self.state.attrs)] # pylint: disable=line-too-long
                 else:
-                    attrs_string = [i.abbr + '(' + str(i.value) + ')' for _, i in enumerate(self.state.attrs)]
+                    attrs_string = [i.abbr + '(' + str(i.value) + ')' for _, i in enumerate(self.state.attrs)] # pylint: disable=line-too-long
                     value_string = str(self.state.value)
                 attrs_string = ", ".join(map(str, attrs_string))
 
@@ -302,7 +303,7 @@ class GUI():
                 self.state.category = self.state.option_list[0][1]
             # if more than 1 entries match but 1 entry matches the user input
             # exactly, this entry is used for the current test
-            elif self.state.option_list and self.state.test_input.lower() == self.state.option_list[0][0].lower():
+            elif self.state.option_list and self.state.test_input.lower() == self.state.option_list[0][0].lower(): # pylint: disable=line-too-long
                 self.state.name = self.state.option_list[0][0]
                 self.state.category = self.state.option_list[0][1]
             else:

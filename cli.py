@@ -237,9 +237,9 @@ class CLI:
             prompt_string = f"Input {dice_count} dice values, separated by whitespace: "
 
         while True:
-            input_list = input(prompt_string).replace(',', '').split(' ')
+            input_string = input(prompt_string)
 
-            self.state = self.game.match_manual_dice(self.state, input_list)
+            self.state = self.game.match_manual_dice(self.state, input_string)
 
             if len(self.state.rolls) == dice_count:
                 break
