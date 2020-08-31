@@ -281,8 +281,6 @@ class GameLogic:
         state.value = entry.value
         if state.dice == "auto":
             state.rolls = self.roll_dice(1, 1, 20)
-        if state.mod is None:
-            state.mod = 0
 
         state.result = entry.value + state.mod - state.rolls[0]
         return state
@@ -309,8 +307,7 @@ class GameLogic:
         attr_values_orig = attr_values
 
         state.value = entry.value
-        if state.mod is None:
-            state.mod = 0
+
         modded_value = entry.value + state.mod
 
         # if the modifier lowers the skill/spell value below zero, the 3
