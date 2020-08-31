@@ -151,25 +151,25 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         if len(self.state.rolls) != dice_count:
             self.state.rolls = None
 
-    def setup_window(self):
-        """ clear all widgets and, based on current test category, set up screen again """
-        self.text_outputs.clear()
-        self.text_inputs.clear()
-        self.buttons.clear()
-        if not self.state.category:
-            self.setup_input_screen()
-
-        elif self.state.category == "misc":
-            self.setup_misc_screen()
-
-        elif self.state.category == "attr":
-            self.setup_attr_screen()
-
-        elif self.state.category == "fight_talent":
-            self.setup_fight_talent_screen()
-
-        elif self.state.category in ("skill", "spell"):
-            self.setup_skill_screen()
+#    def setup_window_old(self):
+#        """ clear all widgets and, based on current test category, set up screen again """
+#        self.text_outputs.clear()
+#        self.text_inputs.clear()
+#        self.buttons.clear()
+#        if not self.state.category:
+#            self.setup_input_screen()
+#
+#        elif self.state.category == "misc":
+#            self.setup_misc_screen()
+#
+#        elif self.state.category == "attr":
+#            self.setup_attr_screen()
+#
+#        elif self.state.category == "fight_talent":
+#            self.setup_fight_talent_screen()
+#
+#        elif self.state.category in ("skill", "spell"):
+#            self.setup_skill_screen()
 
     def button_test(self):
         """ method that gets executed when "test" button is clicked. calls
@@ -325,19 +325,28 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
         return True
 
+    def setup_window(self):
+        """ clear all widgets and, based on current test category, set up screen again """
+        self.text_outputs.clear()
+        self.text_inputs.clear()
+        self.buttons.clear()
 
-    def setup_input_screen(self):
-        """ create tkinter widgets for the input screen, when
-        GameState.category is None """
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
-                   ["var_roll_nr", '', 0, 1, tk.W],
-                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
-                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
-                   ["var_matching_hero", '', 2, 1, tk.W],
-                   ["input_prompt", "Input: ", 3, 0, tk.E],
-                   ["matching", "Matching: ", 4, 0, tk.NE],
-                   ["var_matching", '', 4, 1, tk.W]]
+        if not self.state.category:
+            outputs, inputs, buttons = self.setup_input_screen()
 
+        elif self.state.category == "misc":
+            outputs, inputs, buttons = self.setup_misc_screen()
+
+        elif self.state.category == "attr":
+            outputs, inputs, buttons = self.setup_attr_screen()
+
+        elif self.state.category == "fight_talent":
+            outputs, inputs, buttons = self.setup_fight_talent_screen()
+
+        elif self.state.category in ("skill", "spell"):
+            outputs, inputs, buttons = self.setup_skill_screen()
+
+        # set up outputs dictionary
         for _, value in enumerate(outputs):
             key = value[0]
             text = value[1]
@@ -350,12 +359,69 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
             self.text_outputs.update({key: temp})
 
-        self.text_inputs.update({"test_input": self.perm_input_test})
+        # set up inputs dictionary
         self.text_inputs.update({"hero_input": self.perm_input_hero})
+        self.text_inputs.update({"test_input": self.perm_input_test})
+
+        for _, value in enumerate(inputs):
+            key = value[0]
+            width = value[1]
+            row = value[2]
+            column = value[3]
+            sticky = value[4]
+
+            temp = tk.Entry(self.window, width=width, bg="white")
+            temp.grid(row=row, column=column, sticky=sticky)
+
+            self.text_inputs.update({key: temp})
+
+        # set up button dictionary
+        for _, value in enumerate(buttons):
+            key = value[0]
+            text = value[1]
+            width = value[2]
+            command = value[3]
+            row = value[4]
+            column = value[5]
+            sticky = value[6]
+            font = self.font
+
+            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
+            if sticky:
+                temp.grid(row=row, column=column, sticky=sticky)
+            else:
+                temp.grid(row=row, column=column)
+
+            self.buttons.update({key: temp})
+
+    @staticmethod
+    def setup_input_screen():
+        """ create tkinter widgets for the input screen, when
+        GameState.category is None
+        output: outputs:list
+                inputs:list
+                buttons:list """
+
+        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+                   ["var_roll_nr", '', 0, 1, tk.W],
+                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
+                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["var_matching_hero", '', 2, 1, tk.W],
+                   ["input_prompt", "Input: ", 3, 0, tk.E],
+                   ["matching", "Matching: ", 4, 0, tk.NE],
+                   ["var_matching", '', 4, 1, tk.W]]
+
+        inputs = []
+        buttons = []
+
+        return outputs, inputs, buttons
 
     def setup_attr_screen(self):
         """ create tkinter widgets for the attribute test screen, when
-        GameState.category is attr """
+        GameState.category is attr
+        output: outputs:list
+                inputs:list
+                buttons:list """
 
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
@@ -379,19 +445,6 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         if self.state.dice == "manual":
             outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
 
-        for _, value in enumerate(outputs):
-            key = value[0]
-            text = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_outputs.update({key:temp})
-
-
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
@@ -403,45 +456,18 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
         inputs.append(["desc", 20, 13, 1, tk.W])
 
-        for _, value in enumerate(inputs):
-            key = value[0]
-            width = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Entry(self.window, width=width, bg="white")
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_inputs.update({key: temp})
-
-        self.text_inputs.update({"test_input": self.perm_input_test})
-        self.text_inputs.update({"hero_input": self.perm_input_hero})
 
         buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
-        for _, value in enumerate(buttons):
-            key = value[0]
-            text = value[1]
-            width = value[2]
-            command = value[3]
-            row = value[4]
-            column = value[5]
-            sticky = value[6]
-            font = self.font
-
-            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
-            if sticky:
-                temp.grid(row=row, column=column, sticky=sticky)
-            else:
-                temp.grid(row=row, column=column)
-
-            self.buttons.update({key: temp})
+        return outputs, inputs, buttons
 
     def setup_fight_talent_screen(self):
         """ create tkinter widgets for the fight talent test, when
-        GameState.category is fight_talent  """
+        GameState.category is fight_talent
+        output: outputs:list
+                inputs:list
+                buttons:list """
 
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
@@ -465,18 +491,6 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         if self.state.dice == "manual":
             outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
 
-        for _, value in enumerate(outputs):
-            key = value[0]
-            text = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_outputs.update({key:temp})
-
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
@@ -488,45 +502,17 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
         inputs.append(["desc", 20, 12, 1, tk.W])
 
-        for _, value in enumerate(inputs):
-            key = value[0]
-            width = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Entry(self.window, width=width, bg="white")
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_inputs.update({key: temp})
-
-        self.text_inputs.update({"test_input": self.perm_input_test})
-        self.text_inputs.update({"hero_input": self.perm_input_hero})
-
         buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
-        for _, value in enumerate(buttons):
-            key = value[0]
-            text = value[1]
-            width = value[2]
-            command = value[3]
-            row = value[4]
-            column = value[5]
-            sticky = value[6]
-            font = self.font
-
-            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
-            if sticky:
-                temp.grid(row=row, column=column, sticky=sticky)
-            else:
-                temp.grid(row=row, column=column)
-
-            self.buttons.update({key: temp})
+        return outputs, inputs, buttons
 
     def setup_skill_screen(self):
         """ create tkinter widgets for skill/spell tests, when
-        GameState.category is skill or spell """
+        GameState.category is skill or spell
+        output: outputs:list
+                inputs:list
+                buttons:list """
 
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
@@ -554,18 +540,6 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         if self.state.dice == "manual":
             outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
 
-        for _, value in enumerate(outputs):
-            key = value[0]
-            text = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_outputs.update({key:temp})
-
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
@@ -577,44 +551,17 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
         inputs.append(["desc", 20, 14, 1, tk.W])
 
-        for _, value in enumerate(inputs):
-            key = value[0]
-            width = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Entry(self.window, width=width, bg="white")
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_inputs.update({key: temp})
-
-        self.text_inputs.update({"test_input": self.perm_input_test})
-        self.text_inputs.update({"hero_input": self.perm_input_hero})
-
         buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 15, 0, False]]
 
-        for _, value in enumerate(buttons):
-            key = value[0]
-            text = value[1]
-            width = value[2]
-            command = value[3]
-            row = value[4]
-            column = value[5]
-            sticky = value[6]
-            font = self.font
-
-            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
-            if sticky:
-                temp.grid(row=row, column=column, sticky=sticky)
-            else:
-                temp.grid(row=row, column=column)
-
-            self.buttons.update({key: temp})
+        return outputs, inputs, buttons
 
     def setup_misc_screen(self):
-        """ create tkinter widgets for a misc dice sum test, when GameState.category is misc """
+        """ create tkinter widgets for a misc dice sum test, when
+        GameState.category is misc
+        output: outputs:list
+                inputs:list
+                buttons:list """
 
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
@@ -631,55 +578,12 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         if self.state.dice == "manual":
             outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
 
-        for _, value in enumerate(outputs):
-            key = value[0]
-            text = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Label(self.window, text=text, bg="black", fg="white", font=self.font)
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_outputs.update({key:temp})
-
         inputs = []
         if self.state.dice == "manual":
             inputs.append(["dice_input", 20, 4, 1, tk.W])
         inputs.append(["desc", 20, 8, 1, tk.W])
 
-        for _, value in enumerate(inputs):
-            key = value[0]
-            width = value[1]
-            row = value[2]
-            column = value[3]
-            sticky = value[4]
-
-            temp = tk.Entry(self.window, width=width, bg="white")
-            temp.grid(row=row, column=column, sticky=sticky)
-
-            self.text_inputs.update({key: temp})
-
-        self.text_inputs.update({"test_input": self.perm_input_test})
-        self.text_inputs.update({"hero_input": self.perm_input_hero})
-
         buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
                    ["save", "Save", 4, self.button_save, 9, 0, False]]
 
-        for _, value in enumerate(buttons):
-            key = value[0]
-            text = value[1]
-            width = value[2]
-            command = value[3]
-            row = value[4]
-            column = value[5]
-            sticky = value[6]
-            font = self.font
-
-            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
-            if sticky:
-                temp.grid(row=row, column=column, sticky=sticky)
-            else:
-                temp.grid(row=row, column=column)
-
-            self.buttons.update({key: temp})
+        return outputs, inputs, buttons

@@ -1,2 +1,9 @@
 Hero file,Test type,Rolls,Attribute/Skill,Attribute/Skill value,Modifier,Result,Description,Timestamp
 03_testchar,skill,16; 16; 5,IN Sinnenschärfe,1,-2,-6,Roll#1: None,2020-08-31 15:16:07.635754
+02_testchar,attr,15,Klugheit,7,-2,-10,Roll#1: None,2020-08-31 16:11:02.174653
+03_testchar,skill,16; 9; 19,Schwimmen,3,-6,-23,Roll#2: None,2020-08-31 16:11:22.959271
+03_testchar,spell,9; 20; 16,Radau,2,3,-10,Roll#3: None,2020-08-31 16:11:58.292944
+03_testchar,fight_talent,18,AT Hiebwaffen,6,-2,-14,Roll#4: None,2020-08-31 16:13:48.108098
+03_testchar,misc,9; 13; 12,,,-10,24,Roll#5: None,2020-08-31 16:14:20.105557
+03_testchar,spell,8; 12; 20,Radau,2,-2,-12,Roll#1: None,2020-08-31 16:15:13.894415
+03_testchar,skill,18; 2; 8,Schwimmen,3,-5,-8,Roll#2: None,2020-08-31 16:16:15.158367
