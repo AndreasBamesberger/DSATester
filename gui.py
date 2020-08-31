@@ -281,7 +281,10 @@ class GUI():
 
         self.state = self.game.match_test_input(self.state)
 
-        if self.state.category != "misc":
+        if self.state.test_input == '':
+            self.state.category = None
+            self.printable_options = ''
+        elif self.state.category != "misc":
             self.printable_options = []
 
             # print number of matching entries plus all matching entries below

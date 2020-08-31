@@ -412,7 +412,9 @@ class GameLogic:
         return outlist
 
     def match_test_input(self, state):
-        """ match the user test input with regular expressions to find a misc dice roll, then match the user test input with all hero entries to find a matching test entry.
+        """ match the user test input with regular expressions to find a misc
+        dice roll, then match the user test input with all hero entries to find
+        a matching test entry.
         input: state:Gamestate
         output: state:Gamestate """
 
@@ -421,34 +423,25 @@ class GameLogic:
            # ^, $: match from start to end of string
            # \d+: match one or more integers
            # [dDwW]: match one of those four letters
-           # \+, -: match plus or minus sign
-        pattern1 = "^(\d+)[dDwW](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
-        pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
-        pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+           # [\+-]: match 0 or 1 plus or minus signs
+           # \d*: match 0 or any number of numbers
+        # e.g. "3d20+5" -> '3', '20', '+', '5'
+        #      "2d6" -> '2', '6', '', ''
 
-        match1 = re.match(pattern1, state.test_input)
-        if match1 and int(match1.groups()[0]) > 0 and int(match1.groups()[1]) > 0:
+        pattern = "^(\d+)[dDwW](\d+)([\+-]?)(\d*)$" #pylint: disable=anomalous-backslash-in-string
+        match = re.match(pattern, state.test_input)
+        if match and int(match.groups()[0]) > 0 and int(match.groups()[1]) > 0:
+            matched = match.groups()
             state.category = "misc"
-            state.misc = (int(match1.groups()[0]), int(match1.groups()[1]))
-            state.mod = 0
+            state.misc = (int(matched[0]), int(matched[1]))
+            if matched[2] != '' and matched[3] != '':
+                state.mod = int(matched[2] + matched[3])
+            else:
+                state.mod = 0
 
-        match2 = re.match(pattern2, state.test_input)
-        if match2 and int(match2.groups()[0]) > 0 and int(match2.groups()[1]) > 0:
-            state.category = "misc"
-            state.misc = (int(match2.groups()[0]), int(match2.groups()[1]))
-            state.mod = int(match2.groups()[2])
-
-        match3 = re.match(pattern3, state.test_input)
-        if match3 and int(match3.groups()[0]) > 0 and int(match3.groups()[1]) > 0:
-            state.category = "misc"
-            state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
-            state.mod = int(match3.groups()[2]) * -1
-
-        if state.category == "misc":
-            return state
-
-        # match input with hero entries
-        state = self.autocomplete(state)
+        if state.category != "misc":
+            # match input with hero entries
+            state = self.autocomplete(state)
         return state
 
     @staticmethod
