@@ -486,7 +486,7 @@ class GameLogic:
 
         state.rolls = outlist
 
-        if len(state.rolls) != dice_count or len(outlist) != len(rolls_list):
+        if len(state.rolls) != dice_count:
             state.rolls = None
 
         return state

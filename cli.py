@@ -228,10 +228,8 @@ class CLI:
 
         if self.state.category in ("attr", "fight_talent"):
             prompt_string = "Input 1 dice value: "
-            dice_count = 1
         elif self.state.category in ("skill", "spell"):
             prompt_string = "Input 3 dice values, separated by whitespace: "
-            dice_count = 3
         elif self.state.category == "misc":
             dice_count, _ = self.state.misc
             prompt_string = f"Input {dice_count} dice values, separated by whitespace: "
@@ -241,6 +239,7 @@ class CLI:
 
             self.state = self.game.match_manual_dice(self.state, input_string)
 
-            if len(self.state.rolls) == dice_count:
+            if self.state.rolls is None:
+                print("Wrong input, try again")
+            else:
                 break
-            print("Wrong input, try again")
