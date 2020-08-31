@@ -109,93 +109,6 @@ class GUI():
         if len(templist) == 1:
             self.state.current_hero = templist[0]
 
-
-    def get_test_input(self):
-        """ checks input for misc input regular expressions, if it matches sets
-        test category to misc, else it sends input to game autocomplete to get
-        matching entry. if just 1 entry matches then set this as current test
-        output: bool, False if this method ended prematurely """
-
-        # check for misc dice input using regex
-        # regex:
-           # ^, $: match from start to end of string
-           # \d+: match one or more integers
-           # [dDwW]: match one of those four letters
-           # \+, -: match plus or minus sign
-
-        pattern1 = "^(\d+)[dDwW](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
-        pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
-        pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
-
-        if self.state.current_hero is None:
-            print("can't look up a test without a given hero file")
-            return False
-
-        self.state.test_input = self.text_inputs["test_input"].get().lower()
-
-        if self.state.test_input != self.old_input:
-            self.old_input = self.state.test_input
-        else:
-            return False
-
-        # check if input matches a regular expression for a misc dice roll
-        match1 = re.match(pattern1, self.state.test_input)
-        if match1 and int(match1.groups()[0]) > 0 and int(match1.groups()[1]) > 0:
-            self.state.category = "misc"
-            self.state.misc = (int(match1.groups()[0]), int(match1.groups()[1]))
-            self.state.mod = 0
-
-        match2 = re.match(pattern2, self.state.test_input)
-        if match2 and int(match2.groups()[0]) > 0 and int(match2.groups()[1]) > 0:
-            self.state.category = "misc"
-            self.state.misc = (int(match2.groups()[0]), int(match2.groups()[1]))
-            self.state.mod = int(match2.groups()[2])
-
-        match3 = re.match(pattern3, self.state.test_input)
-        if match3 and int(match3.groups()[0]) > 0 and int(match3.groups()[1]) > 0:
-            self.state.category = "misc"
-            self.state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
-            self.state.mod = int(match3.groups()[2]) * -1
-
-        if self.state.category and not match1 and not match2 and not match3:
-            self.state.category = None
-
-        if self.state.test_input == '':
-            self.state.category = None
-            self.printable_options = ''
-        elif self.state.category != "misc":
-            # search hero file data for matching test entries
-            self.state = self.game.autocomplete(self.state)
-            # GameLogic.autocomplete() stores all found entries in
-            # GameState.option_list in the form of [name, category], e.g.
-            # ["KLettern", "skill"]
-
-            self.printable_options = []
-
-            # print number of matching entries plus all matching entries below
-            self.printable_options.append(str(len(self.state.option_list)) + " matches\n")
-
-            for _, value in enumerate(self.state.option_list):
-                self.printable_options.append(value[0])
-
-            # join list to string, each list element in new line
-            self.printable_options = "\n".join(map(str, self.printable_options))
-
-            # if just 1 entry matches, this entry is used for the current test
-            if self.state.option_list and len(self.state.option_list) == 1:
-                self.state.name = self.state.option_list[0][0]
-                self.state.category = self.state.option_list[0][1]
-            # if more than 1 entries match but 1 entry matches the user input
-            # exactly, this entry is used for the current test
-            elif self.state.option_list and self.state.test_input.lower() == self.state.option_list[0][0].lower():
-                self.state.name = self.state.option_list[0][0]
-                self.state.category = self.state.option_list[0][1]
-            else:
-                self.state.category = None
-                self.state.name = None
-
-        return True
-
     def get_mod(self, mod_string):
         """ use regular expression to read the modifier as an integer from the
         given string. no match or empty string is interpreted as 0. the matched
@@ -219,36 +132,21 @@ class GUI():
         given string and store them in GameState.rolls
         input: rolls_string:str, usually from manual dice text input """
 
-        # check for dice rolls using regex
-        # regex:
-            # ^, $: match from start to end of string
-            # \d+: match 1 or more integers
-        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
-        outlist = []
-
         # attribute and fight talent tests take 1D20
         if self.state.category in ("attr", "fight_talent"):
             dice_count = 1
-            dice_max = 20
         # skill and spell tests take 3D20
         elif self.state.category in ("skill", "spell"):
             dice_count = 3
-            dice_max = 20
         # misc dice roll takes whatever was specified earlier
         elif self.state.category == "misc":
-            dice_count, dice_max = self.state.misc
+            dice_count, _ = self.state.misc
 
         # allow matches for "10, 4, 14" and "10 4 14"
         rolls_string = rolls_string.replace(',', '')
         rolls_list = rolls_string.split(' ')
 
-        for item in rolls_list:
-            match = re.match(pattern, item)
-            if match:
-                if int(item) in range(1, dice_max + 1):
-                    outlist.append(int(item))
-
-        self.state.rolls = outlist
+        self.state = self.game.match_manual_dice(self.state, rolls_list)
 
         if len(self.state.rolls) != dice_count:
             self.state.rolls = None
@@ -370,12 +268,44 @@ class GUI():
     # tkinter trace method passes 3 arguments that are not used
     def trace_test(self, a=None, b=None, c=None): # pylint: disable=unused-argument, invalid-name
         """ gets executed when the test text input changes. calls
-        get_test_input(), if test selection has changed the screen is reset,
-        then (based on the current test category) matching entries and the hero
-        file name are shown
+        GameLogic.match_test_input(), if test selection has changed the screen
+        is reset, then (based on the current test category) matching entries
+        and the hero file name are shown
         input: a, b, c are all passed from the tkinter trace method but are not
         used """
-        self.get_test_input()
+        if self.state.current_hero is None:
+            print("can't look up a test without a given hero file")
+            return False
+
+        self.state.test_input = self.text_inputs["test_input"].get().lower()
+
+        self.state = self.game.match_test_input(self.state)
+
+        if self.state.category != "misc":
+            self.printable_options = []
+
+            # print number of matching entries plus all matching entries below
+            self.printable_options.append(str(len(self.state.option_list)) + " matches\n")
+
+            for _, value in enumerate(self.state.option_list):
+                self.printable_options.append(value[0])
+
+            # join list to string, each list element in new line
+            self.printable_options = "\n".join(map(str, self.printable_options))
+
+            # if just 1 entry matches, this entry is used for the current test
+            if self.state.option_list and len(self.state.option_list) == 1:
+                self.state.name = self.state.option_list[0][0]
+                self.state.category = self.state.option_list[0][1]
+            # if more than 1 entries match but 1 entry matches the user input
+            # exactly, this entry is used for the current test
+            elif self.state.option_list and self.state.test_input.lower() == self.state.option_list[0][0].lower():
+                self.state.name = self.state.option_list[0][0]
+                self.state.category = self.state.option_list[0][1]
+            else:
+                self.state.category = None
+                self.state.name = None
+
         if self.old_category != self.state.category:
             self.clear_screen()
             self.setup_window()
@@ -388,6 +318,8 @@ class GUI():
             self.text_outputs["var_matching"].configure(text=self.printable_options)
 
         self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
+
+        return True
 
 
     def setup_input_screen(self):

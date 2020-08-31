@@ -71,3 +71,13 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 01_testchar,spell,19; 20; 3,Hexenknoten,3,-5,-23,Roll#2: None,2020-08-31 10:37:18.599178
 02_testchar,skill,13; 19; 4,Schwimmen,2,-2,-4,Roll#1: None,2020-08-31 11:32:31.402002
 02_testchar,attr,8,Klugheit,7,-2,-3,Roll#1: None,2020-08-31 11:46:25.039271
+02_testchar,skill,18; 1; 2,Klettern,3,-2,-3,Roll#1: skill test,2020-08-31 12:48:35.859562
+03_testchar,spell,20; 7; 2,Hexenholz,3,4,1,Roll#2: spell test,2020-08-31 12:49:01.010337
+01_testchar,attr,9,Klugheit,8,-2,-3,Roll#3: attr test,2020-08-31 12:49:09.686059
+02_testchar,misc,15; 4; 11; 1; 18; 3; 17; 8,,,-2,75,Roll#1: misc test,2020-08-31 12:51:41.266647
+03_testchar,attr,13,Fingerfertigkeit,11,2,0,Roll#2: attr test,2020-08-31 12:51:57.917291
+03_testchar,spell,16; 18; 12,Hexenholz,3,2,-8,Roll#1: spell test,2020-08-31 13:07:07.601405
+03_testchar,misc,17; 4; 20; 4; 20; 7; 9; 12,,,-3,90,Roll#2: misc test,2020-08-31 13:07:19.319247
+01_testchar,attr,8,Fingerfertigkeit,8,-2,-2,Roll#1: attr test,2020-08-31 13:07:39.502818
+02_testchar,skill,8; 12; 19,Schwimmen,2,-2,-4,Roll#1: skill test,2020-08-31 13:19:30.806099
+02_testchar,misc,1; 2; 3; 4; 5; 6; 7; 8,,,-2,34,Roll#2: misc test,2020-08-31 13:19:56.402783

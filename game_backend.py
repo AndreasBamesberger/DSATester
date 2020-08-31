@@ -8,6 +8,7 @@ from collections import namedtuple
 from dataclasses import dataclass # to create GameState
 import operator # to subtract list from list
 import copy # to make copies of attributo and sinnenschaerfe
+import re
 from dsa_data import Attribute, Skill, Spell, FightTalent
 
 @dataclass
@@ -409,3 +410,74 @@ class GameLogic:
             outlist.append(key)
         outlist.sort()
         return outlist
+
+    def match_test_input(self, state):
+        """ match the user test input with regular expressions to find a misc dice roll, then match the user test input with all hero entries to find a matching test entry.
+        input: state:Gamestate
+        output: state:Gamestate """
+
+        # check for misc dice input using regex
+        # regex:
+           # ^, $: match from start to end of string
+           # \d+: match one or more integers
+           # [dDwW]: match one of those four letters
+           # \+, -: match plus or minus sign
+        pattern1 = "^(\d+)[dDwW](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
+        pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+        pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
+
+        match1 = re.match(pattern1, state.test_input)
+        if match1 and int(match1.groups()[0]) > 0 and int(match1.groups()[1]) > 0:
+            state.category = "misc"
+            state.misc = (int(match1.groups()[0]), int(match1.groups()[1]))
+            state.mod = 0
+
+        match2 = re.match(pattern2, state.test_input)
+        if match2 and int(match2.groups()[0]) > 0 and int(match2.groups()[1]) > 0:
+            state.category = "misc"
+            state.misc = (int(match2.groups()[0]), int(match2.groups()[1]))
+            state.mod = int(match2.groups()[2])
+
+        match3 = re.match(pattern3, state.test_input)
+        if match3 and int(match3.groups()[0]) > 0 and int(match3.groups()[1]) > 0:
+            state.category = "misc"
+            state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
+            state.mod = int(match3.groups()[2]) * -1
+
+        if state.category == "misc":
+            return state
+
+        # match input with hero entries
+        state = self.autocomplete(state)
+        return state
+
+    @staticmethod
+    def match_manual_dice(state, input_list):
+        """ use regular expression to check if the manually typed in dice rolls
+        are valid and save them to GameState.rolls
+        input: state:GameState
+               input_list:list, list of the typed in dice rolls
+        output: state:GameState """
+
+        # regex:
+            # ^, $: match from start to end of string
+            # \d+: match one or more integers
+        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
+        outlist = []
+
+        if state.category in ("attr", "fight_talent"):
+            dice_max = 20
+        elif state.category in ("skill", "spell"):
+            dice_max = 20
+        elif state.category == "misc":
+            _, dice_max = state.misc
+
+        for item in input_list:
+            match = re.match(pattern, item)
+            if match:
+                if int(item) in range(1, dice_max + 1):
+                    outlist.append(int(item))
+
+        state.rolls = outlist
+
+        return state

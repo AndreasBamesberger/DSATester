@@ -17,7 +17,17 @@ class CLI:
         while True:
             print("Roll #" + str(self.state.counter))
             self.get_hero()
-            if self.get_test_input():
+
+            self.state.test_input = input('Input: ').lower()
+            self.state = self.game.match_test_input(self.state)
+
+            if self.state.option_list:
+                self.get_selection()
+            elif self.state.category != "misc":
+                print("No matching entries found")
+                continue
+
+            if self.state.category is not None:
                 if self.state.category != "misc":
                 # for misc test, the modifier is put into the input prompt
                     self.get_mod()
@@ -41,62 +51,9 @@ class CLI:
         self.state.result = None
         self.state.misc = None
         self.state.desc = None
-        self.state.first_input = None
+        self.state.test_input = None
         self.state.option_list = None
         self.state.selection = None
-
-    def get_test_input(self):
-        """ asks the user for text input. matches the input with regular
-        expressions for misc tests. if it doesn't match, looks for matching
-        entries in the hero database.
-        output: return_value:bool, is True if the input is viable """
-
-        return_value = None
-        self.state.first_input = input('Input: ').lower()
-
-
-        # check for misc dice input using regex
-        # regex:
-           # ^, $: match from start to end of string
-           # \d+: match one or more integers
-           # [dDwW]: match one of those four letters
-           # \+, -: match plus or minus sign
-        pattern1 = "^(\d+)[dDwW](\d+)$" # 3d20 -> 3, 20 #pylint: disable=anomalous-backslash-in-string
-        pattern2 = "^(\d+)[dDwW](\d+)\+(\d+)$" # 8d3+4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
-        pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
-
-        match1 = re.match(pattern1, self.state.first_input)
-        if match1 and int(match1.groups()[0]) > 0 and int(match1.groups()[1]) > 0:
-            self.state.category = "misc"
-            self.state.misc = (int(match1.groups()[0]), int(match1.groups()[1]))
-            self.state.mod = 0
-
-        match2 = re.match(pattern2, self.state.first_input)
-        if match2 and int(match2.groups()[0]) > 0 and int(match2.groups()[1]) > 0:
-            self.state.category = "misc"
-            self.state.misc = (int(match2.groups()[0]), int(match2.groups()[1]))
-            self.state.mod = int(match2.groups()[2])
-
-        match3 = re.match(pattern3, self.state.first_input)
-        if match3 and int(match3.groups()[0]) > 0 and int(match3.groups()[1]) > 0:
-            self.state.category = "misc"
-            self.state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
-            self.state.mod = int(match3.groups()[2]) * -1
-
-        if self.state.category == "misc":
-            return_value = True
-
-        # match input with hero entries
-        else:
-            self.state = self.game.autocomplete(self.state)
-            if not self.state.option_list:
-                self.display_message("No matches found")
-                return_value = False
-            else:
-                self.get_selection()
-                return_value = True
-
-        return return_value
 
     def get_selection(self):
         """ shows the user all hero entries matching the user's input. then the
@@ -269,35 +226,21 @@ class CLI:
         """ ask user for number of integers, check if the input fits the
         current test and save them in the GameState """
 
-        # regex:
-            # ^, $: match from start to end of string
-            # \d+: match one or more integers
-        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
-
         if self.state.category in ("attr", "fight_talent"):
             prompt_string = "Input 1 dice value: "
             dice_count = 1
-            dice_max = 20
         elif self.state.category in ("skill", "spell"):
             prompt_string = "Input 3 dice values, separated by whitespace: "
             dice_count = 3
-            dice_max = 20
         elif self.state.category == "misc":
-            dice_count, dice_max = self.state.misc
+            dice_count, _ = self.state.misc
             prompt_string = f"Input {dice_count} dice values, separated by whitespace: "
 
         while True:
-            outlist = []
             input_list = input(prompt_string).replace(',', '').split(' ')
 
-            for item in input_list:
-                match = re.match(pattern, item)
-                if match:
-                    if int(item) in range(1, dice_max + 1):
-                        outlist.append(int(item))
+            self.state = self.game.match_manual_dice(self.state, input_list)
 
-            if len(outlist) == dice_count:
+            if len(self.state.rolls) == dice_count:
                 break
-            print("wrong input, try again")
-
-        self.state.rolls = outlist
+            print("Wrong input, try again")
