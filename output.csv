@@ -67,3 +67,7 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 02_testchar,skill,4; 10; 2,FF Sinnenschärfe,7,-2,5,Roll#2: sinnenschärfe test,2020-08-28 17:38:08.069970
 02_testchar,skill,2; 3; 4,IN Sinnenschärfe,7,-3,4,Roll#1: asdf,2020-08-28 17:59:34.748198
 03_testchar,spell,12; 3; 20,Hellsicht trüben,0,-2,-8,Roll#2: asdf,2020-08-28 18:00:08.518695
+01_testchar,skill,3; 20; 3,Klettern,0,-2,-14,Roll#1: None,2020-08-31 10:36:51.738054
+01_testchar,spell,19; 20; 3,Hexenknoten,3,-5,-23,Roll#2: None,2020-08-31 10:37:18.599178
+02_testchar,skill,13; 19; 4,Schwimmen,2,-2,-4,Roll#1: None,2020-08-31 11:32:31.402002
+02_testchar,attr,8,Klugheit,7,-2,-3,Roll#1: None,2020-08-31 11:46:25.039271

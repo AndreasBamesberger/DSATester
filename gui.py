@@ -39,17 +39,17 @@ class GUI():
         # text input for hero input
         self.var_hero = tk.StringVar()
         self.var_hero.set('')
-        self.input_hero = tk.Entry(self.window, textvariable=self.var_hero, width=20, bg="white")
-        self.input_hero.grid(row=1, column=1, sticky=tk.W)
+        self.perm_input_hero = tk.Entry(self.window, textvariable=self.var_hero, width=20, bg="white")
+        self.perm_input_hero.grid(row=1, column=1, sticky=tk.W)
 
         # text input for test input
         self.var_input = tk.StringVar()
         self.var_input.set('')
-        self.input_test = tk.Entry(self.window, textvariable=self.var_input, width=20, bg="white")
-        self.input_test.grid(row=3, column=1, sticky=tk.W)
+        self.perm_input_test = tk.Entry(self.window, textvariable=self.var_input, width=20, bg="white")
+        self.perm_input_test.grid(row=3, column=1, sticky=tk.W)
 
-        self.var_hero.trace('w', self.button_hero)
-        self.var_input.trace('w', self.button_input)
+        self.var_hero.trace('w', self.trace_hero)
+        self.var_input.trace('w', self.trace_test)
 
         self.setup_window()
         self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
@@ -73,11 +73,11 @@ class GUI():
         self.state.result = None
         self.state.misc = None
         self.state.desc = None
-        self.state.first_input = None
+        self.state.test_input = None
         self.state.option_list = None
         self.state.selection = None
 
-        self.input_test.delete(0, 'end')
+        self.perm_input_test.delete(0, 'end')
 
     def clear_screen(self):
         """ destroy all widgets except for roll number, test input field and
@@ -88,7 +88,7 @@ class GUI():
             field.destroy()
 
         for key, field in self.text_inputs.items():
-            if key in ("first_input", "hero_input"):
+            if key in ("test_input", "hero_input"):
                 continue
             field.destroy()
 
@@ -110,7 +110,7 @@ class GUI():
             self.state.current_hero = templist[0]
 
 
-    def get_first_input(self):
+    def get_test_input(self):
         """ checks input for misc input regular expressions, if it matches sets
         test category to misc, else it sends input to game autocomplete to get
         matching entry. if just 1 entry matches then set this as current test
@@ -128,29 +128,30 @@ class GUI():
         pattern3 = "^(\d+)[dDwW](\d+)-(\d+)$" # 8d3-4 -> 8, 3, 4 #pylint: disable=anomalous-backslash-in-string
 
         if self.state.current_hero is None:
-            print("need to match a hero file first")
+            print("can't look up a test without a given hero file")
             return False
 
-        self.state.first_input = self.text_inputs["first_input"].get().lower()
+        self.state.test_input = self.text_inputs["test_input"].get().lower()
 
-        if self.state.first_input != self.old_input:
-            self.old_input = self.state.first_input
+        if self.state.test_input != self.old_input:
+            self.old_input = self.state.test_input
         else:
             return False
 
-        match1 = re.match(pattern1, self.state.first_input)
+        # check if input matches a regular expression for a misc dice roll
+        match1 = re.match(pattern1, self.state.test_input)
         if match1 and int(match1.groups()[0]) > 0 and int(match1.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match1.groups()[0]), int(match1.groups()[1]))
             self.state.mod = 0
 
-        match2 = re.match(pattern2, self.state.first_input)
+        match2 = re.match(pattern2, self.state.test_input)
         if match2 and int(match2.groups()[0]) > 0 and int(match2.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match2.groups()[0]), int(match2.groups()[1]))
             self.state.mod = int(match2.groups()[2])
 
-        match3 = re.match(pattern3, self.state.first_input)
+        match3 = re.match(pattern3, self.state.test_input)
         if match3 and int(match3.groups()[0]) > 0 and int(match3.groups()[1]) > 0:
             self.state.category = "misc"
             self.state.misc = (int(match3.groups()[0]), int(match3.groups()[1]))
@@ -159,27 +160,34 @@ class GUI():
         if self.state.category and not match1 and not match2 and not match3:
             self.state.category = None
 
-        if self.state.first_input == '':
+        if self.state.test_input == '':
             self.state.category = None
             self.printable_options = ''
         elif self.state.category != "misc":
+            # search hero file data for matching test entries
             self.state = self.game.autocomplete(self.state)
+            # GameLogic.autocomplete() stores all found entries in
+            # GameState.option_list in the form of [name, category], e.g.
+            # ["KLettern", "skill"]
 
             self.printable_options = []
 
+            # print number of matching entries plus all matching entries below
             self.printable_options.append(str(len(self.state.option_list)) + " matches\n")
 
             for _, value in enumerate(self.state.option_list):
                 self.printable_options.append(value[0])
-#                if len(self.printable_options) > 5:
-#                    break
 
+            # join list to string, each list element in new line
             self.printable_options = "\n".join(map(str, self.printable_options))
 
+            # if just 1 entry matches, this entry is used for the current test
             if self.state.option_list and len(self.state.option_list) == 1:
                 self.state.name = self.state.option_list[0][0]
                 self.state.category = self.state.option_list[0][1]
-            elif self.state.option_list and self.state.first_input.lower() == self.state.option_list[0][0].lower():
+            # if more than 1 entries match but 1 entry matches the user input
+            # exactly, this entry is used for the current test
+            elif self.state.option_list and self.state.test_input.lower() == self.state.option_list[0][0].lower():
                 self.state.name = self.state.option_list[0][0]
                 self.state.category = self.state.option_list[0][1]
             else:
@@ -189,7 +197,16 @@ class GUI():
         return True
 
     def get_mod(self, mod_string):
-        """ use reg ex to get integer from input field. input = string from input field """
+        """ use regular expression to read the modifier as an integer from the
+        given string. no match or empty string is interpreted as 0. the matched
+        integer is stored in GameState.mod
+        input: mod_string:str, usually taken from modifier text input """
+
+        # check for integer using regex
+        # regex:
+            # ^, $: match from start to end of string
+            # -?: match 0 or 1 '-' signs
+            # \d+: match 1 or more integers
         pattern = "^-?\d+$" #pylint: disable=anomalous-backslash-in-string
 
         if re.match(pattern, mod_string):
@@ -198,27 +215,37 @@ class GUI():
             self.state.mod = 0
 
     def get_manual_dice(self, rolls_string):
-        """ take manual dice input and save it into self.state.rolls """
+        """ use regular expression to read the dice input as integers from the
+        given string and store them in GameState.rolls
+        input: rolls_string:str, usually from manual dice text input """
+
+        # check for dice rolls using regex
+        # regex:
+            # ^, $: match from start to end of string
+            # \d+: match 1 or more integers
         pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
         outlist = []
 
+        # attribute and fight talent tests take 1D20
         if self.state.category in ("attr", "fight_talent"):
             dice_count = 1
-            dice_max = 21
+            dice_max = 20
+        # skill and spell tests take 3D20
         elif self.state.category in ("skill", "spell"):
             dice_count = 3
-            dice_max = 21
+            dice_max = 20
+        # misc dice roll takes whatever was specified earlier
         elif self.state.category == "misc":
             dice_count, dice_max = self.state.misc
-            dice_max += 1
 
+        # allow matches for "10, 4, 14" and "10 4 14"
         rolls_string = rolls_string.replace(',', '')
         rolls_list = rolls_string.split(' ')
 
         for item in rolls_list:
             match = re.match(pattern, item)
             if match:
-                if int(item) in range(1, dice_max):
+                if int(item) in range(1, dice_max + 1):
                     outlist.append(int(item))
 
         self.state.rolls = outlist
@@ -248,8 +275,10 @@ class GUI():
 
     def button_test(self):
         """ method that gets executed when "test" button is clicked. calls
-        GameLogic.test and displays result """
+        GameLogic.test and displays result
+        output: bool, False if test was not successful"""
 
+        # misc test has modifier already typed in
         if self.state.category in ("attr", "skill", "spell", "fight_talent"):
             self.get_mod(self.text_inputs["mod"].get().lower())
 
@@ -283,8 +312,12 @@ class GUI():
 
         if self.state.category in ("skill", "spell"):
             if self.state.result is not None:
+                # if a negative modifier changed the attribute values, this
+                # change has to be shown on screen
                 if self.state.mod + self.state.value < 0:
+                    # value string example "8 -> 5"
                     value_string = str(self.state.value) + " -> " + str(self.state.value + self.state.mod)
+                    # attrs_string example: "KL(14->12), IN(13->11), FF(12->10)"
                     attrs_string = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(self.state.attrs)]
                 else:
                     attrs_string = [i.abbr + '(' + str(i.value) + ')' for _, i in enumerate(self.state.attrs)]
@@ -300,10 +333,14 @@ class GUI():
                 self.text_outputs["var_rolls"].configure(text=rolls)
                 self.text_outputs["var_remaining"].configure(text=remaining_string)
                 self.text_outputs["var_result"].configure(text=str(self.state.result))
+        return True
 
     def button_save(self):
         """ gets executed when "Test" button is clicked. runs
-        GameLogic.save_to_csv and then calls reset """
+        GameLogic.save_to_csv(), then calls reset() and shows the updated
+        current roll number and the selected hero file
+        output: bool, False if there is no result to save """
+
         if self.state.result is None:
             return False
         self.state.save = True
@@ -314,8 +351,14 @@ class GUI():
         self.text_outputs["var_roll_nr"].configure(text=str(self.state.counter))
         self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
 
-    # tkinter trace method passes 3 arguments that are not used
-    def button_hero(self, a=None, b=None, c=None):
+        return True
+
+    def trace_hero(self, a=None, b=None, c=None): # pylint: disable=unused-argument, invalid-name
+        """ gets executed when the hero text input changes. calls get_hero(),
+        if hero selection has changed the screen is reset. the full hero file
+        name is shown on screen
+        input: a, b, c are all passed from the tkinter trace method but are not
+        used """
         self.get_hero()
         if self.old_hero_input != self.state.current_hero:
             self.clear_screen()
@@ -325,8 +368,14 @@ class GUI():
         self.text_outputs["var_matching_hero"].configure(text=self.state.current_hero)
 
     # tkinter trace method passes 3 arguments that are not used
-    def button_input(self, a=None, b=None, c=None):
-        self.get_first_input()
+    def trace_test(self, a=None, b=None, c=None): # pylint: disable=unused-argument, invalid-name
+        """ gets executed when the test text input changes. calls
+        get_test_input(), if test selection has changed the screen is reset,
+        then (based on the current test category) matching entries and the hero
+        file name are shown
+        input: a, b, c are all passed from the tkinter trace method but are not
+        used """
+        self.get_test_input()
         if self.old_category != self.state.category:
             self.clear_screen()
             self.setup_window()
@@ -342,7 +391,8 @@ class GUI():
 
 
     def setup_input_screen(self):
-        """ create tkinter widgets """
+        """ create tkinter widgets for the input screen, when
+        GameState.category is None """
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
                    ["hero_prompt", "Hero file: ", 1, 0, tk.E],
@@ -364,32 +414,13 @@ class GUI():
 
             self.text_outputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_test})
-        self.text_inputs.update({"hero_input": self.input_hero})
-
-#        buttons = [["hero", "Submit", 4, self.button_hero, 1, 2, False],
-#                   ["input", "Submit", 4, self.button_input, 3, 2, False]]
-#
-#        for _, value in enumerate(buttons):
-#            key = value[0]
-#            text = value[1]
-#            width = value[2]
-#            command = value[3]
-#            row = value[4]
-#            column = value[5]
-#            sticky = value[6]
-#            font = self.font
-#
-#            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
-#            if sticky:
-#                temp.grid(row=row, column=column, sticky=sticky)
-#            else:
-#                temp.grid(row=row, column=column)
-#
-#            self.buttons.update({key: temp})
+        self.text_inputs.update({"test_input": self.perm_input_test})
+        self.text_inputs.update({"hero_input": self.perm_input_hero})
 
     def setup_attr_screen(self):
-        """ create tkinter widgets """
+        """ create tkinter widgets for the attribute test screen, when
+        GameState.category is attr """
+
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
                    ["hero_prompt", "Hero file: ", 1, 0, tk.E],
@@ -431,9 +462,6 @@ class GUI():
         inputs = []
         inputs.append(["mod", 20, 5, 1, tk.W])
 
-#        inputs = [["mod", 20, 3, 1, tk.W],
-#                  ["desc", 20, 11, 1, tk.W]]
-
         if self.state.dice == "manual":
             inputs.append(["dice_input", 20, 6, 1, tk.W])
 
@@ -451,12 +479,10 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_test})
-        self.text_inputs.update({"hero_input": self.input_hero})
+        self.text_inputs.update({"test_input": self.perm_input_test})
+        self.text_inputs.update({"hero_input": self.perm_input_hero})
 
-        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   #["input", "Submit", 4, self.button_input, 3, 2, False],
-                   ["test", "Test", 4, self.button_test, 7, 0, False],
+        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
         for _, value in enumerate(buttons):
@@ -478,7 +504,9 @@ class GUI():
             self.buttons.update({key: temp})
 
     def setup_fight_talent_screen(self):
-        """ create tkinter widgets """
+        """ create tkinter widgets for the fight talent test, when
+        GameState.category is fight_talent  """
+
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
                    ["hero_prompt", "Hero file: ", 1, 0, tk.E],
@@ -536,12 +564,10 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_test})
-        self.text_inputs.update({"hero_input": self.input_hero})
+        self.text_inputs.update({"test_input": self.perm_input_test})
+        self.text_inputs.update({"hero_input": self.perm_input_hero})
 
-        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   #["input", "Submit", 4, self.button_input, 3, 2, False],
-                   ["test", "Test", 4, self.button_test, 7, 0, False],
+        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 14, 0, False]]
 
         for _, value in enumerate(buttons):
@@ -554,7 +580,7 @@ class GUI():
             sticky = value[6]
             font = self.font
 
-            temp = tk.Button(self.window, text=text, width=width, command=command, font = font)
+            temp = tk.Button(self.window, text=text, width=width, command=command, font=font)
             if sticky:
                 temp.grid(row=row, column=column, sticky=sticky)
             else:
@@ -563,7 +589,9 @@ class GUI():
             self.buttons.update({key: temp})
 
     def setup_skill_screen(self):
-        """ create tkinter widgets """
+        """ create tkinter widgets for skill/spell tests, when
+        GameState.category is skill or spell """
+
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
                    ["hero_prompt", "Hero file: ", 1, 0, tk.E],
@@ -625,12 +653,10 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_test})
-        self.text_inputs.update({"hero_input": self.input_hero})
+        self.text_inputs.update({"test_input": self.perm_input_test})
+        self.text_inputs.update({"hero_input": self.perm_input_hero})
 
-        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   #["input", "Submit", 4, self.button_input, 3, 2, False],
-                   ["test", "Test", 4, self.button_test, 7, 0, False],
+        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
                    ["save", "Save", 4, self.button_save, 15, 0, False]]
 
         for _, value in enumerate(buttons):
@@ -651,9 +677,9 @@ class GUI():
 
             self.buttons.update({key: temp})
 
-
     def setup_misc_screen(self):
-        """ create tkinter widgets """
+        """ create tkinter widgets for a misc dice sum test, when GameState.category is misc """
+
         outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
                    ["hero_prompt", "Hero file: ", 1, 0, tk.E],
@@ -698,12 +724,10 @@ class GUI():
 
             self.text_inputs.update({key: temp})
 
-        self.text_inputs.update({"first_input": self.input_test})
-        self.text_inputs.update({"hero_input": self.input_hero})
+        self.text_inputs.update({"test_input": self.perm_input_test})
+        self.text_inputs.update({"hero_input": self.perm_input_hero})
 
-        buttons = [#["hero", "Submit", 4, self.button_hero, 1, 2, False],
-                   #["input", "Submit", 4, self.button_input, 3, 2, False],
-                   ["test", "Test", 4, self.button_test, 5, 0, False],
+        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
                    ["save", "Save", 4, self.button_save, 9, 0, False]]
 
         for _, value in enumerate(buttons):
@@ -723,20 +747,3 @@ class GUI():
                 temp.grid(row=row, column=column)
 
             self.buttons.update({key: temp})
-
-#class Watcher:
-#    """ A simple class, set to watch its variable. """
-#    def __init__(self, value):
-#        self.variable = value
-#
-#    def set_value(self, new_value):
-#        if self.value != new_value:
-#            self.pre_change()
-#            self.variable = new_value
-#            self.post_change()
-#
-#    def pre_change(self):
-#        # do stuff before variable is about to be changed
-#
-#    def post_change(self):
-#        # do stuff right after variable has changed

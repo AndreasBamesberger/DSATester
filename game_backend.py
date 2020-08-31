@@ -27,7 +27,7 @@ class GameState:
     result: int = None        # success if >= 0
     misc: tuple = None        # dice count and eyes on dice
     desc: str = None          # text to save in csv
-    first_input: str = None   # user input to match tests to or declare misc test
+    test_input: str = None   # user input to match tests to or declare misc test
     option_list: list = None  # list of tests matching first input
     selection: list = None    # single entry from option_list
 
@@ -386,16 +386,16 @@ class GameLogic:
             return state
 
         for attr in hero.attrs:
-            if state.first_input.lower() in attr.name.lower():
+            if state.test_input.lower() in attr.name.lower():
                 output_list.append([attr.name, "attr"])
         for skill in hero.skills:
-            if state.first_input.lower() in skill.name.lower():
+            if state.test_input.lower() in skill.name.lower():
                 output_list.append([skill.name, "skill"])
         for spell in hero.spells:
-            if state.first_input.lower() in spell.name.lower():
+            if state.test_input.lower() in spell.name.lower():
                 output_list.append([spell.name, "spell"])
         for fight_talent in hero.fight_talents:
-            if state.first_input.lower() in fight_talent.name.lower():
+            if state.test_input.lower() in fight_talent.name.lower():
                 output_list.append([fight_talent.name, "fight_talent"])
 
         state.option_list = output_list
