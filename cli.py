@@ -131,8 +131,8 @@ class CLI:
 
             print("Invalid")
 
-    @classmethod
-    def display_message(cls, text):
+    @staticmethod
+    def display_message(text):
         """ function to print text to screen, in case the string has to be
         transformed before being printed
         input: text:str, text to be printed """
