@@ -81,3 +81,12 @@ testchar_01.xml,skill,15; 15; 15,Klettern,3,-2,-1,Roll#3: asdfasdf,2020-08-25 16
 01_testchar,attr,8,Fingerfertigkeit,8,-2,-2,Roll#1: attr test,2020-08-31 13:07:39.502818
 02_testchar,skill,8; 12; 19,Schwimmen,2,-2,-4,Roll#1: skill test,2020-08-31 13:19:30.806099
 02_testchar,misc,1; 2; 3; 4; 5; 6; 7; 8,,,-2,34,Roll#2: misc test,2020-08-31 13:19:56.402783
+02_testchar,skill,16; 5; 4,Schleichen,7,-10,-5,Roll#1: None,2020-08-31 14:50:09.850523
+03_testchar,misc,9371246222129401719; 8725179739101805642; 5757611026155868058,,,-3,23854036987387075416,Roll#1: None,2020-08-31 14:53:55.625611
+03_testchar,misc,5; 9,,,0,14,Roll#2: None,2020-08-31 14:54:22.888104
+03_testchar,attr,16,Charisma,14,-10,-12,Roll#1: asdf,2020-08-31 14:54:59.755727
+02_testchar,fight_talent,16,AT Zweihandhiebwaffen,9,-3,-10,Roll#2: asdf,2020-08-31 14:55:25.011191
+01_testchar,skill,4; 1; 12,Zechen,0,4,0,Roll#3: skill test,2020-08-31 14:56:27.272078
+03_testchar,spell,6; 15; 11,Krähenruf,3,-2,0,Roll#4: spell test,2020-08-31 14:56:48.181715
+02_testchar,skill,18; 12; 14,IN Sinnenschärfe,7,-3,-7,Roll#1: None,2020-08-31 15:09:23.673117
+03_testchar,spell,1; 8; 5,KK Attributo,3,-3,0,Roll#1: None,2020-08-31 15:11:18.290293

@@ -167,12 +167,12 @@ class GameLogic:
 
             # check if sinnenschaerfe is part of skills
             if output_list[-1].name == "Sinnenschärfe":
-                output_list = self.add_sinnenschaerfe(output_list, Skill(root[0][6][i]))
+                output_list = self.add_sinnenschaerfe(output_list)
 
         return output_list
 
     @staticmethod
-    def add_sinnenschaerfe(skill_list, ss_orig):
+    def add_sinnenschaerfe(skill_list):
         """ special case for sinnenschaerfe, normal use is KL/IN/IN but if test
         relies on touching objects it changes to KL/IN/FF
         input: skill_list:list, list of skills
@@ -181,7 +181,7 @@ class GameLogic:
 
         attr_list = ["IN", "FF"]
         # remove original sinnenschaerfe entry
-        skill_list.pop(-1)
+        ss_orig = skill_list.pop(-1)
 
         # change original sinnenschaerfe entry and add it to skill list
         for _, value in enumerate(attr_list):
@@ -202,12 +202,12 @@ class GameLogic:
 
             # check if attributo is part of spells
             if output_list[-1].name == "Attributo":
-                output_list = self.add_attributo(output_list, Spell(root[0][7][i]))
+                output_list = self.add_attributo(output_list)
 
         return output_list
 
     @staticmethod
-    def add_attributo(spell_list, attributo_orig):
+    def add_attributo(spell_list):
         """ special case for attributo spell, the attribute that gets increased
         using this spell also needs to be part of the test, so one entry for
         every attribute is added to the spell list
@@ -217,7 +217,7 @@ class GameLogic:
 
         attr_list = ["MU", "KL", "IN", "CH", "FF", "GE", "KO", "KK"]
         # remove original attributo entry
-        spell_list.pop(-1)
+        attributo_orig = spell_list.pop(-1)
 
         # change original attributo entry and add it to skill list
         for _, value in enumerate(attr_list):
