@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type="text/xsl" href="helden.xsl"?>
 <helden Version="5.5.3">
-    <held key="1598347630783" name="testchar_02" stand="1598347634847">
+    <held key="1598347630783" name="testchar_02" stand="1598610563213">
         <mods/>
         <basis>
             <geschlecht name="weiblich"/>
@@ -25,8 +25,8 @@
             <verify value="1"/>
             <notiz notiz0="Notizen" notiz1="" notiz10="" notiz11="" notiz2="" notiz3="" notiz4="" notiz5="" notiz6="" notiz7="" notiz8="" notiz9=""/>
             <portraet value=""/>
-            <abenteuerpunkte value="420"/>
-            <freieabenteuerpunkte value="1"/>
+            <abenteuerpunkte value="920"/>
+            <freieabenteuerpunkte value="201"/>
         </basis>
         <eigenschaften>
             <eigenschaft mod="0" name="Mut" startwert="14" value="14"/>
@@ -56,10 +56,13 @@
             <vorteil name="Randgruppe"/>
         </vt>
         <sf>
+            <sonderfertigkeit name="Ausweichen I"/>
             <sonderfertigkeit name="Kulturkunde">
                 <kultur name="Orks"/>
             </sonderfertigkeit>
+            <sonderfertigkeit name="Sturmangriff"/>
             <sonderfertigkeit name="Waldkundig"/>
+            <sonderfertigkeit name="Wuchtschlag"/>
         </sf>
         <ereignisse>
             <ereignis obj="max GP für Helden: 110" text="EINSTELLUNG" time="1598347634846" version="HS 5.5.3"/>
@@ -113,6 +116,10 @@
             <ereignis Neu="2" obj="Auswahl" text="Athletik" time="1598347634847" version="HS 5.5.3"/>
             <ereignis Neu="2" obj="Auswahl" text="Bogenbau" time="1598347634847" version="HS 5.5.3"/>
             <ereignis Neu="3" obj="Auswahl" text="Fleischer" time="1598347634847" version="HS 5.5.3"/>
+            <ereignis Abenteuerpunkte="500" kommentar="sonderfertigkeiten test Gesamt AP: 500 Verfügbare AP: 500" obj="Abenteuerpunkte (Hinzugewinn)" text="Ereignis eingeben" time="1598610523111" version="HS 5.5.3"/>
+            <ereignis Abenteuerpunkte="-150" obj="Ausweichen I" text="Sonderfertigkeit hinzugefügt" time="1598610550767" version="HS 5.5.3"/>
+            <ereignis Abenteuerpunkte="-100" obj="Wuchtschlag" text="Sonderfertigkeit hinzugefügt" time="1598610560360" version="HS 5.5.3"/>
+            <ereignis Abenteuerpunkte="-50" obj="Sturmangriff" text="Sonderfertigkeit hinzugefügt" time="1598610563213" version="HS 5.5.3"/>
         </ereignisse>
         <talentliste>
             <talent lernmethode="Gegenseitiges Lehren" name="Anderthalbhänder" probe=" (GE/GE/KK)" value="0"/>
@@ -184,7 +191,7 @@
                 <parade value="9"/>
             </kampfwerte>
             <kampfwerte name="Hiebwaffen">
-                <attacke value="9"/>
+                <attacke value="10"/>
                 <parade value="9"/>
             </kampfwerte>
             <kampfwerte name="Raufen">
@@ -208,10 +215,15 @@
                 <parade value="9"/>
             </kampfwerte>
         </kampf>
-        <gegenstände/>
+        <gegenstände>
+            <gegenstand anzahl="1" name="Brabakbengel" slot="0"/>
+            <gegenstand anzahl="1" name="Brustplatte, Stahl" slot="0"/>
+        </gegenstände>
         <BoniWaffenlos/>
         <kommentare/>
         <ausrüstungen>
+            <heldenausruestung bezeichner="" bfakt="1" bfmin="1" hand="rechts" name="nkwaffe1" schild="0" set="0" slot="0" talent="Hiebwaffen" waffenname="Brabakbengel"/>
+            <heldenausruestung name="ruestung1" ruestungsname="Brustplatte, Stahl" set="0" slot="0"/>
             <heldenausruestung name="jagtwaffe" nummer="0" set="0"/>
         </ausrüstungen>
         <verbindungen/>
@@ -228,11 +240,11 @@
                     <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
                 </Transforms>
                 <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-                <DigestValue>Xk27HyRBNsAXxxgaMkc6uivrsv8=</DigestValue>
+                <DigestValue>7WeglPZZXtJ0OPIwKOeO7UZFD20=</DigestValue>
             </Reference>
         </SignedInfo>
         <SignatureValue>
-            Y2oYtRoT+dbhOp0sRxxVSTNZaPcJPxbEXUdaxEtcUEzy65IStGw/Cg==
+            Y0tgtevn25DNLJKYQPeot1RAeMFpL1ZBak+ba/cK/WJTpaUEMsVTWQ==
         </SignatureValue>
         <KeyInfo>
             <KeyValue>
