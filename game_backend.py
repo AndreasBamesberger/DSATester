@@ -350,6 +350,10 @@ class GameLogic:
         state.result = 0
         dice_count, dice_eyes = state.misc
 
+        if dice_count > 200:
+            print("Too many dice to roll")
+            return state
+
         if state.dice == "auto":
             state.rolls = self.roll_dice(dice_count, 1, dice_eyes)
 
