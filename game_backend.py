@@ -93,8 +93,8 @@ class GameLogic:
         columns = ["Hero file",
                    "Test type",
                    "Rolls",
-                   "Attribute/Skill",
-                   "Attribute/Skill value",
+                   "Name of tested entry",
+                   "Value of tested entry",
                    "Modifier",
                    "Result",
                    "Description",
@@ -117,7 +117,7 @@ class GameLogic:
             # this should never happen but cancel save process just in case
             return state
 
-        timestamp = datetime.datetime.now()
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
         desc = f"Roll#{state.counter}: {state.desc}"
         # comma is used as delimiter in csv

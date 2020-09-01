@@ -223,6 +223,9 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         if self.state.result is None:
             return False
         self.state.save = True
+
+        self.state.desc = self.text_inputs["desc"].get()
+
         self.state = self.game.save_to_csv(self.state)
         self.reset()
         self.clear_screen()
