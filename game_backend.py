@@ -92,13 +92,16 @@ class GameLogic:
 
         columns = ["Hero file",
                    "Test type",
-                   "Rolls",
                    "Name of tested entry",
+                   "Misc dice sum input",
                    "Value of tested entry",
                    "Modifier",
+                   "Values of related attributes",
+                   "Rolls",
                    "Result",
                    "Description",
-                   "Timestamp"]
+                   "Timestamp",
+                   "Type of dice input"]
 
         # if file does not exist, add first row of column names
         if not os.path.isfile(self.result_csv):
@@ -117,24 +120,43 @@ class GameLogic:
             # this should never happen but cancel save process just in case
             return state
 
-        timestamp = datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+        if state.category == "misc":
+            misc = str(state.misc.dice_count) + "D" + str(state.misc.dice_eyes)
+        else:
+            misc = ''
+
+        if state.category in ("skill", "spell"):
+            if state.mod + state.value < 0:
+                # attrs_string example: "KL(14->12), IN(13->11), FF(12->10)"
+                attrs_list = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(state.attrs)] # pylint: disable=line-too-long
+            else:
+                attrs_list = [i.abbr + '(' + str(i.value) + ')' for _, i in enumerate(state.attrs)] # pylint: disable=line-too-long
+            attrs_string = "; ".join(map(str, attrs_list))
+        else:
+            attrs_string = ''
+
+        # join list of rolls to string
+        rolls = "; ".join(map(str, state.rolls))
 
         desc = f"Roll#{state.counter}: {state.desc}"
         # comma is used as delimiter in csv
         desc = desc.replace(",", ";")
 
-        # join list of rolls to string
-        printable_rolls = "; ".join(map(str, state.rolls))
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
-        save_values = [state.current_hero,
+
+        save_values = [state.current_hero + ".xml",
                        state.category,
-                       printable_rolls,
                        state.name,
+                       misc,
                        state.value,
                        state.mod,
+                       attrs_string,
+                       rolls,
                        state.result,
                        desc,
-                       timestamp]
+                       timestamp,
+                       state.dice]
 
         with open(self.result_csv, "a", encoding="utf-8") as csvfile:
             filewriter = csv.writer(csvfile,

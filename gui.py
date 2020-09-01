@@ -197,11 +197,11 @@ class GUI(): # pylint: disable=too-many-instance-attributes
                     # value string example "8 -> 5"
                     value_string = str(self.state.value) + " -> " + str(self.state.value + self.state.mod) # pylint: disable=line-too-long
                     # attrs_string example: "KL(14->12), IN(13->11), FF(12->10)"
-                    attrs_string = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(self.state.attrs)] # pylint: disable=line-too-long
+                    attrs_list = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(self.state.attrs)] # pylint: disable=line-too-long
                 else:
-                    attrs_string = [i.abbr + '(' + str(i.value) + ')' for _, i in enumerate(self.state.attrs)] # pylint: disable=line-too-long
+                    attrs_list = [i.abbr + '(' + str(i.value) + ')' for _, i in enumerate(self.state.attrs)] # pylint: disable=line-too-long
                     value_string = str(self.state.value)
-                attrs_string = ", ".join(map(str, attrs_string))
+                attrs_string = ", ".join(map(str, attrs_list))
 
                 remaining_string = [i.remaining for _, i in enumerate(self.state.attrs)]
                 remaining_string = ", ".join(map(str, remaining_string))
