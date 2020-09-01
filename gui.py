@@ -140,7 +140,7 @@ class GUI(): # pylint: disable=too-many-instance-attributes
             dice_count = 3
         # misc dice roll takes whatever was specified earlier
         elif self.state.category == "misc":
-            dice_count, _ = self.state.misc
+            dice_count = self.state.misc.dice_count
 
         # allow matches for "10, 4, 14" and "10 4 14"
         rolls_string = rolls_string.replace(',', '')

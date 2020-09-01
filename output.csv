@@ -27,3 +27,7 @@ Hero file,Test type,Rolls,Attribute/Skill,Attribute/Skill value,Modifier,Result,
 01_testchar,spell,12; 7; 2,Krabbelnder Schrecken,4,3,7,Roll#3: cli; auto,2020-08-31 17:15:47.422252
 02_testchar,fight_talent,16,AT Dolche,9,-2,-9,Roll#4: cli; auto,2020-08-31 17:16:02.247993
 03_testchar,misc,7; 5; 13; 13; 12; 5,,,-10,45,Roll#5: cli; auto,2020-08-31 17:16:28.742274
+03_testchar,misc,4; 3; 1; 1,,,-5,4,Roll#1: None,2020-09-01 11:58:40.083677
+02_testchar,misc,3; 7; 20; 13; 14; 1; 20; 13,,,-3,88,Roll#1: None,2020-09-01 12:00:23.598963
+02_testchar,misc,10; 5; 5,,,-3,17,Roll#2: None,2020-09-01 12:00:39.566635
+01_testchar,misc,6; 4; 2; 5; 5; 1,,,-3,20,Roll#3: None,2020-09-01 12:01:01.565324

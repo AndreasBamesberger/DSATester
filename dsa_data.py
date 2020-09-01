@@ -1,13 +1,5 @@
 """ this file features a class for every hero entry that is covered by DSATester """
 import re
-#abbr = [['Mut', 'MU'],
-#        ['Klugheit', 'KL'],
-#        ['Intuition', 'IN'],
-#        ['Charisma', 'CH'],
-#        ['Fingerfertigkeit', 'FF'],
-#        ['Gewandtheit', 'GE'],
-#        ['Konstitution', 'KO'],
-#        ['Körperkraft', 'KK']]
 
 abbr = {'Mut': 'MU',
         'Klugheit': 'KL',

@@ -202,8 +202,8 @@ class CLI:
         output: outstring:str """
 
         dice_string = ", ".join(map(str, self.state.rolls))
-        outstring = (f"\tDice count: {self.state.misc[0]}\n"
-                     f"\tDice eyes: {self.state.misc[1]}\n"
+        outstring = (f"\tDice count: {self.state.misc.dice_count}\n"
+                     f"\tDice eyes: {self.state.misc.dice_eyes}\n"
                      f"\tModifier: {self.state.mod}\n"
                      f"\tDice values: {dice_string}\n"
                      f"\tSum: {self.state.result}")
@@ -231,7 +231,7 @@ class CLI:
         elif self.state.category in ("skill", "spell"):
             prompt_string = "Input 3 dice values, separated by whitespace: "
         elif self.state.category == "misc":
-            dice_count, _ = self.state.misc
+            dice_count = self.state.misc.dice_count
             prompt_string = f"Input {dice_count} dice values, separated by whitespace: "
 
         while True:

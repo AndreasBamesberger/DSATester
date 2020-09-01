@@ -32,6 +32,9 @@ class GameState: # pylint: disable=too-many-instance-attributes
     option_list: list = None  # list of tests matching first input
     selection: list = None    # single entry from option_list
 
+# data type for misc dice sum input
+Misc = namedtuple("Misc", ["dice_count", "dice_eyes"])
+
 # data type for every attribute related to a skill/spell test
 SkillAttr = namedtuple("SkillAttr", ["abbr", "value", "modified", "remaining"])
 
@@ -345,7 +348,8 @@ class GameLogic:
         input: state:GameState
         output: state:GameState """
         state.result = 0
-        dice_count, dice_eyes = state.misc
+        dice_count = state.misc.dice_count
+        dice_eyes = state.misc.dice_eyes
 
         if dice_count > 200:
             print("Too many dice to roll")
@@ -434,7 +438,7 @@ class GameLogic:
         if match and int(match.groups()[0]) > 0 and int(match.groups()[1]) > 0:
             matched = match.groups()
             state.category = "misc"
-            state.misc = (int(matched[0]), int(matched[1]))
+            state.misc = Misc(int(matched[0]), int(matched[1]))
             if matched[2] != '' and matched[3] != '':
                 state.mod = int(matched[2] + matched[3])
             else:
@@ -469,7 +473,8 @@ class GameLogic:
             dice_max = 20
         # misc dice roll takes whatever was specified earlier
         elif state.category == "misc":
-            dice_count, dice_max = state.misc
+            dice_count = state.misc.dice_count
+            dice_max = state.misc.dice_eyes
 
         # allow matches for dice separated by any number of whitespaces and commas
         rolls_string = rolls_string.replace(',', ' ')
