@@ -127,29 +127,29 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         else:
             self.state.mod = 0
 
-    def get_manual_dice(self, rolls_string):
-        """ use regular expression to read the dice input as integers from the
-        given string and store them in GameState.rolls
-        input: rolls_string:str, usually from manual dice text input """
-
-        # attribute and fight talent tests take 1D20
-        if self.state.category in ("attr", "fight_talent"):
-            dice_count = 1
-        # skill and spell tests take 3D20
-        elif self.state.category in ("skill", "spell"):
-            dice_count = 3
-        # misc dice roll takes whatever was specified earlier
-        elif self.state.category == "misc":
-            dice_count = self.state.misc.dice_count
-
-        # allow matches for "10, 4, 14" and "10 4 14"
-        rolls_string = rolls_string.replace(',', '')
-        rolls_list = rolls_string.split(' ')
-
-        self.state = self.game.match_manual_dice(self.state, rolls_list)
-
-        if len(self.state.rolls) != dice_count:
-            self.state.rolls = None
+#    def get_manual_dice(self, rolls_string):
+#        """ use regular expression to read the dice input as integers from the
+#        given string and store them in GameState.rolls
+#        input: rolls_string:str, usually from manual dice text input """
+#
+#        # attribute and fight talent tests take 1D20
+#        if self.state.category in ("attr", "fight_talent"):
+#            dice_count = 1
+#        # skill and spell tests take 3D20
+#        elif self.state.category in ("skill", "spell"):
+#            dice_count = 3
+#        # misc dice roll takes whatever was specified earlier
+#        elif self.state.category == "misc":
+#            dice_count = self.state.misc.dice_count
+#
+#        # allow matches for "10, 4, 14" and "10 4 14"
+#        rolls_string = rolls_string.replace(',', '')
+#        rolls_list = rolls_string.split(' ')
+#
+#        self.state = self.game.match_manual_dice(self.state, rolls_list)
+#
+#        if len(self.state.rolls) != dice_count:
+#            self.state.rolls = None
 
     def button_test(self):
         """ method that gets executed when "test" button is clicked. calls

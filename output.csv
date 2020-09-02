@@ -19,3 +19,4 @@ Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested ent
 03_testchar.xml,spell,MU Attributo,,3,-2,MU(8); KL(14); CH(14),8; 6; 19,-4,Roll#3: cli,2020-09-01T13:01:09,manual
 01_testchar.xml,fight_talent,AT Speere,,6,-3,,13,-10,Roll#4: cli,2020-09-01T13:01:29,manual
 03_testchar.xml,misc,,10D6,,-3,,1; 2; 3; 4; 5; 1; 2; 3; 4; 5,27,Roll#5: cli,2020-09-01T13:01:50,manual
+03_testchar.xml,spell,KL Attributo,,3,-3,KL(14); KL(14); CH(14),13; 2; 19,-5,Roll#1: gui,2020-09-02T10:04:21,auto
