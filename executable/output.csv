@@ -1,2 +1,7 @@
-Hero file,Test type,Rolls,Attribute/Skill,Attribute/Skill value,Modifier,Result,Description,Timestamp
-02_testchar,skill,16; 6; 4,Klettern,3,-3,-2,Roll#1: None,2020-08-31 17:38:23.154759
+Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested entry,Modifier,Values of related attributes,Rolls,Result,Description,Timestamp,Type of dice input
+02_testchar.xml,skill,Selbstbeherrschung,,4,-2,MU(14); KO(15); KK(15),7; 16; 12,1,Roll#1: gui,2020-09-02T17:12:57,auto
+02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),18; 19; 15,-8,Roll#1: stadtmauer klettern test,2020-09-02T17:15:29,auto
+02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),6; 2; 16,0,Roll#1: stadtmauer,2020-09-02T17:21:07,auto
+02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),10; 16; 19,-5,Roll#1: stadtmauer,2020-09-02T17:23:54,auto
+01_testchar.xml,attr,Körperkraft,,8,0,,3,5,Roll#1: tür öffnen,2020-09-02T17:31:48,auto
+01_testchar.xml,attr,Körperkraft,,8,-2,,4,2,Roll#1: tür öffnen,2020-09-02T17:32:14,auto

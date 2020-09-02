@@ -32,8 +32,15 @@ re, tkinter, random, csv, os, datetime, xml, collections, dataclasses, operator
 2. Change the values in "config.txt" based on your preferences
 3. Launch "main.py"
 
-# Diagrams
-## Program structure
+## Usage
+### Command Line Interface
+![CLI version](./images/DSATester_cli_cut.gif)
+
+### Graphical User Interface
+![GUI version](./images/DSATester_gui_cut.gif)
+
+## Diagrams
+### Program structure
 ![Program structure](./images/structure.png)
-## Flowchart
+### Flowchart
 ![Flowchart](./images/flowchart.png)
