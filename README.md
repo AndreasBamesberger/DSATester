@@ -34,10 +34,10 @@ re, tkinter, random, csv, os, datetime, xml, collections, dataclasses, operator
 
 ## Usage
 ### Command Line Interface
-![CLI version](DSATester-cli-cut.gif)
+![CLI version](./images/DSATester-cli-cut.gif)
 
 ### Graphical User Interface
-![GUI version](DSATester-gui-cut.gif)
+![GUI version](./images/DSATester-gui-cut.gif)
 
 ## Diagrams
 ### Program structure
