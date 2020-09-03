@@ -7,18 +7,20 @@ output file: output.csv
 #   CLI, command line interface
 interface: GUI
 
-# choose whether you want to generate dice rolls automatically or manually
-# input dice rolls you got IRL ("misc" tests always roll dice automatically)
-# for manual dice input, type in dice separated by whitespace, e.g. "8 4 14"
+# choose whether you want to generate dice rolls automatically 
+# or manually type in the values you got with real dice 
+# accepted input format examples: "2 3 4" or "2, 3, 4" or "2,3,4"
 # current options: 
 #   auto
 #   manual
 dice: auto
 
-# choose scaling of the tkinter window and the text font
+# choose scaling, size of the tkinter window and the text size
 # current options:
 #   scaling: some positive decimal number
-#   font: some existing font (standard is "none 14 bold")
+#   width, height: some positive integer, resolution of the tkinter display
+#   font size: some positive integer. currently, this number is used to define
+#              the font as "none <font size> bold".
 
 #1k display
 scaling: 1.5
