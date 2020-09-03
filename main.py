@@ -8,7 +8,7 @@ def read_config(configname):
     Input: configname: str, the name of the file, e.g. 'config.txt'
     Output: outdict: dict, the created dictionary """
     outdict = {}
-    str_entries = ("output file", "interface", "dice")
+    str_entries = ("output file", "interface", "dice", "hero folder")
     int_entries = ("font size", "width", "height")
     float_entries = ("scaling")
     with open(configname, "r", encoding="utf-8") as configfile:

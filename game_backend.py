@@ -48,6 +48,7 @@ class GameLogic:
     def __init__(self, configs):
         random.seed(a=None, version=2)
         self.result_csv = configs["output file"]
+        self.hero_folder = configs["hero folder"]
 
         self.heroes = {} # entries are namedtuple Hero
         self.xml_list = []
@@ -62,7 +63,7 @@ class GameLogic:
         dsa_data.py) as separate heroes (namedtuple Hero) """
 
         # add all xml files to list
-        for file in os.listdir():
+        for file in os.listdir(self.hero_folder):
             if file.endswith(".xml"):
                 self.xml_list.append(file)
 
@@ -76,13 +77,13 @@ class GameLogic:
             fight_talents = self.read_fight_talents(hero_root)
             self.heroes.update({name: Hero(name, hero_root, attrs, skills, spells, fight_talents)})
 
-    @staticmethod
-    def parse_xml(hero_file):
+    def parse_xml(self, hero_file):
         """ use xml.etree.ElementTree to parse xml file.
         input: hero_file:str, name of xml file
         output: root:xml.etree.ElementTree.Element """
+        filepath = os.path.join(self.hero_folder, hero_file)
 
-        tree = ET.parse(hero_file)
+        tree = ET.parse(filepath)
         root = tree.getroot()
         return root
 
