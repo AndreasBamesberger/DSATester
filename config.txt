@@ -1,5 +1,5 @@
 # choose location of hero xml files
-hero folder: ../hero_files
+hero folder: hero_files
 
 # choose name of the output csv file where dice rolls are stored
 output file: output.csv

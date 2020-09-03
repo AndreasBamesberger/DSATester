@@ -88,18 +88,18 @@ bind ComboboxPopdown	<ButtonPress> \
 ### Option database settings.
 #
 
-option add *TCombobox*Listbox.font TkTextFont widgetDefault
-option add *TCombobox*Listbox.relief flat widgetDefault
-option add *TCombobox*Listbox.highlightThickness 0 widgetDefault
+option add *TCombobox*Listbox.font TkTextFont
+option add *TCombobox*Listbox.relief flat
+option add *TCombobox*Listbox.highlightThickness 0
 
 ## Platform-specific settings.
 #
 switch -- [tk windowingsystem] {
     x11 {
-	option add *TCombobox*Listbox.background white widgetDefault
+	option add *TCombobox*Listbox.background white
     }
     aqua {
-	option add *TCombobox*Listbox.borderWidth 0 widgetDefault
+	option add *TCombobox*Listbox.borderWidth 0
     }
 }
 
@@ -368,8 +368,7 @@ proc ttk::combobox::PlacePopdown {cb popdown} {
     set y [winfo rooty $cb]
     set w [winfo width $cb]
     set h [winfo height $cb]
-    set style [$cb cget -style]
-    set postoffset [ttk::style lookup $style -postoffset {} {0 0 0 0}]
+    set postoffset [ttk::style lookup TCombobox -postoffset {} {0 0 0 0}]
     foreach var {x y w h} delta $postoffset {
     	incr $var $delta
     }

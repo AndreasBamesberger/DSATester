@@ -19,7 +19,7 @@ Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 
 ## Launch
 ### Launching the executable
-1. Place your xml file(s) in the "executable" folder
+1. Place your hero xml file(s) in the "hero_files" folder
 2. Change the values in "config.txt" based on your preferences
 3. Launch "main.exe"
 
@@ -27,7 +27,7 @@ Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 The program relies on the following modules:
 re, tkinter, random, csv, os, datetime, xml, collections, dataclasses, operator, copy
 
-1. Place your xml file(s) in the main folder
+1. Place your xml file(s) in the "hero_files" folder
 2. Change the values in "config.txt" based on your preferences
 3. Launch "main.py"
 

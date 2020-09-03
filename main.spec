@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['F:\\github\\DSATester'],
+             pathex=['D:\\github\\DSATester'],
              binaries=[],
              datas=[],
              hiddenimports=[],
