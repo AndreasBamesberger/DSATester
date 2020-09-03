@@ -21,7 +21,7 @@ Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 ### Launching the executable
 1. Place your hero xml file(s) in the "hero_files" folder
 2. Change the values in "config.txt" based on your preferences
-3. Launch "main.exe"
+3. Launch "main.exe" in the "executable" folder
 
 ### Running the python script
 The program relies on the following modules:
