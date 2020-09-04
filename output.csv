@@ -26,3 +26,5 @@ Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested ent
 03_testchar.xml,attr,Konstitution,,8,-3,,5,0,Roll#1: gui,2020-09-03T14:47:06,auto
 01_testchar.xml,misc,,3D20,,-8,,19; 4; 11,26,Roll#2: gui,2020-09-03T14:47:35,auto
 03_testchar.xml,spell,Radau,,2,-12,MU(8->-2); CH(14->4); KO(8->-2),9; 17; 13,-39,Roll#3: gui,2020-09-03T14:48:54,auto
+03_testchar.xml,spell,Radau,,2,-2,MU(8); CH(14); KO(8),14; 14; 4,-6,Roll#1: gui,2020-09-04T07:53:22,auto
+02_testchar.xml,fight_talent,AT Fechtwaffen,,9,-2,,12,-5,Roll#1: cli,2020-09-04T07:53:54,auto

@@ -4,7 +4,7 @@ todo
 
 old version using pygame: when converting to exe (using windows), 'freesansbold.ttf' wasn't included automatically. had to manually copy it into the folder.
 
-converted using 'pyinstaller main.py'
+converted using 'pyinstaller --onefile main.py'
 
 bugs
     bug while testing gui with manual dice input:
