@@ -30,7 +30,7 @@ Project progress can be viewed at: https://trello.com/b/TuCnQlQi/dsatester
 ![GUI version](./images/DSATester-gui-cut.gif)
 
 ## Diagrams
-### Program structure
-![Program structure](./images/structure.png)
+### Code structure
+![Code structure](./images/structure.png)
 ### Flowchart
 ![Flowchart](./images/flowchart.png)
