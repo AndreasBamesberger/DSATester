@@ -1,7 +1,7 @@
 """ reads config file and starts interface """
-from cli import CLI
-from gui import GUI
-from game_backend import GameLogic, GameState
+from interfaces.cli import CLI
+from interfaces.gui import GUI
+from game_backend.game_backend import GameLogic, GameState
 
 def read_config(configname):
     """ Opens textfile, looks for keywords and creates a dictionary entry for each match.
