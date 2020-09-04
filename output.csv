@@ -31,3 +31,23 @@ Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested ent
 02_testchar.xml,skill,Schwimmen,,2,-3,GE(14->13); KO(15->14); KK(15->14),4; 5; 10,0,Roll#1: gui,2020-09-04T08:10:27,auto
 01_testchar.xml,spell,Hexenblick,,2,2,IN(12); IN(12); CH(12),8; 15; 15,-2,Roll#2: gui,2020-09-04T08:10:52,auto
 01_testchar.xml,misc,,3D20,,-10,,17; 13; 8,28,Roll#3: gui,2020-09-04T08:11:08,auto
+01_testchar.xml,attr,Körperkraft,,8,-2,,3,3,Roll#1: gui .py,2020-09-04T09:35:43,auto
+02_testchar.xml,skill,Schwimmen,,2,-5,GE(14->11); KO(15->12); KK(15->12),19; 4; 20,-16,Roll#2: gui .py,2020-09-04T09:36:30,auto
+03_testchar.xml,spell,Radau,,2,2,MU(8); CH(14); KO(8),1; 11; 10,2,Roll#3: gui .py,2020-09-04T09:36:49,auto
+01_testchar.xml,fight_talent,PA Hiebwaffen,,6,-2,,16,-12,Roll#4: gui .py,2020-09-04T09:37:13,auto
+02_testchar.xml,misc,,3D20,,-3,,17; 17; 19,50,Roll#5: gui .py,2020-09-04T09:37:40,auto
+02_testchar.xml,attr,Fingerfertigkeit,,14,-2,,8,4,Roll#1: gui .py,2020-09-04T09:38:18,manual
+03_testchar.xml,skill,Schleichen,,5,-2,MU(8); IN(14); GE(14),14; 2; 18,-7,Roll#2: gui .py,2020-09-04T09:38:50,manual
+01_testchar.xml,spell,Hexenblick,,2,-5,IN(12->9); IN(12->9); CH(12->9),14; 2; 8,-5,Roll#3: gui .py,2020-09-04T09:39:24,manual
+02_testchar.xml,fight_talent,AT Ringen,,9,0,,4,5,Roll#4: gui .py,2020-09-04T09:39:58,manual
+03_testchar.xml,misc,,3D6,,-4,,3; 4; 5,8,Roll#5: gui .py,2020-09-04T09:40:22,manual
+02_testchar.xml,attr,Mut,,14,2,,7,9,Roll#1: cli .py,2020-09-04T09:41:02,auto
+03_testchar.xml,skill,Schleichen,,5,-2,MU(8); IN(14); GE(14),11; 2; 8,0,Roll#2: cli .py,2020-09-04T09:41:20,auto
+01_testchar.xml,spell,Geisterbann,,5,0,MU(12); MU(12); CH(12),9; 7; 17,0,Roll#3: cli .py,2020-09-04T09:41:43,auto
+03_testchar.xml,fight_talent,AT Dolche,,6,-2,,6,-2,Roll#4: cli .py,2020-09-04T09:42:00,auto
+01_testchar.xml,misc,,8D6,,-5,,1; 3; 3; 5; 3; 6; 1; 1,18,Roll#5: cli .py,2020-09-04T09:42:21,auto
+02_testchar.xml,attr,Mut,,14,-3,,19,-8,Roll#1: cli .py,2020-09-04T09:43:14,manual
+02_testchar.xml,skill,IN Sinnenschärfe,,7,-4,KL(7); IN(14); IN(14),13; 14; 19,-8,Roll#2: gui .py,2020-09-04T09:43:51,manual
+03_testchar.xml,spell,Geisterbann,,0,-2,MU(8->6); MU(8->6); CH(14->12),4; 5; 8,0,Roll#3: cli .py,2020-09-04T09:44:55,manual
+03_testchar.xml,spell,IN Attributo,,3,-2,KL(14); IN(14); CH(14),8; 14; 3,1,Roll#4: cli .py,2020-09-04T09:45:29,manual
+03_testchar.xml,misc,,3D20,,-10,,19; 20; 2,31,Roll#5: cli .py,2020-09-04T09:45:46,manual
