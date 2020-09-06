@@ -45,10 +45,11 @@ class GameLogic:
     """ DSA 4.1 rules for testing, called upon by interfaces. reads xml files,
     generates dice, performs tests, saves results in csv file """
 
-    def __init__(self, configs):
+    def __init__(self, configs, lang):
         random.seed(a=None, version=2)
         self.result_csv = configs["output file"]
         self.hero_folder = configs["hero folder"]
+        self.lang = lang
 
         self.heroes = {} # entries are namedtuple Hero
         self.xml_list = []
@@ -375,7 +376,8 @@ class GameLogic:
         dice_eyes = state.misc.dice_eyes
 
         if dice_count > 200:
-            print("Too many dice to roll")
+#            print("Too many dice to roll")
+            print(self.lang["too_many_dice"])
             return state
 
         if state.dice == "auto":
@@ -411,7 +413,8 @@ class GameLogic:
         except KeyError:
             # this can occur if (using the GUI) user types in a test before a
             # matching a hero file
-            print("KeyError, no hero matched")
+#            print("KeyError, no hero matched")
+            print(self.lang["key_error"])
             return state
 
         for attr in hero.attrs:

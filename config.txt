@@ -1,3 +1,9 @@
+# choose language of interface
+# current options:
+#   german
+#   english
+language: german
+
 # choose location of hero xml files
 hero folder: hero_files
 
@@ -8,7 +14,7 @@ output file: output.csv
 # current options: 
 #   GUI, graphical user interface
 #   CLI, command line interface
-interface: GUI
+interface: CLI
 
 # choose whether you want to generate dice rolls automatically 
 # or manually type in the values you got with real dice 

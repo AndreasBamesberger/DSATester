@@ -1,14 +1,15 @@
 """ reads config file and starts interface """
 from interfaces.cli import CLI
-from interfaces.gui import GUI
+#from interfaces.gui import GUI
 from game_backend.game_backend import GameLogic, GameState
+from languages.languages import english, german
 
 def read_config(configname):
     """ Opens textfile, looks for keywords and creates a dictionary entry for each match.
     Input: configname: str, the name of the file, e.g. 'config.txt'
     Output: outdict: dict, the created dictionary """
     outdict = {}
-    str_entries = ("output file", "interface", "dice", "hero folder")
+    str_entries = ("output file", "interface", "dice", "hero folder", "language")
     int_entries = ("font size", "width", "height")
     float_entries = ("scaling")
     with open(configname, "r", encoding="utf-8") as configfile:
@@ -28,12 +29,18 @@ def read_config(configname):
 
 if __name__ == '__main__':
     configs = read_config("config.txt")
-    game = GameLogic(configs)
     state = GameState()
 
+    if configs["language"] == "english":
+        lang = english
+    elif configs["language"] == "german":
+        lang = german
+
+    game = GameLogic(configs, lang)
+
     if configs["interface"] == "CLI":
-        interface = CLI(game, state, configs)
-    elif configs["interface"] == "GUI":
-        interface = GUI(game, state, configs)
+        interface = CLI(game, state, configs, lang)
+#    elif configs["interface"] == "GUI":
+#        interface = GUI(game, state, configs, lang)
 
     interface.loop()

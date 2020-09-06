@@ -51,3 +51,4 @@ Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested ent
 03_testchar.xml,spell,Geisterbann,,0,-2,MU(8->6); MU(8->6); CH(14->12),4; 5; 8,0,Roll#3: cli .py,2020-09-04T09:44:55,manual
 03_testchar.xml,spell,IN Attributo,,3,-2,KL(14); IN(14); CH(14),8; 14; 3,1,Roll#4: cli .py,2020-09-04T09:45:29,manual
 03_testchar.xml,misc,,3D20,,-10,,19; 20; 2,31,Roll#5: cli .py,2020-09-04T09:45:46,manual
+01_testchar.xml,skill,Schleichen,,2,3,MU(12); IN(12); GE(8),3; 10; 19,-6,Roll#1: k,2020-09-06T12:56:38,auto
