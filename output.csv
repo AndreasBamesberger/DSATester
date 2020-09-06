@@ -52,3 +52,25 @@ Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested ent
 03_testchar.xml,spell,IN Attributo,,3,-2,KL(14); IN(14); CH(14),8; 14; 3,1,Roll#4: cli .py,2020-09-04T09:45:29,manual
 03_testchar.xml,misc,,3D20,,-10,,19; 20; 2,31,Roll#5: cli .py,2020-09-04T09:45:46,manual
 01_testchar.xml,skill,Schleichen,,2,3,MU(12); IN(12); GE(8),3; 10; 19,-6,Roll#1: k,2020-09-06T12:56:38,auto
+02_testchar.xml,attr,Körperkraft,,15,-2,,18,-5,Roll#1: gui; .py,2020-09-06T15:00:15,auto
+03_testchar.xml,skill,Schwimmen,,3,-3,GE(14); KO(8); KK(8),3; 7; 7,0,Roll#2: gui; .py,2020-09-06T15:00:41,auto
+01_testchar.xml,spell,Hexenblick,,2,-10,IN(12->4); IN(12->4); CH(12->4),8; 14; 6,-16,Roll#3: gui; .py,2020-09-06T15:06:04,auto
+03_testchar.xml,fight_talent,AT Raufen,,6,-3,,18,-15,Roll#4: gui; .py,2020-09-06T15:12:07,auto
+02_testchar.xml,misc,,5D20,,-10,,17; 14; 3; 2; 6,32,Roll#5: gui; .py,2020-09-06T15:12:33,auto
+02_testchar.xml,attr,Fingerfertigkeit,,14,-2,,8,4,Roll#1: gui; .py,2020-09-06T15:14:05,manual
+03_testchar.xml,skill,Klettern,,0,-5,MU(8->3); GE(14->9); KK(8->3),3; 4; 10,-7,Roll#2: gui; .py,2020-09-06T15:15:38,manual
+03_testchar.xml,spell,Radau,,2,3,MU(8); CH(14); KO(8),20; 3; 16,-15,Roll#3: gui; .py,2020-09-06T15:16:43,manual
+02_testchar.xml,fight_talent,PA Anderthalbhänder,,9,0,,18,-9,Roll#4: gui; .py,2020-09-06T15:17:06,manual
+01_testchar.xml,misc,,2D20,,10,,3; 13,26,Roll#5: gui; .py,2020-09-06T15:17:51,manual
+02_testchar.xml,attr,Intuition,,14,-3,,15,-4,Roll#1: cli; .py,2020-09-06T15:20:12,auto
+03_testchar.xml,skill,Bogen,,1,-2,FF(11->10); GE(14->13); KK(8->7),5; 18; 14,-12,Roll#2: cli; .py,2020-09-06T15:27:44,auto
+01_testchar.xml,spell,Hellsicht trüben,,3,-5,KL(8->6); IN(12->10); CH(12->10),12; 10; 12,-8,Roll#3: cli; .py,2020-09-06T15:28:12,auto
+03_testchar.xml,fight_talent,PA Dolche,,7,-2,,12,-7,Roll#4: cli; .py,2020-09-06T15:28:41,auto
+02_testchar.xml,misc,,8D6,,-3,,4; 2; 6; 4; 1; 1; 1; 1,17,Roll#5: cli; .py,2020-09-06T15:29:07,auto
+02_testchar.xml,attr,Intuition,,14,-1,,18,-5,Roll#1: cli; .py,2020-09-06T15:30:17,manual
+03_testchar.xml,skill,Gassenwissen,,2,2,KL(14); IN(14); CH(14),3; 13; 18,0,Roll#1: cli; .py,2020-09-06T15:34:43,manual
+03_testchar.xml,spell,Hexenspeichel,,0,0,IN(14); CH(14); FF(11),14; 2; 18,-7,Roll#2: cli; .py,2020-09-06T15:35:10,manual
+02_testchar.xml,fight_talent,AT Dolche,,9,-1,,8,0,Roll#3: cli; .py,2020-09-06T15:35:27,manual
+03_testchar.xml,misc,,6D6,,-2,,2; 4; 6; 2; 4; 3,19,Roll#4: cli; .py,2020-09-06T15:36:00,manual
+02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),12; 4; 13,1,Roll#1: gui; .exe,2020-09-06T15:42:39,auto
+02_testchar.xml,misc,,10D100,,0,,76; 27; 69; 87; 94; 91; 84; 66; 49; 30,673,Roll#2: gui; .exe,2020-09-06T15:43:56,auto

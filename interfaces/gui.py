@@ -4,7 +4,7 @@ import tkinter as tk
 
 class GUI(): # pylint: disable=too-many-instance-attributes
     """ creates window using tkinter, communicates with GameLogic using the dataclass GameState"""
-    def __init__(self, game, state, configs):
+    def __init__(self, game, state, configs, lang):
         self.game = game
         self.state = state
         self.font = "none " + str(configs["font size"]) + " bold"
@@ -12,6 +12,7 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         self.width = configs["width"]
         self.height = configs["height"]
         self.state.dice = configs["dice"]
+        self.lang = lang
 
         self.window = tk.Tk()
         # create a predefined window size so that the window doesn't start really tiny
@@ -377,21 +378,20 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
             self.buttons.update({key: temp})
 
-    @staticmethod
-    def setup_input_screen():
+    def setup_input_screen(self):
         """ create tkinter widgets for the input screen, when
         GameState.category is None
         output: outputs:list
                 inputs:list
                 buttons:list """
 
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+        outputs = [["roll_nr", self.lang["roll_nr"], 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
-                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["hero_prompt", self.lang["hero_file"], 1, 0, tk.E],
+                   ["matching_hero", self.lang["hero_match"], 2, 0, tk.E],
                    ["var_matching_hero", '', 2, 1, tk.W],
-                   ["input_prompt", "Input: ", 3, 0, tk.E],
-                   ["matching", "Matching: ", 4, 0, tk.NE],
+                   ["input_prompt", self.lang["input"], 3, 0, tk.E],
+                   ["matching", self.lang["matching"], 4, 0, tk.NE],
                    ["var_matching", '', 4, 1, tk.W]]
 
         inputs = []
@@ -406,27 +406,27 @@ class GUI(): # pylint: disable=too-many-instance-attributes
                 inputs:list
                 buttons:list """
 
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+        outputs = [["roll_nr", self.lang["roll_nr"], 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
-                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["hero_prompt", self.lang["hero_file"], 1, 0, tk.E],
+                   ["matching_hero", self.lang["hero_match"], 2, 0, tk.E],
                    ["var_matching_hero", '', 2, 1, tk.W],
-                   ["input_prompt", "Input: ", 3, 0, tk.E],
-                   ["matching", "Matching: ", 4, 0, tk.E],
+                   ["input_prompt", self.lang["input"], 3, 0, tk.E],
+                   ["matching", self.lang["matching"], 4, 0, tk.E],
                    ["var_matching", '', 4, 1, tk.W],
-                   ["mod", "Modifier: ", 5, 0, tk.E],
-                   ["tested", "Tested attribute: ", 8, 0, tk.E],
+                   ["mod", self.lang["mod"], 5, 0, tk.E],
+                   ["tested", self.lang["test_attr"], 8, 0, tk.E],
                    ["var_tested", '', 8, 1, tk.W],
-                   ["value", "Value: ", 9, 0, tk.E],
+                   ["value", self.lang["test_value"], 9, 0, tk.E],
                    ["var_value", '', 9, 1, tk.W],
-                   ["rolls", "Rolls: ", 10, 0, tk.E],
+                   ["rolls", self.lang["test_1dice"], 10, 0, tk.E],
                    ["var_rolls", '', 10, 1, tk.W],
-                   ["result", "Result: ", 12, 0, tk.E],
+                   ["result", self.lang["test_result"], 12, 0, tk.E],
                    ["var_result", '', 12, 1, tk.W],
-                   ["desc", "Description: ", 13, 0, tk.E]]
+                   ["desc", self.lang["gui_desc"], 13, 0, tk.E]]
 
         if self.state.dice == "manual":
-            outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
+            outputs.append(["dice_input", self.lang["gui_manual"], 6, 0, tk.E])
 
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
@@ -440,8 +440,8 @@ class GUI(): # pylint: disable=too-many-instance-attributes
         inputs.append(["desc", 20, 13, 1, tk.W])
 
 
-        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
-                   ["save", "Save", 4, self.button_save, 14, 0, False]]
+        buttons = [["test", self.lang["button_test"], len(self.lang["button_test"]), self.button_test, 7, 0, False],
+                   ["save", self.lang["button_save"], len(self.lang["button_save"]), self.button_save, 14, 0, False]]
 
         return outputs, inputs, buttons
 
@@ -452,27 +452,27 @@ class GUI(): # pylint: disable=too-many-instance-attributes
                 inputs:list
                 buttons:list """
 
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+        outputs = [["roll_nr", self.lang["roll_nr"], 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
-                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["hero_prompt", self.lang["hero_file"], 1, 0, tk.E],
+                   ["matching_hero", self.lang["hero_match"], 2, 0, tk.E],
                    ["var_matching_hero", '', 2, 1, tk.W],
-                   ["input_prompt", "Input: ", 3, 0, tk.E],
-                   ["matching", "Matching: ", 4, 0, tk.E],
+                   ["input_prompt", self.lang["input"], 3, 0, tk.E],
+                   ["matching", self.lang["matching"], 4, 0, tk.E],
                    ["var_matching", '', 4, 1, tk.W],
-                   ["mod", "Modifier: ", 5, 0, tk.E],
-                   ["tested", "Tested fight talent: ", 8, 0, tk.E],
+                   ["mod", self.lang["mod"], 5, 0, tk.E],
+                   ["tested", self.lang["test_fight"], 8, 0, tk.E],
                    ["var_tested", '', 8, 1, tk.W],
-                   ["value", "Value: ", 9, 0, tk.E],
+                   ["value", self.lang["test_value"], 9, 0, tk.E],
                    ["var_value", '', 9, 1, tk.W],
-                   ["rolls", "Rolls: ", 10, 0, tk.E],
+                   ["rolls", self.lang["test_1dice"], 10, 0, tk.E],
                    ["var_rolls", '', 10, 1, tk.W],
-                   ["result", "Result: ", 11, 0, tk.E],
+                   ["result", self.lang["test_result"], 11, 0, tk.E],
                    ["var_result", '', 11, 1, tk.W],
-                   ["desc", "Description: ", 12, 0, tk.E]]
+                   ["desc", self.lang["gui_desc"], 12, 0, tk.E]]
 
         if self.state.dice == "manual":
-            outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
+            outputs.append(["dice_input", self.lang["gui_manual"], 6, 0, tk.E])
 
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
@@ -485,8 +485,8 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
         inputs.append(["desc", 20, 12, 1, tk.W])
 
-        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
-                   ["save", "Save", 4, self.button_save, 14, 0, False]]
+        buttons = [["test", self.lang["button_test"], len(self.lang["button_test"]), self.button_test, 7, 0, False],
+                   ["save", self.lang["button_save"], len(self.lang["button_save"]), self.button_save, 14, 0, False]]
 
         return outputs, inputs, buttons
 
@@ -497,31 +497,36 @@ class GUI(): # pylint: disable=too-many-instance-attributes
                 inputs:list
                 buttons:list """
 
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+        outputs = [["roll_nr", self.lang["roll_nr"], 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
-                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["hero_prompt", self.lang["hero_file"], 1, 0, tk.E],
+                   ["matching_hero", self.lang["hero_match"], 2, 0, tk.E],
                    ["var_matching_hero", '', 2, 1, tk.W],
-                   ["input_prompt", "Input: ", 3, 0, tk.E],
-                   ["matching", "Matching: ", 4, 0, tk.E],
+                   ["input_prompt", self.lang["input"], 3, 0, tk.E],
+                   ["matching", self.lang["matching"], 4, 0, tk.E],
                    ["var_matching", '', 4, 1, tk.W],
-                   ["mod", "Modifier: ", 5, 0, tk.E],
-                   ["tested", "Tested skill/spell: ", 8, 0, tk.E],
+                   ["mod", self.lang["mod"], 5, 0, tk.E],
                    ["var_tested", '', 8, 1, tk.W],
-                   ["tested_attrs", "Tested attributes: ", 9, 0, tk.E],
+                   ["tested_attrs", self.lang["test_attrs"], 9, 0, tk.E],
                    ["var_tested_attrs", '', 9, 1, tk.W],
-                   ["value", "Value: ", 10, 0, tk.E],
+                   ["value", self.lang["test_value"], 10, 0, tk.E],
                    ["var_value", '', 10, 1, tk.W],
-                   ["rolls", "Rolls: ", 11, 0, tk.E],
+                   ["rolls", self.lang["test_dice"], 11, 0, tk.E],
                    ["var_rolls", '', 11, 1, tk.W],
-                   ["remaining", "Attribute values remaining: ", 12, 0, tk.E],
+                   ["remaining", self.lang["test_remaining"], 12, 0, tk.E],
                    ["var_remaining", '', 12, 1, tk.W],
-                   ["result", "Result: ", 13, 0, tk.E],
+                   ["result", self.lang["test_result"], 13, 0, tk.E],
                    ["var_result", '', 13, 1, tk.W],
-                   ["desc", "Description: ", 14, 0, tk.E]]
+                   ["desc", self.lang["gui_desc"], 14, 0, tk.E]]
 
         if self.state.dice == "manual":
-            outputs.append(["dice_input", "Manual dice input: ", 6, 0, tk.E])
+            outputs.append(["dice_input", self.lang["gui_manual"], 6, 0, tk.E])
+
+        if self.state.category == "skill":
+            outputs.append(["tested", self.lang["test_skill"], 8, 0, tk.E])
+        elif self.state.category == "spell":
+            outputs.append(["tested", self.lang["test_spell"], 8, 0, tk.E])
+
 
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
@@ -534,8 +539,8 @@ class GUI(): # pylint: disable=too-many-instance-attributes
 
         inputs.append(["desc", 20, 14, 1, tk.W])
 
-        buttons = [["test", "Test", 4, self.button_test, 7, 0, False],
-                   ["save", "Save", 4, self.button_save, 15, 0, False]]
+        buttons = [["test", self.lang["button_test"], len(self.lang["button_test"]), self.button_test, 7, 0, False],
+                   ["save", self.lang["button_save"], len(self.lang["button_save"]), self.button_save, 15, 0, False]]
 
         return outputs, inputs, buttons
 
@@ -546,27 +551,27 @@ class GUI(): # pylint: disable=too-many-instance-attributes
                 inputs:list
                 buttons:list """
 
-        outputs = [["roll_nr", "Roll #", 0, 0, tk.E],
+        outputs = [["roll_nr", self.lang["roll_nr"], 0, 0, tk.E],
                    ["var_roll_nr", '', 0, 1, tk.W],
-                   ["hero_prompt", "Hero file: ", 1, 0, tk.E],
-                   ["matching_hero", "Matching hero: ", 2, 0, tk.E],
+                   ["hero_prompt", self.lang["hero_file"], 1, 0, tk.E],
+                   ["matching_hero", self.lang["hero_match"], 2, 0, tk.E],
                    ["var_matching_hero", '', 2, 1, tk.W],
-                   ["input_prompt", "Input: ", 3, 0, tk.E],
-                   ["rolls", "Rolls: ", 6, 0, tk.E],
+                   ["input_prompt", self.lang["input"], 3, 0, tk.E],
+                   ["rolls", self.lang["test_dice"], 6, 0, tk.E],
                    ["var_rolls", '', 6, 1, tk.W],
-                   ["result", "Result: ", 7, 0, tk.E],
+                   ["result", self.lang["dice_sum"], 7, 0, tk.E],
                    ["var_result", '', 7, 1, tk.W],
-                   ["desc", "Description: ", 8, 0, tk.E]]
+                   ["desc", self.lang["gui_desc"], 8, 0, tk.E]]
 
         if self.state.dice == "manual":
-            outputs.append(["dice_input", "Manual dice input: ", 4, 0, tk.E])
+            outputs.append(["dice_input", self.lang["gui_manual"], 4, 0, tk.E])
 
         inputs = []
         if self.state.dice == "manual":
             inputs.append(["dice_input", 20, 4, 1, tk.W])
         inputs.append(["desc", 20, 8, 1, tk.W])
 
-        buttons = [["test", "Test", 4, self.button_test, 5, 0, False],
-                   ["save", "Save", 4, self.button_save, 9, 0, False]]
+        buttons = [["test", self.lang["button_test"], len(self.lang["button_test"]), self.button_test, 5, 0, False],
+                   ["save", self.lang["button_save"], len(self.lang["button_save"]), self.button_save, 9, 0, False]]
 
         return outputs, inputs, buttons

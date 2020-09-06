@@ -70,7 +70,7 @@ class CLI:
 
         # display all matching hero entries with incrementing number in front
 #        print("Character entries fitting input:")
-        print(self.lang["hero_match"])
+        print(self.lang["entry_match"])
         for index, option in enumerate(self.state.option_list):
             print("\t{0:3d}: {1}".format((index+1), option[0]))
 

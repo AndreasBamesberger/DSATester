@@ -1,6 +1,6 @@
 """ reads config file and starts interface """
 from interfaces.cli import CLI
-#from interfaces.gui import GUI
+from interfaces.gui import GUI
 from game_backend.game_backend import GameLogic, GameState
 from languages.languages import english, german
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     if configs["interface"] == "CLI":
         interface = CLI(game, state, configs, lang)
-#    elif configs["interface"] == "GUI":
-#        interface = GUI(game, state, configs, lang)
+    elif configs["interface"] == "GUI":
+        interface = GUI(game, state, configs, lang)
 
     interface.loop()
