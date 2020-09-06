@@ -9,7 +9,7 @@ from dataclasses import dataclass # to create GameState
 import operator # to subtract list from list
 import copy # to make copies of attributo and sinnenschaerfe
 import re
-from game_backend.dsa_data import Attribute, Skill, Spell, FightTalent
+from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent
 
 @dataclass
 class GameState: # pylint: disable=too-many-instance-attributes

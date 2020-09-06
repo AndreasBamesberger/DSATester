@@ -1,6 +1,5 @@
 """ this module tests GameLogic.roll_dice() """
-
-from game_backend import GameLogic
+from libs.backend.dsa_game import GameLogic
 
 if __name__ == '__main__':
 

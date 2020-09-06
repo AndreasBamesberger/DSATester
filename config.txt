@@ -1,6 +1,6 @@
 # choose language of the interface. this doesn't affect the language of the hero
 # entries since they are read from the xml file. 
-current options:
+# current options:
 #   german
 #   english
 language: german
@@ -41,7 +41,7 @@ dice: auto
 #   font size: 20
 #   width: 1600
 #   height: 1200
-scaling: 1.5
-font size: 14
-width: 650
-height: 500
+scaling: 0.5
+font size: 20
+width: 1600
+height: 1200

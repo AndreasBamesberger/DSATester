@@ -74,3 +74,6 @@ Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested ent
 03_testchar.xml,misc,,6D6,,-2,,2; 4; 6; 2; 4; 3,19,Roll#4: cli; .py,2020-09-06T15:36:00,manual
 02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),12; 4; 13,1,Roll#1: gui; .exe,2020-09-06T15:42:39,auto
 02_testchar.xml,misc,,10D100,,0,,76; 27; 69; 87; 94; 91; 84; 66; 49; 30,673,Roll#2: gui; .exe,2020-09-06T15:43:56,auto
+02_testchar.xml,skill,Schwimmen,,2,-2,GE(14); KO(15); KK(15),3; 18; 2,-3,Roll#1: gui; .py,2020-09-07T00:26:37,auto
+02_testchar.xml,skill,Fechtwaffen,,2,-2,GE(14); GE(14); KK(15),17; 5; 18,-6,Roll#1: gui; .py,2020-09-07T00:36:16,auto
+02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),13; 2; 1,1,Roll#1: gui; .py,2020-09-07T01:46:17,auto
