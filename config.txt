@@ -43,5 +43,5 @@ dice: auto
 #   height: 1200
 scaling: 1.5
 font size: 14
-width: 650
+width: 700
 height: 550

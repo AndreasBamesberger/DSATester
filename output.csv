@@ -1,81 +1,47 @@
 Hero file,Test type,Name of tested entry,Misc dice sum input,Value of tested entry,Modifier,Values of related attributes,Rolls,Result,Description,Timestamp,Type of dice input
-02_testchar.xml,attr,Konstitution,,15,-3,,1,11,Roll#1: gui,2020-09-01T12:50:08,auto
-02_testchar.xml,fight_talent,AT Raufen,,9,-2,,7,0,Roll#2: gui,2020-09-01T12:50:20,auto
-01_testchar.xml,skill,Schwimmen,,1,-2,GE(8->7); KO(8->7); KK(8->7),8; 11; 19,-17,Roll#3: gui,2020-09-01T12:50:32,auto
-03_testchar.xml,spell,Hexenspeichel,,0,4,IN(14); CH(14); FF(11),1; 10; 13,2,Roll#4: gui,2020-09-01T12:50:45,auto
-03_testchar.xml,misc,,8D20,,-4,,18; 4; 6; 12; 3; 20; 17; 20,96,Roll#5: gui,2020-09-01T12:50:53,auto
-03_testchar.xml,attr,Fingerfertigkeit,,11,-2,,8,1,Roll#1: gui,2020-09-01T12:53:57,manual
-02_testchar.xml,skill,Tanzen,,0,-3,CH(6->3); GE(14->11); GE(14->11),19; 11; 4,-16,Roll#2: gui,2020-09-01T12:54:16,manual
-01_testchar.xml,spell,Hexenblick,,2,3,IN(12); IN(12); CH(12),2; 20; 4,-3,Roll#3: gui,2020-09-01T12:54:35,manual
-01_testchar.xml,fight_talent,PA Dolche,,6,-3,,2,1,Roll#4: gui,2020-09-01T12:54:51,manual
-02_testchar.xml,misc,,6D20,,-4,,3; 12; 4; 8; 20; 15,58,Roll#5: gui,2020-09-01T12:56:15,manual
-02_testchar.xml,attr,Mut,,14,-3,,13,-2,Roll#1: cli,2020-09-01T12:58:06,auto
-02_testchar.xml,skill,Zechen,,0,3,IN(14); KO(15); KK(15),8; 17; 6,1,Roll#2: cli,2020-09-01T12:58:19,auto
-03_testchar.xml,spell,Große Gier,,5,-3,KL(14); KL(14); CH(14),3; 11; 5,2,Roll#3: cli,2020-09-01T12:58:36,auto
-02_testchar.xml,fight_talent,PA Fechtwaffen,,9,-2,,9,-2,Roll#4: cli,2020-09-01T12:58:51,auto
-01_testchar.xml,misc,,5D6,,-4,,6; 4; 3; 6; 5,20,Roll#5: cli,2020-09-01T12:59:06,auto
-01_testchar.xml,attr,Körperkraft,,8,-3,,8,-3,Roll#1: cli,2020-09-01T13:00:32,manual
-02_testchar.xml,skill,Malen/Zeichnen,,0,-2,KL(7->5); IN(14->12); FF(14->12),8; 12; 14,-5,Roll#2: cli,2020-09-01T13:00:51,manual
-03_testchar.xml,spell,MU Attributo,,3,-2,MU(8); KL(14); CH(14),8; 6; 19,-4,Roll#3: cli,2020-09-01T13:01:09,manual
-01_testchar.xml,fight_talent,AT Speere,,6,-3,,13,-10,Roll#4: cli,2020-09-01T13:01:29,manual
-03_testchar.xml,misc,,10D6,,-3,,1; 2; 3; 4; 5; 1; 2; 3; 4; 5,27,Roll#5: cli,2020-09-01T13:01:50,manual
-03_testchar.xml,spell,KL Attributo,,3,-3,KL(14); KL(14); CH(14),13; 2; 19,-5,Roll#1: gui,2020-09-02T10:04:21,auto
-01_testchar.xml,attr,Fingerfertigkeit,,8,-2,,6,0,Roll#1: gui,2020-09-03T14:04:22,auto
-02_testchar.xml,attr,Fingerfertigkeit,,14,-3,,1,10,Roll#1: gui,2020-09-03T14:27:27,auto
-03_testchar.xml,misc,,3D20,,-8,,17; 7; 3,19,Roll#1: gui,2020-09-03T14:30:18,auto
-03_testchar.xml,attr,Konstitution,,8,-3,,5,0,Roll#1: gui,2020-09-03T14:47:06,auto
-01_testchar.xml,misc,,3D20,,-8,,19; 4; 11,26,Roll#2: gui,2020-09-03T14:47:35,auto
-03_testchar.xml,spell,Radau,,2,-12,MU(8->-2); CH(14->4); KO(8->-2),9; 17; 13,-39,Roll#3: gui,2020-09-03T14:48:54,auto
-03_testchar.xml,spell,Radau,,2,-2,MU(8); CH(14); KO(8),14; 14; 4,-6,Roll#1: gui,2020-09-04T07:53:22,auto
-02_testchar.xml,fight_talent,AT Fechtwaffen,,9,-2,,12,-5,Roll#1: cli,2020-09-04T07:53:54,auto
-02_testchar.xml,skill,Schwimmen,,2,-3,GE(14->13); KO(15->14); KK(15->14),4; 5; 10,0,Roll#1: gui,2020-09-04T08:10:27,auto
-01_testchar.xml,spell,Hexenblick,,2,2,IN(12); IN(12); CH(12),8; 15; 15,-2,Roll#2: gui,2020-09-04T08:10:52,auto
-01_testchar.xml,misc,,3D20,,-10,,17; 13; 8,28,Roll#3: gui,2020-09-04T08:11:08,auto
-01_testchar.xml,attr,Körperkraft,,8,-2,,3,3,Roll#1: gui .py,2020-09-04T09:35:43,auto
-02_testchar.xml,skill,Schwimmen,,2,-5,GE(14->11); KO(15->12); KK(15->12),19; 4; 20,-16,Roll#2: gui .py,2020-09-04T09:36:30,auto
-03_testchar.xml,spell,Radau,,2,2,MU(8); CH(14); KO(8),1; 11; 10,2,Roll#3: gui .py,2020-09-04T09:36:49,auto
-01_testchar.xml,fight_talent,PA Hiebwaffen,,6,-2,,16,-12,Roll#4: gui .py,2020-09-04T09:37:13,auto
-02_testchar.xml,misc,,3D20,,-3,,17; 17; 19,50,Roll#5: gui .py,2020-09-04T09:37:40,auto
-02_testchar.xml,attr,Fingerfertigkeit,,14,-2,,8,4,Roll#1: gui .py,2020-09-04T09:38:18,manual
-03_testchar.xml,skill,Schleichen,,5,-2,MU(8); IN(14); GE(14),14; 2; 18,-7,Roll#2: gui .py,2020-09-04T09:38:50,manual
-01_testchar.xml,spell,Hexenblick,,2,-5,IN(12->9); IN(12->9); CH(12->9),14; 2; 8,-5,Roll#3: gui .py,2020-09-04T09:39:24,manual
-02_testchar.xml,fight_talent,AT Ringen,,9,0,,4,5,Roll#4: gui .py,2020-09-04T09:39:58,manual
-03_testchar.xml,misc,,3D6,,-4,,3; 4; 5,8,Roll#5: gui .py,2020-09-04T09:40:22,manual
-02_testchar.xml,attr,Mut,,14,2,,7,9,Roll#1: cli .py,2020-09-04T09:41:02,auto
-03_testchar.xml,skill,Schleichen,,5,-2,MU(8); IN(14); GE(14),11; 2; 8,0,Roll#2: cli .py,2020-09-04T09:41:20,auto
-01_testchar.xml,spell,Geisterbann,,5,0,MU(12); MU(12); CH(12),9; 7; 17,0,Roll#3: cli .py,2020-09-04T09:41:43,auto
-03_testchar.xml,fight_talent,AT Dolche,,6,-2,,6,-2,Roll#4: cli .py,2020-09-04T09:42:00,auto
-01_testchar.xml,misc,,8D6,,-5,,1; 3; 3; 5; 3; 6; 1; 1,18,Roll#5: cli .py,2020-09-04T09:42:21,auto
-02_testchar.xml,attr,Mut,,14,-3,,19,-8,Roll#1: cli .py,2020-09-04T09:43:14,manual
-02_testchar.xml,skill,IN Sinnenschärfe,,7,-4,KL(7); IN(14); IN(14),13; 14; 19,-8,Roll#2: gui .py,2020-09-04T09:43:51,manual
-03_testchar.xml,spell,Geisterbann,,0,-2,MU(8->6); MU(8->6); CH(14->12),4; 5; 8,0,Roll#3: cli .py,2020-09-04T09:44:55,manual
-03_testchar.xml,spell,IN Attributo,,3,-2,KL(14); IN(14); CH(14),8; 14; 3,1,Roll#4: cli .py,2020-09-04T09:45:29,manual
-03_testchar.xml,misc,,3D20,,-10,,19; 20; 2,31,Roll#5: cli .py,2020-09-04T09:45:46,manual
-01_testchar.xml,skill,Schleichen,,2,3,MU(12); IN(12); GE(8),3; 10; 19,-6,Roll#1: k,2020-09-06T12:56:38,auto
-02_testchar.xml,attr,Körperkraft,,15,-2,,18,-5,Roll#1: gui; .py,2020-09-06T15:00:15,auto
-03_testchar.xml,skill,Schwimmen,,3,-3,GE(14); KO(8); KK(8),3; 7; 7,0,Roll#2: gui; .py,2020-09-06T15:00:41,auto
-01_testchar.xml,spell,Hexenblick,,2,-10,IN(12->4); IN(12->4); CH(12->4),8; 14; 6,-16,Roll#3: gui; .py,2020-09-06T15:06:04,auto
-03_testchar.xml,fight_talent,AT Raufen,,6,-3,,18,-15,Roll#4: gui; .py,2020-09-06T15:12:07,auto
-02_testchar.xml,misc,,5D20,,-10,,17; 14; 3; 2; 6,32,Roll#5: gui; .py,2020-09-06T15:12:33,auto
-02_testchar.xml,attr,Fingerfertigkeit,,14,-2,,8,4,Roll#1: gui; .py,2020-09-06T15:14:05,manual
-03_testchar.xml,skill,Klettern,,0,-5,MU(8->3); GE(14->9); KK(8->3),3; 4; 10,-7,Roll#2: gui; .py,2020-09-06T15:15:38,manual
-03_testchar.xml,spell,Radau,,2,3,MU(8); CH(14); KO(8),20; 3; 16,-15,Roll#3: gui; .py,2020-09-06T15:16:43,manual
-02_testchar.xml,fight_talent,PA Anderthalbhänder,,9,0,,18,-9,Roll#4: gui; .py,2020-09-06T15:17:06,manual
-01_testchar.xml,misc,,2D20,,10,,3; 13,26,Roll#5: gui; .py,2020-09-06T15:17:51,manual
-02_testchar.xml,attr,Intuition,,14,-3,,15,-4,Roll#1: cli; .py,2020-09-06T15:20:12,auto
-03_testchar.xml,skill,Bogen,,1,-2,FF(11->10); GE(14->13); KK(8->7),5; 18; 14,-12,Roll#2: cli; .py,2020-09-06T15:27:44,auto
-01_testchar.xml,spell,Hellsicht trüben,,3,-5,KL(8->6); IN(12->10); CH(12->10),12; 10; 12,-8,Roll#3: cli; .py,2020-09-06T15:28:12,auto
-03_testchar.xml,fight_talent,PA Dolche,,7,-2,,12,-7,Roll#4: cli; .py,2020-09-06T15:28:41,auto
-02_testchar.xml,misc,,8D6,,-3,,4; 2; 6; 4; 1; 1; 1; 1,17,Roll#5: cli; .py,2020-09-06T15:29:07,auto
-02_testchar.xml,attr,Intuition,,14,-1,,18,-5,Roll#1: cli; .py,2020-09-06T15:30:17,manual
-03_testchar.xml,skill,Gassenwissen,,2,2,KL(14); IN(14); CH(14),3; 13; 18,0,Roll#1: cli; .py,2020-09-06T15:34:43,manual
-03_testchar.xml,spell,Hexenspeichel,,0,0,IN(14); CH(14); FF(11),14; 2; 18,-7,Roll#2: cli; .py,2020-09-06T15:35:10,manual
-02_testchar.xml,fight_talent,AT Dolche,,9,-1,,8,0,Roll#3: cli; .py,2020-09-06T15:35:27,manual
-03_testchar.xml,misc,,6D6,,-2,,2; 4; 6; 2; 4; 3,19,Roll#4: cli; .py,2020-09-06T15:36:00,manual
-02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),12; 4; 13,1,Roll#1: gui; .exe,2020-09-06T15:42:39,auto
-02_testchar.xml,misc,,10D100,,0,,76; 27; 69; 87; 94; 91; 84; 66; 49; 30,673,Roll#2: gui; .exe,2020-09-06T15:43:56,auto
-02_testchar.xml,skill,Schwimmen,,2,-2,GE(14); KO(15); KK(15),3; 18; 2,-3,Roll#1: gui; .py,2020-09-07T00:26:37,auto
-02_testchar.xml,skill,Fechtwaffen,,2,-2,GE(14); GE(14); KK(15),17; 5; 18,-6,Roll#1: gui; .py,2020-09-07T00:36:16,auto
-02_testchar.xml,skill,Klettern,,3,-2,MU(14); GE(14); KK(15),13; 2; 1,1,Roll#1: gui; .py,2020-09-07T01:46:17,auto
-03_testchar.xml,skill,IN Sinnenschärfe,,1,3,KL(14); IN(14); IN(14),9; 4; 9,4,Roll#1: gui; .exe,2020-09-07T15:54:09,auto
-01_testchar.xml,misc,,8D6,,-3,,6; 5; 6; 5; 6; 2; 6; 4,37,Roll#2: gui; .exe,2020-09-07T15:54:36,auto
+02_testchar.xml,attr,Intuition,,14,-2,,20,-8,Roll#1: cli; .py,2020-09-11T11:06:21,auto
+01_testchar.xml,skill,Klettern,,0,-2,,3; 6; 13,-7,Roll#1: cli; .py,2020-09-11T11:08:12,auto
+03_testchar.xml,spell,Radau,,2,-3,,18; 3; 7,-11,Roll#2: cli; .py,2020-09-11T11:08:45,auto
+02_testchar.xml,misc,,3D20,,-3,,15; 19; 5,36,Roll#1: cli; .py,2020-09-11T11:14:31,auto
+02_testchar.xml,attr,Klugheit,,7,-2,,4,1,Roll#1: cli; .py,2020-09-11T11:26:07,auto
+02_testchar.xml,skill,Schleichen,,7,-2,,8; 13; 6,5,Roll#1: cli; .py,2020-09-11T11:27:23,auto
+02_testchar.xml,skill,Schwimmen,,2,-2,GE(14); KO(15); KK(15),19; 13; 13,-5,Roll#1: cli; .py,2020-09-11T11:29:38,auto
+01_testchar.xml,spell,Hexenblick,,2,-10,IN(12->4); IN(12->4); CH(12->4),16; 1; 9,-17,Roll#1: cli; .py,2020-09-11T11:30:07,auto
+01_testchar.xml,skill,Malen/Zeichnen,,5,-2,KL(8); IN(12); FF(8),13; 7; 17,-11,Roll#1: cli; .py,2020-09-11T12:02:48,auto
+02_testchar.xml,misc,,3D20,,-10,,10; 20; 6,26,Roll#2: cli; .py,2020-09-11T12:03:06,auto
+01_testchar.xml,attr,Klugheit,,8,0,,6,2,Roll#1: cli; .py,2020-09-11T12:11:34,auto
+03_testchar.xml,skill,Schwimmen,,3,-3,GE(14); KO(8); KK(8),13; 2; 4,0,Roll#2: cli; .py,2020-09-11T12:11:50,auto
+01_testchar.xml,spell,Geisterbann,,5,-10,MU(12->7); MU(12->7); CH(12->7),3; 17; 10,-13,Roll#3: cli; .py,2020-09-11T12:12:11,auto
+02_testchar.xml,fight_talent,AT Raufen,,9,-2,,14,-7,Roll#4: cli; .py,2020-09-11T12:12:48,auto
+03_testchar.xml,advantage,Jähzorn,,6,-2,,2,2,Roll#1: cli; .py,2020-09-11T12:14:16,auto
+02_testchar.xml,misc,,5D6,,-3,,6; 1; 1; 1; 2,8,Roll#2: cli; .py,2020-09-11T12:14:28,auto
+02_testchar.xml,skill,Raufen,,3,-2,GE(14); GE(14); KK(15),10; 18; 1,-3,Roll#1: gui; .py,2020-09-11T14:06:59,auto
+03_testchar.xml,spell,Flim Flam Funkel,,0,-3,KL(14->11); KL(14->11); FF(11->8),16; 2; 13,-10,Roll#1: gui; .py,2020-09-11T14:13:36,auto
+01_testchar.xml,attr,Klugheit,,8,-3,,13,-8,Roll#2: gui; .py,2020-09-11T14:14:54,auto
+02_testchar.xml,skill,Sich verstecken,,6,-10,MU(14->10); IN(14->10); GE(14->10),5; 16; 9,-6,Roll#3: gui; .py,2020-09-11T14:15:19,auto
+01_testchar.xml,skill,Klettern,,0,-3,MU(12->9); GE(8->5); KK(8->5),3; 1; 7,-2,Roll#1: gui; .py,2020-09-11T17:07:05,auto
+01_testchar.xml,attr,Intuition,,12,-4,,3,5,Roll#1: gui; .py,2020-09-11T17:27:59,auto
+02_testchar.xml,skill,Schleichen,,7,-10,MU(14->11); IN(14->11); GE(14->11),1; 9; 3,0,Roll#2: gui; .py,2020-09-11T17:28:30,auto
+03_testchar.xml,spell,Radau,,2,0,MU(8); CH(14); KO(8),14; 12; 1,-4,Roll#3: gui; .py,2020-09-11T17:28:57,auto
+02_testchar.xml,fight_talent,AT Hiebwaffen,,10,0,,9,1,Roll#4: gui; .py,2020-09-11T17:29:20,auto
+01_testchar.xml,advantage,Neugier,,5,-2,,5,-2,Roll#5: gui; .py,2020-09-11T17:29:57,auto
+03_testchar.xml,attr,Fingerfertigkeit,,11,0,,4,7,Roll#1: gui; .py,2020-09-11T17:58:15,auto
+03_testchar.xml,skill,Fleischer,,1,-2,KL(14->13); FF(11->10); KK(8->7),16; 10; 16,-12,Roll#2: gui; .py,2020-09-11T17:58:36,auto
+01_testchar.xml,spell,Hexenblick,,2,3,IN(12); IN(12); CH(12),9; 9; 13,4,Roll#3: gui; .py,2020-09-11T17:59:01,auto
+03_testchar.xml,fight_talent,AT Hiebwaffen,,6,0,,9,-3,Roll#4: gui; .py,2020-09-11T17:59:18,auto
+02_testchar.xml,advantage,Aberglaube,,5,3,,4,4,Roll#5: gui; .py,2020-09-11T18:00:11,auto
+02_testchar.xml,misc,,3D20,,10,,15; 14; 3,42,Roll#1: gui; .py,2020-09-11T18:02:48,auto
+03_testchar.xml,attr,Charisma,,14,-2,,8,4,Roll#1: gui; .py,2020-09-11T18:04:48,manual
+03_testchar.xml,attr,Charisma,,14,-3,,8,3,Roll#1: gui; .py,2020-09-11T18:06:16,manual
+03_testchar.xml,skill,Schwimmen,,3,-2,GE(14); KO(8); KK(8),4; 8; 12,-3,Roll#2: gui; .py,2020-09-11T18:06:46,manual
+01_testchar.xml,spell,Hexenknoten,,3,0,KL(8); IN(12); CH(12),12; 8; 20,-9,Roll#3: gui; .py,2020-09-11T18:07:07,manual
+02_testchar.xml,fight_talent,AT Säbel,,9,-3,,8,-2,Roll#4: gui; .py,2020-09-11T18:07:27,manual
+01_testchar.xml,misc,,3D20,,10,,4; 2; 19,35,Roll#5: gui; .py,2020-09-11T18:07:47,manual
+02_testchar.xml,advantage,Aberglaube,,5,0,,19,-14,Roll#6: gui; .py,2020-09-11T18:08:03,manual
+03_testchar.xml,attr,Fingerfertigkeit,,11,-2,,8,1,Roll#1: cli; .py,2020-09-11T18:09:46,manual
+02_testchar.xml,skill,Sich verstecken,,6,0,MU(14); IN(14); GE(14),11; 13; 8,6,Roll#2: cli; .py,2020-09-11T18:10:43,manual
+03_testchar.xml,spell,Radau,,2,0,MU(8); CH(14); KO(8),7; 2; 18,-8,Roll#3: cli; .py,2020-09-11T18:11:04,manual
+02_testchar.xml,fight_talent,AT Raufen,,9,-2,,7,0,Roll#4: cli; .py,2020-09-11T18:11:29,manual
+02_testchar.xml,misc,,3D20,,-10,,3; 4; 12,9,Roll#5: cli; .py,2020-09-11T18:12:05,manual
+02_testchar.xml,advantage,Aberglaube,,5,0,,4,1,Roll#1: cli; .py,2020-09-11T18:13:30,manual
+02_testchar.xml,advantage,Jähzorn,,6,-2,,5,-1,Roll#1: cli; .py,2020-09-11T18:19:18,manual
