@@ -4,12 +4,12 @@ import csv # to write into file
 import os # to check if file already exists
 import datetime # to log time of dice roll
 import xml.etree.ElementTree as ET # to parse input xml file
-from collections import namedtuple # to make better data structures
+from collections import namedtuple
 from dataclasses import dataclass # to create GameState
 import operator # to subtract list from list
 import copy # to make copies of attributo and sinnenschaerfe
-import re # to find if input string is misc dice roll
-from dsa_data import Attribute, Skill, Spell, FightTalent, \
+import re
+from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent, \
                                   Advantage, SpecialSkill, Misc
 
 @dataclass
@@ -453,19 +453,28 @@ class GameLogic:
         except KeyError:
             # this can occur if (using the GUI) user types in a test before a
             # matching a hero file
+#            print("KeyError, no hero matched")
             print(self._lang["key_error"])
             return state
 
-        all_entries = hero.attrs
-        all_entries += hero.skills
-        all_entries += hero.spells
-        all_entries += hero.fight_talents
-        all_entries += hero.advantages
-        all_entries += hero.special_skills
-
-        for entry in all_entries:
-            if state.test_input.lower() in entry.name.lower():
-                output_list.append(entry)
+        for attr in hero.attrs:
+            if state.test_input.lower() in attr.name.lower():
+                output_list.append(attr)
+        for skill in hero.skills:
+            if state.test_input.lower() in skill.name.lower():
+                output_list.append(skill)
+        for spell in hero.spells:
+            if state.test_input.lower() in spell.name.lower():
+                output_list.append(spell)
+        for fight_talent in hero.fight_talents:
+            if state.test_input.lower() in fight_talent.name.lower():
+                output_list.append(fight_talent)
+        for advantage in hero.advantages:
+            if state.test_input.lower() in advantage.name.lower():
+                output_list.append(advantage)
+        for special_skill in hero.special_skills:
+            if state.test_input.lower() in special_skill.name.lower():
+                output_list.append(special_skill)
 
         state.option_list = output_list
         return state

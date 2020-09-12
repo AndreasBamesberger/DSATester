@@ -1,7 +1,7 @@
-""" module that holds the CLI class """
+""" file that holds the CLI class """
 import re
 
-class CLI: # pylint: disable=too-few-public-methods
+class CLI:
     """ command line interface, communicates with GameLogic """
     def __init__(self, game, state, configs, lang):
         """ input: game:GameLogic
@@ -14,31 +14,23 @@ class CLI: # pylint: disable=too-few-public-methods
 
     def loop(self):
         """ this method is executed by main.py and will run until "quit" or
-        "exit" are typed in as hero input """
+        "exit" are typed in as input or an error occurs """
         while True:
             print(self._lang["roll_nr"] + str(self._state.counter))
-            # get hero file
             self._get_hero()
 
-            # get test input
             self._state.test_input = input(self._lang["input"]).lower()
-            # check for misc dice sum, then match with hero entries
             self._state = self._game.match_test_input(self._state)
 
             if self._state.option_list:
-                 # ask user to select one of the matching entries
                 self._get_selection()
             elif self._state.selection is None:
-                # no matching entries found
                 print(self._lang["no_hero_match"])
                 continue
 
-            # some "advantage" entries have a value, other do not
             if self._state.selection.category == "advantage":
                 if self._state.selection.value is None:
                     continue
-            # no "special skill" entries have a value that can be tested, but
-            # it's still helpful to have them displayed
             if self._state.selection.category == "special_skill":
                 continue
 
@@ -51,9 +43,9 @@ class CLI: # pylint: disable=too-few-public-methods
             self._show_result()
             if self._get_save_choice():
                 self._game.save_to_csv(self._state)
-            self._reset()
+            self.reset()
 
-    def _reset(self):
+    def reset(self):
         """ reset self._state """
         self._state.save = False
         self._state.attrs = None
@@ -212,6 +204,7 @@ class CLI: # pylint: disable=too-few-public-methods
         outstr += "\t" + self._lang["test_remaining"] + remaining_string + "\n"
         outstr += "\t" + self._lang["test_result"] + str(self._state.result)
         return outstr
+
 
     def _format_misc_result(self):
         """ format misc test results

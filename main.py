@@ -4,15 +4,15 @@ from libs.interfaces.gui import GUI
 from libs.backend.dsa_game import GameLogic, GameState
 from libs.languages.languages import english, german
 
-def read_config(config_file):
+def read_config(configname):
     """ Opens textfile, looks for keywords and creates a dictionary entry for each match.
-    Input: config_file: str, the name of the file, e.g. 'config.txt'
+    Input: configname: str, the name of the file, e.g. 'config.txt'
     Output: outdict: dict, the created dictionary """
     outdict = {}
     str_entries = ("output file", "interface", "dice", "hero folder", "language")
     int_entries = ("font size", "width", "height")
     float_entries = ("scaling")
-    with open(config_file, "r", encoding="utf-8") as configfile:
+    with open(configname, "r", encoding="utf-8") as configfile:
         for line in configfile.readlines():
             if line.startswith('#') or line == '\n':
                 continue
