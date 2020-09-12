@@ -1,8 +1,10 @@
 """ file that holds the CLI class """
 import re
 
+
 class CLI:
     """ command line interface, communicates with GameLogic """
+
     def __init__(self, game, state, configs, lang):
         """ input: game:GameLogic
                    state:GameState
@@ -24,7 +26,8 @@ class CLI:
 
             if self._state.option_list:
                 self._get_selection()
-            elif self._state.selection is None:
+
+            if self._state.selection is None:
                 print(self._lang["no_hero_match"])
                 continue
 
@@ -35,7 +38,7 @@ class CLI:
                 continue
 
             if self._state.selection.category != "misc":
-            # for misc test, the modifier is put into the input prompt
+                # for misc test, the modifier is put into the input prompt
                 self._get_mod()
             if self._state.dice == "manual":
                 self._get_manual_dice()
@@ -62,14 +65,14 @@ class CLI:
         user is asked for an integer input to choose one entry """
 
         # regex:
-            # ^, $: match from start to end of string
-            # \d+: match one or more integers
-        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
+        # ^, $: match from start to end of string
+        # \d+: match one or more integers
+        pattern = r"^\d+$"
 
         # display all matching hero entries with incrementing number in front
         print(self._lang["entry_match"])
         for index, value in enumerate(self._state.option_list):
-            print("\t{0:3d}: {1} ({2})".format((index+1), value.name, self._lang[value.category]))
+            print("\t{0:3d}: {1} ({2})".format((index + 1), value.name, self._lang[value.category]))
 
         # ask for selection, if it's valid use selected entry for current test
         while True:
@@ -85,9 +88,9 @@ class CLI:
         an integer input to choose one hero """
 
         # regex:
-            # ^, $: match from start to end of string
-            # \d+: match one or more integers
-        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
+        # ^, $: match from start to end of string
+        # \d+: match one or more integers
+        pattern = r"^\d+$"
 
         hero_options = self._game.get_hero_list()
         # display all matching hero files with incrementing number in front
@@ -113,10 +116,10 @@ class CLI:
         """ ask user for integer (positive or negative). empty string is interpreted as zero. """
 
         # regex:
-            # ^, $: match from start to end of string
-            # -?: 0 or 1 minus sign
-            # \d+: match one or more integers
-        pattern = "^-?\d+$" #pylint: disable=anomalous-backslash-in-string
+        # ^, $: match from start to end of string
+        # -?: 0 or 1 minus sign
+        # \d+: match one or more integers
+        pattern = r"^-?\d+$"
 
         while True:
             mod_input = input(self._lang["mod"])
@@ -147,40 +150,40 @@ class CLI:
                        "spell": self._format_skill_result,
                        "misc": self._format_misc_result}
 
-        outstring = format_dict[self._state.selection.category]()
+        out_string = format_dict[self._state.selection.category]()
 
-        print(outstring)
+        print(out_string)
 
     def _format_attr_result(self):
         """ format attr and fight talent test results
-        output: outstring:str """
+        output: out_str:str """
 
-        outstr = ""
-        outstr += "\t" + self._lang["test_hero"] + self._state.current_hero + "\n"
+        out_str = ""
+        out_str += "\t" + self._lang["test_hero"] + self._state.current_hero + "\n"
 
         if self._state.selection.category == "attr":
-            outstr += "\t" + self._lang["test_attr"] + self._state.selection.name + "\n"
+            out_str += "\t" + self._lang["test_attr"] + self._state.selection.name + "\n"
         elif self._state.selection.category == "fight_talent":
-            outstr += "\t" + self._lang["test_fight"] + self._state.selection.name + "\n"
-        outstr += "\t" + self._lang["test_value"] + str(self._state.selection.value) + "\n"
-        outstr += "\t" + self._lang["test_mod"] + str(self._state.mod) + "\n"
-        outstr += "\t" + self._lang["test_1dice"] + str(self._state.rolls[0]) + "\n"
-        outstr += "\t" + self._lang["test_result"] + str(self._state.result)
-        return outstr
+            out_str += "\t" + self._lang["test_fight"] + self._state.selection.name + "\n"
+        out_str += "\t" + self._lang["test_value"] + str(self._state.selection.value) + "\n"
+        out_str += "\t" + self._lang["test_mod"] + str(self._state.mod) + "\n"
+        out_str += "\t" + self._lang["test_1dice"] + str(self._state.rolls[0]) + "\n"
+        out_str += "\t" + self._lang["test_result"] + str(self._state.result)
+        return out_str
 
     def _format_skill_result(self):
         """ format skill and spell test results
-        output: outstring:str """
+        output: out_str:str """
         # if the modifier changes the skill value to negative, all tested
         # attributes have to show their modified value too
         if self._state.mod + self._state.selection.value < 0:
             modified = str(self._state.selection.value + self._state.mod)
             value_string = str(self._state.selection.value) + " -> " + modified
-            attrs_list = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')'\
-                           for _, i in enumerate(self._state.attrs)]
+            attrs_list = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')'
+                          for _, i in enumerate(self._state.attrs)]
         else:
-            attrs_list = [i.abbr + '(' + str(i.value) + ')' \
-                           for _, i in enumerate(self._state.attrs)]
+            attrs_list = [i.abbr + '(' + str(i.value) + ')'
+                          for _, i in enumerate(self._state.attrs)]
             value_string = str(self._state.selection.value)
 
         # join lists to strings
@@ -191,35 +194,34 @@ class CLI:
 
         dice_string = ", ".join(map(str, self._state.rolls))
 
-        outstr = ""
-        outstr += "\t" + self._lang["test_hero"] + self._state.current_hero + "\n"
+        out_str = ""
+        out_str += "\t" + self._lang["test_hero"] + self._state.current_hero + "\n"
         if self._state.selection.category == "skill":
-            outstr += "\t" + self._lang["test_skill"] + self._state.selection.name + "\n"
+            out_str += "\t" + self._lang["test_skill"] + self._state.selection.name + "\n"
         elif self._state.selection.category == "spell":
-            outstr += "\t" + self._lang["test_spell"] + self._state.selection.name + "\n"
-        outstr += "\t" + self._lang["test_attrs"] + attrs_string + "\n"
-        outstr += "\t" + self._lang["test_value"] + value_string + "\n"
-        outstr += "\t" + self._lang["test_mod"] + str(self._state.mod) + "\n"
-        outstr += "\t" + self._lang["test_dice"] + dice_string + "\n"
-        outstr += "\t" + self._lang["test_remaining"] + remaining_string + "\n"
-        outstr += "\t" + self._lang["test_result"] + str(self._state.result)
-        return outstr
-
+            out_str += "\t" + self._lang["test_spell"] + self._state.selection.name + "\n"
+        out_str += "\t" + self._lang["test_attrs"] + attrs_string + "\n"
+        out_str += "\t" + self._lang["test_value"] + value_string + "\n"
+        out_str += "\t" + self._lang["test_mod"] + str(self._state.mod) + "\n"
+        out_str += "\t" + self._lang["test_dice"] + dice_string + "\n"
+        out_str += "\t" + self._lang["test_remaining"] + remaining_string + "\n"
+        out_str += "\t" + self._lang["test_result"] + str(self._state.result)
+        return out_str
 
     def _format_misc_result(self):
         """ format misc test results
-        output: outstring:str """
+        output: out_str:str """
 
         dice_string = ", ".join(map(str, self._state.rolls))
 
-        outstr = ""
-        outstr += "\t" + self._lang["dice_count"] + str(self._state.selection.dice_count) + "\n"
-        outstr += "\t" + self._lang["dice_eyes"] + str(self._state.selection.dice_eyes) + "\n"
-        outstr += "\t" + self._lang["test_mod"] + str(self._state.mod) + "\n"
-        outstr += "\t" + self._lang["test_dice"] + dice_string + "\n"
-        outstr += "\t" + self._lang["dice_sum"] + str(self._state.result)
+        out_str = ""
+        out_str += "\t" + self._lang["dice_count"] + str(self._state.selection.dice_count) + "\n"
+        out_str += "\t" + self._lang["dice_eyes"] + str(self._state.selection.dice_eyes) + "\n"
+        out_str += "\t" + self._lang["test_mod"] + str(self._state.mod) + "\n"
+        out_str += "\t" + self._lang["test_dice"] + dice_string + "\n"
+        out_str += "\t" + self._lang["dice_sum"] + str(self._state.result)
 
-        return outstr
+        return out_str
 
     def _get_save_choice(self):
         """ ask user if current test should be saved in csv file
@@ -237,6 +239,7 @@ class CLI:
     def _get_manual_dice(self):
         """ ask user for number of integers, check if the input fits the
         current test and save them in the GameState """
+        prompt_string = None
 
         if self._state.selection.category in ("attr", "fight_talent", "advantage"):
             prompt_string = self._lang["input_1"]

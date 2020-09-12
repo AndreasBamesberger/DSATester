@@ -2,8 +2,10 @@
 import re
 import tkinter as tk
 
-class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attributes
+
+class GUI:  # pylint: disable=too-few-public-methods, too-many-instance-attributes
     """ creates window using tkinter, communicates with GameLogic using the dataclass GameState"""
+
     def __init__(self, game, state, configs, lang):
         self._game = game
         self._state = state
@@ -101,12 +103,12 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
 
         hero_input = self._text_inputs["hero_input"].get().lower()
         hero_options = self._game.get_hero_list()
-        templist = []
+        temp_list = []
         for _, value in enumerate(hero_options):
             if hero_input in value.lower():
-                templist.append(value)
-        if len(templist) == 1:
-            self._state.current_hero = templist[0]
+                temp_list.append(value)
+        if len(temp_list) == 1:
+            self._state.current_hero = temp_list[0]
 
     def _get_mod(self, mod_string):
         """ use regular expression to read the modifier as an integer from the
@@ -116,10 +118,10 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
 
         # check for integer using regex
         # regex:
-            # ^, $: match from start to end of string
-            # -?: match 0 or 1 '-' signs
-            # \d+: match 1 or more integers
-        pattern = "^-?\d+$" #pylint: disable=anomalous-backslash-in-string
+        # ^, $: match from start to end of string
+        # -?: match 0 or 1 '-' signs
+        # \d+: match 1 or more integers
+        pattern = r"^-?\d+$"
 
         if re.match(pattern, mod_string):
             self._state.mod = int(mod_string)
@@ -164,12 +166,12 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
                 if self._state.mod + self._state.selection.value < 0:
                     # value string example "8 -> 5"
                     value_string = str(self._state.selection.value) + " -> " + \
-                        str(self._state.selection.value + self._state.mod)
+                                   str(self._state.selection.value + self._state.mod)
                     # attrs_string example: "KL(14->12), IN(13->11), FF(12->10)"
-                    attrs_list = [i.abbr + '(' + str(i.value) + "->" + \
-                        str(i.modified) + ')' for _, i in enumerate(self._state.attrs)]
+                    attrs_list = [i.abbr + '(' + str(i.value) + "->" +
+                                  str(i.modified) + ')' for _, i in enumerate(self._state.attrs)]
                 else:
-                    attrs_list = [i.abbr + '(' + str(i.value) + ')' for _, i in \
+                    attrs_list = [i.abbr + '(' + str(i.value) + ')' for _, i in
                                   enumerate(self._state.attrs)]
                     value_string = str(self._state.selection.value)
                 attrs_string = ", ".join(map(str, attrs_list))
@@ -253,7 +255,7 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
                 self._printable_options.append(str(len(self._state.option_list)) + " matches\n")
 
                 for _, value in enumerate(self._state.option_list):
-#                    option_string = "{0} ({1})".format(value.name, value.category)
+                    #                    option_string = "{0} ({1})".format(value.name, value.category)
                     option_string = "{0} ({1})".format(value.name, self._lang[value.category])
                     self._printable_options.append(option_string)
 
@@ -266,7 +268,7 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
                 # if more than 1 entries match but 1 entry matches the user input
                 # exactly, this entry is used for the current test
                 elif self._state.option_list and self._state.test_input.lower() \
-                    == self._state.option_list[0].name.lower():
+                        == self._state.option_list[0].name.lower():
                     self._state.selection = self._state.option_list[0]
                 else:
                     self._state.selection = None
@@ -286,7 +288,7 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
 
         return True
 
-    def _setup_window(self): # pylint: disable=too-many-locals
+    def _setup_window(self):  # pylint: disable=too-many-locals
         """ clear all widgets and, based on current test category, set up screen again """
 
         format_dict = {"none": self._setup_input_screen,
@@ -422,14 +424,13 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
-        inputs = []
+        inputs = list()
         inputs.append(["mod", 20, 5, 1, tk.W])
 
         if self._state.dice == "manual":
             inputs.append(["dice_input", 20, 6, 1, tk.W])
 
         inputs.append(["desc", 20, 13, 1, tk.W])
-
 
         buttons = [["test", self._lang["button_test"],
                     len(self._lang["button_test"]),
@@ -477,11 +478,10 @@ class GUI(): # pylint: disable=too-few-public-methods, too-many-instance-attribu
         elif self._state.selection.category == "spell":
             outputs.append(["tested", self._lang["test_spell"], 8, 0, tk.E])
 
-
         # pressing the tab key while inside a text entry jumps to the next one
         # in the list. because of this, this list has to be created in the
         # order the entries appear on screen.
-        inputs = []
+        inputs = list()
         inputs.append(["mod", 20, 5, 1, tk.W])
 
         if self._state.dice == "manual":

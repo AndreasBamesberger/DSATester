@@ -1,32 +1,34 @@
 """ file that holds GameLogic and GameState """
-import random # for dice rolls
-import csv # to write into file
-import os # to check if file already exists
-import datetime # to log time of dice roll
-import xml.etree.ElementTree as ET # to parse input xml file
-from collections import namedtuple
-from dataclasses import dataclass # to create GameState
-import operator # to subtract list from list
-import copy # to make copies of attributo and sinnenschaerfe
+import copy  # to make copies of attributo and sinnenschaerfe
+import csv  # to write into file
+import datetime  # to log time of dice roll
+import operator  # to subtract list from list
+import os  # to check if file already exists
+import random  # for dice rolls
 import re
-from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent, \
-                                  Advantage, SpecialSkill, Misc
+import xml.etree.ElementTree  # to parse input xml file
+from collections import namedtuple
+from dataclasses import dataclass  # to create GameState
+
+from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent, Advantage, SpecialSkill, Misc
+
 
 @dataclass
-class GameState: # pylint: disable=too-many-instance-attributes
+class GameState:  # pylint: disable=too-many-instance-attributes
     """ dataclass used to transfer state of game between GameLogic and interfaces """
-    save: bool = False        # export roll to csv if True
-    dice: str = None          # "auto" or "manual" whether dice rolls are typed in or calculated
+    save: bool = False  # export roll to csv if True
+    dice: str = None  # "auto" or "manual" whether dice rolls are typed in or calculated
     current_hero: str = None  # which hero file will be evaluated
-    counter: int = 1          # increases with every saved dice roll
-    attrs: list = None        # 1-3 attrs related to skill, spell
-    mod: int = None           # test modifier input by user, positive makes test easier
-    rolls: tuple = None       # calculated or manually input dice rolls
-    result: int = None        # success if >= 0
-    desc: str = None          # text to save in csv
-    test_input: str = None    # user input to match tests to or declare misc test
+    counter: int = 1  # increases with every saved dice roll
+    attrs: list = None  # 1-3 attrs related to skill, spell
+    mod: int = None  # test modifier input by user, positive makes test easier
+    rolls: tuple = None  # calculated or manually input dice rolls
+    result: int = None  # success if >= 0
+    desc: str = None  # text to save in csv
+    test_input: str = None  # user input to match tests to or declare misc test
     option_list: list = None  # list of tests matching first input
-    selection: list = None    # single entry from option_list
+    selection: list = None  # single entry from option_list
+
 
 # data type for every attribute related to a skill/spell test
 SkillAttr = namedtuple("SkillAttr", ["abbr", "value", "modified", "remaining"])
@@ -41,6 +43,7 @@ Hero = namedtuple("Hero", ["name",
                            "advantages",
                            "special_skills"])
 
+
 class GameLogic:
     """ DSA 4.1 rules for testing, called upon by interfaces. reads xml files,
     generates dice, performs tests, saves results in csv file """
@@ -52,7 +55,7 @@ class GameLogic:
         self._hero_folder = configs["hero folder"]
         self._lang = lang
 
-        self._heroes = {} # entries are namedtuple Hero
+        self._heroes = {}  # entries are namedtuple Hero
         self._xml_list = []
 
         self._get_all_xml()
@@ -61,7 +64,7 @@ class GameLogic:
 
     def _get_all_xml(self):
         """ checks current working directory for xml files, reads all their
-        relevant entries and stores them (using datatypes specified in
+        relevant entries and stores them (using data types specified in
         dsa_data.py) as separate heroes (namedtuple Hero) """
 
         # add all xml files to list
@@ -103,7 +106,7 @@ class GameLogic:
         output: root:xml.etree.ElementTree.Element """
         filepath = os.path.join(self._hero_folder, hero_file)
 
-        tree = ET.parse(filepath)
+        tree = xml.etree.ElementTree.parse(filepath)
         root = tree.getroot()
         return root
 
@@ -126,9 +129,10 @@ class GameLogic:
 
         # if file does not exist, add first row of column names
         if not os.path.isfile(self._result_csv):
-            with open(self._result_csv, "w", encoding="utf-8") as csvfile:
-                filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL) #pylint: disable=line-too-long
-                filewriter.writerow(columns)
+            with open(self._result_csv, "w", encoding="utf-8") as csv_file:
+                file_writer = csv.writer(csv_file, delimiter=',',
+                                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                file_writer.writerow(columns)
             return True
         return False
 
@@ -149,9 +153,11 @@ class GameLogic:
         if state.selection.category in ("skill", "spell"):
             if state.mod + state.selection.value < 0:
                 # attrs_string example: "KL(14->12), IN(13->11), FF(12->10)"
-                attrs_list = [i.abbr + '(' + str(i.value) + "->" + str(i.modified) + ')' for _, i in enumerate(state.attrs)] # pylint: disable=line-too-long
+                attrs_list = [i.abbr + '(' + str(i.value) + "->" +
+                              str(i.modified) + ')' for _, i in enumerate(state.attrs)]
             else:
-                attrs_list = [i.abbr + '(' + str(i.value) + ')' for _, i in enumerate(state.attrs)] # pylint: disable=line-too-long
+                attrs_list = [i.abbr + '(' + str(i.value) + ')' for _, i in
+                              enumerate(state.attrs)]
             attrs_string = "; ".join(map(str, attrs_list))
         else:
             attrs_string = ''
@@ -164,7 +170,6 @@ class GameLogic:
         desc = desc.replace(",", ";")
 
         timestamp = datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-
 
         save_values = [state.current_hero + ".xml",
                        state.selection.category,
@@ -179,12 +184,12 @@ class GameLogic:
                        timestamp,
                        state.dice]
 
-        with open(self._result_csv, "a", encoding="utf-8") as csvfile:
-            filewriter = csv.writer(csvfile,
-                                    delimiter=',',
-                                    quotechar='|',
-                                    quoting=csv.QUOTE_MINIMAL)
-            filewriter.writerow(save_values)
+        with open(self._result_csv, "a", encoding="utf-8") as csv_file:
+            file_writer = csv.writer(csv_file,
+                                     delimiter=',',
+                                     quotechar='|',
+                                     quoting=csv.QUOTE_MINIMAL)
+            file_writer.writerow(save_values)
 
         # only saved rolls increase the roll count
         state.counter += 1
@@ -306,8 +311,7 @@ class GameLogic:
             output_list.append(SpecialSkill(value))
         return output_list
 
-
-    def test(self, state): # pylint: disable=too-many-branches
+    def test(self, state):  # pylint: disable=too-many-branches
         """ execute the correct test method based on state.category
         input: state:GameState
         output: state:Gamestate """
@@ -368,7 +372,7 @@ class GameLogic:
                     attr_abbrs.append(attr.abbr)
 
         # Ritualkenntnis: Hexe has no values, can't be tested
-        if attr_abbrs == []:
+        if not attr_abbrs:
             return state
 
         # save original values in case a negative modifier lowers them
@@ -416,7 +420,6 @@ class GameLogic:
         dice_eyes = state.selection.dice_eyes
 
         if dice_count > 200:
-#            print("Too many dice to roll")
             print(self._lang["too_many_dice"])
             return state
 
@@ -436,8 +439,8 @@ class GameLogic:
         input: dice_count:int, how many numbers to generate
                min_value:int, lowest possible number
                max_value:int, highest possible number
-        ouput: rolls:list, list of generated numbers """
-        rolls = [random.randint(min_value, max_value) for i in range(dice_count)]
+        output: rolls:list, list of generated numbers """
+        rolls = [random.randint(min_value, max_value) for _ in range(dice_count)]
         return rolls
 
     def autocomplete(self, state):
@@ -453,7 +456,6 @@ class GameLogic:
         except KeyError:
             # this can occur if (using the GUI) user types in a test before a
             # matching a hero file
-#            print("KeyError, no hero matched")
             print(self._lang["key_error"])
             return state
 
@@ -481,12 +483,12 @@ class GameLogic:
 
     def get_hero_list(self):
         """ create a list of all available hero files to show to user in interface
-        output: outlist:list, list of hero names"""
-        outlist = []
+        output: out_list:list, list of hero names"""
+        out_list = []
         for key, _ in self._heroes.items():
-            outlist.append(key)
-        outlist.sort()
-        return outlist
+            out_list.append(key)
+        out_list.sort()
+        return out_list
 
     def match_test_input(self, state):
         """ match the user test input with regular expressions to find a misc
@@ -497,15 +499,15 @@ class GameLogic:
 
         # check for misc dice input using regex
         # regex:
-           # ^, $: match from start to end of string
-           # \d+: match one or more integers
-           # [dDwW]: match one of those four letters
-           # [\+-]: match 0 or 1 plus or minus signs
-           # \d*: match 0 or any number of numbers
+        # ^, $: match from start to end of string
+        # \d+: match one or more integers
+        # [dDwW]: match one of those four letters
+        # [\+-]: match 0 or 1 plus or minus signs
+        # \d*: match 0 or any number of numbers
         # e.g. "3d20+5" -> '3', '20', '+', '5'
         #      "2d6" -> '2', '6', '', ''
 
-        pattern = "^(\d+)[dDwW](\d+)([\+-]?)(\d*)$" #pylint: disable=anomalous-backslash-in-string
+        pattern = r"^(\d+)[dDwW](\d+)([\+-]?)(\d*)$"
         match = re.match(pattern, state.test_input)
         if match and int(match.groups()[0]) > 0 and int(match.groups()[1]) > 0:
             matched = match.groups()
@@ -532,10 +534,12 @@ class GameLogic:
         output: state:GameState """
 
         # regex:
-            # ^, $: match from start to end of string
-            # \d+: match one or more integers
-        pattern = "^\d+$" #pylint: disable=anomalous-backslash-in-string
-        outlist = []
+        # ^, $: match from start to end of string
+        # \d+: match one or more integers
+        pattern = r"^\d+$"
+        out_list = []
+        dice_count = None
+        dice_max = None
 
         # attribute and fight talent tests take 1D20
         if state.selection.category in ("attr", "fight_talent", "advantage"):
@@ -558,9 +562,9 @@ class GameLogic:
             match = re.match(pattern, item)
             if match:
                 if int(item) in range(1, dice_max + 1):
-                    outlist.append(int(item))
+                    out_list.append(int(item))
 
-        state.rolls = outlist
+        state.rolls = out_list
 
         if len(state.rolls) != dice_count:
             state.rolls = None

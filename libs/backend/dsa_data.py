@@ -10,6 +10,7 @@ abbr = {'Mut': 'MU',
         'Konstitution': 'KO',
         'Körperkraft': 'KK'}
 
+
 def match_attrs(attrs_string):
     """ the attributes related to a skill test are stored as 3 abbreviations,
      e.g. " (KL/IN/CH)", this function separates them into a list with 3 entries
@@ -18,11 +19,12 @@ def match_attrs(attrs_string):
      output: output_list:list, the 3 separated values """
 
     # regex: " (KL/IN/CH)" -> KL, IN, CH
-        # ^, $: match from start to end of string
-        # \s*: match any number of whitespaces
-        # \(, \): match the parentheses around the expression
-        # .{2}: match any two characters
-    pattern = "^\s*\((.{2})/(.{2})/(.{2})\)$" #pylint: disable=anomalous-backslash-in-string
+    # ^, $: match from start to end of string
+    # \s*: match any number of whitespaces
+    # \(, \): match the parentheses around the expression
+    # .{2}: match any two characters
+    pattern = r'^\s*\((.{2})/(.{2})/(.{2})\)$'
+    output_list = None
 
     match = re.match(pattern, attrs_string)
     if match:
@@ -30,8 +32,10 @@ def match_attrs(attrs_string):
 
     return output_list
 
-class Misc: # pylint: disable=too-few-public-methods
+
+class Misc:  # pylint: disable=too-few-public-methods
     """ object for misc dice sum tests """
+
     def __init__(self, dice_count, dice_eyes):
         self.name = None
         self.value = None
@@ -40,18 +44,19 @@ class Misc: # pylint: disable=too-few-public-methods
         self.dice_eyes = dice_eyes
 
     def __repr__(self):
-        outstring = (f"Dice sum test\n"
-                     f"\tdice count: {self.dice_count}\n"
-                     f"\tdice eyes:  {self.dice_eyes}\n")
-        return outstring
+        out_string = (f"Dice sum test\n"
+                      f"\tdice count: {self.dice_count}\n"
+                      f"\tdice eyes:  {self.dice_eyes}\n")
+        return out_string
 
 
-class Attribute: # pylint: disable=too-many-instance-attributes, too-few-public-methods
+class Attribute:  # pylint: disable=too-many-instance-attributes, too-few-public-methods
     """object for attributes like Mut, Klugheit etc"""
+
     def __init__(self, attr_entry):
         self.category = "attr"
         attr_dict = attr_entry.attrib
-    # not every attribute entry has all of these values
+        # not every attribute entry has all of these values
         try:
             self.name = attr_dict['name']
         except KeyError:
@@ -93,24 +98,26 @@ class Attribute: # pylint: disable=too-many-instance-attributes, too-few-public-
                 pass
 
     def __repr__(self):
-        outstring = (f"\tname: {self.name} ({self.abbr})\n"
-                     f"\tcategory: {self.category}\n"
-                     f"\tstart: {self.start}\n"
-                     f"\tmod:  {self.mod}\n"
-                     f"\tdict_value: {self.dict_value}\n"
-                     f"\tmeditation: {self.meditation}\n"
-                     f"\tmrmod: {self.mrmod}\n"
-                     f"\tkarmal: {self.karmal}\n"
-                     f"\tvalue: {self.value}\n")
-        return outstring
+        out_string = (f"\tname: {self.name} ({self.abbr})\n"
+                      f"\tcategory: {self.category}\n"
+                      f"\tstart: {self.start}\n"
+                      f"\tmod:  {self.mod}\n"
+                      f"\tdict_value: {self.dict_value}\n"
+                      f"\tmeditation: {self.meditation}\n"
+                      f"\tmrmod: {self.mrmod}\n"
+                      f"\tkarmal: {self.karmal}\n"
+                      f"\tvalue: {self.value}\n")
+        return out_string
 
-class Skill:# pylint: disable=too-few-public-methods
+
+class Skill:  # pylint: disable=too-few-public-methods
     """object for skills like Zechen, Schwimmen etc"""
+
     def __init__(self, skill_entry):
         self.category = "skill"
         skill_dict = skill_entry.attrib
 
-    # not every attribute entry has all of these values
+        # not every attribute entry has all of these values
         try:
             self.learn = skill_dict['lernmethode']
         except KeyError:
@@ -128,7 +135,6 @@ class Skill:# pylint: disable=too-few-public-methods
         except KeyError:
             self.value = None
 
-
         if self.dict_tests is not None:
             self.attrs = match_attrs(self.dict_tests)
 
@@ -138,24 +144,26 @@ class Skill:# pylint: disable=too-few-public-methods
             self.handicap = None
 
     def __repr__(self):
-        outstring = (f"\tname: {self.name}\n"
-                     f"\tcategory: {self.category}\n"
-                     f"\tlearn: {self.learn}\n"
-                     f"\tdict_tests: {self.dict_tests}\n"
-                     f"\tvalue: {self.value}\n"
-                     f"\ttest1: {self.attrs[0]}\n"
-                     f"\ttest2: {self.attrs[1]}\n"
-                     f"\ttest3: {self.attrs[2]}\n"
-                     f"\tbe: {self.handicap}\n")
-        return outstring
+        out_string = (f"\tname: {self.name}\n"
+                      f"\tcategory: {self.category}\n"
+                      f"\tlearn: {self.learn}\n"
+                      f"\tdict_tests: {self.dict_tests}\n"
+                      f"\tvalue: {self.value}\n"
+                      f"\ttest1: {self.attrs[0]}\n"
+                      f"\ttest2: {self.attrs[1]}\n"
+                      f"\ttest3: {self.attrs[2]}\n"
+                      f"\tbe: {self.handicap}\n")
+        return out_string
 
-class Spell:# pylint: disable=too-many-instance-attributes, too-few-public-methods
+
+class Spell:  # pylint: disable=too-many-instance-attributes, too-few-public-methods
     """object for spells like attributo, radau etc"""
-    def __init__(self, spell_entry): # pylint: disable=too-many-branches, too-many-statements
+
+    def __init__(self, spell_entry):  # pylint: disable=too-many-branches, too-many-statements
         self.category = "spell"
         spell_dict = spell_entry.attrib
 
-    # not every attribute entry has all of these values
+        # not every attribute entry has all of these values
         try:
             self.comments = spell_dict['anmerkungen']
         except KeyError:
@@ -217,28 +225,30 @@ class Spell:# pylint: disable=too-many-instance-attributes, too-few-public-metho
             self.attrs = match_attrs(self.dict_tests)
 
     def __repr__(self):
-        outstring = (f"\tname: {self.name}\n"
-                     f"\tcategory: {self.category}\n"
-                     f"\tcomments: {self.comments}\n"
-                     f"\torigin: {self.origin}\n"
-                     f"\tk: {self.k}\n"
-                     f"\tcost: {self.cost}\n"
-                     f"\tlearn: {self.learn}\n"
-                     f"\tdict_tests: {self.dict_tests}\n"
-                     f"\trange: {self.range}\n"
-                     f"\trepresentation: {self.representation}\n"
-                     f"\tvalue: {self.value}\n"
-                     f"\tvariant: {self.variant}\n"
-                     f"\teffect_time: {self.effect_time}\n"
-                     f"\tcharge_time: {self.charge_time}\n"
-                     f"\tcomment: {self.comment}\n"
-                     f"\ttest1: {self.attrs[0]}\n"
-                     f"\ttest2: {self.attrs[1]}\n"
-                     f"\ttest3: {self.attrs[2]}\n")
-        return outstring
+        out_string = (f"\tname: {self.name}\n"
+                      f"\tcategory: {self.category}\n"
+                      f"\tcomments: {self.comments}\n"
+                      f"\torigin: {self.origin}\n"
+                      f"\tk: {self.k}\n"
+                      f"\tcost: {self.cost}\n"
+                      f"\tlearn: {self.learn}\n"
+                      f"\tdict_tests: {self.dict_tests}\n"
+                      f"\trange: {self.range}\n"
+                      f"\trepresentation: {self.representation}\n"
+                      f"\tvalue: {self.value}\n"
+                      f"\tvariant: {self.variant}\n"
+                      f"\teffect_time: {self.effect_time}\n"
+                      f"\tcharge_time: {self.charge_time}\n"
+                      f"\tcomment: {self.comment}\n"
+                      f"\ttest1: {self.attrs[0]}\n"
+                      f"\ttest2: {self.attrs[1]}\n"
+                      f"\ttest3: {self.attrs[2]}\n")
+        return out_string
 
-class FightTalent: # pylint: disable= too-few-public-methods
+
+class FightTalent:  # pylint: disable= too-few-public-methods
     """ object for fight talents like raufen, ringen, hiebwaffen """
+
     def __init__(self, fight_entry, mode):
         self.category = "fight_talent"
         # for every fight talent, offensive and defensive tests are possible
@@ -263,17 +273,19 @@ class FightTalent: # pylint: disable= too-few-public-methods
                 self.value = None
 
     def __repr__(self):
-        outstring = (f"\tname: {self.name}\n"
-                     f"\tcategory: {self.category}\n"
-                     f"\tvalue: {self.value}\n")
-        return outstring
+        out_string = (f"\tname: {self.name}\n"
+                      f"\tcategory: {self.category}\n"
+                      f"\tvalue: {self.value}\n")
+        return out_string
 
-class Advantage: # pylint: disable= too-few-public-methods
+
+class Advantage:  # pylint: disable= too-few-public-methods
     """ object for (dis)advantages like goldgier, neugier """
+
     def __init__(self, advantage_entry):
         self.category = "advantage"
-        #example structure of advantages
-        #<vt>
+        # example structure of advantages
+        # <vt>
         #    <vorteil name="Vollzauberer"/>
         #    <vorteil name="Feste Gewohnheit"/>
         #    <vorteil name="Jähzorn" value="6"/>
@@ -282,13 +294,13 @@ class Advantage: # pylint: disable= too-few-public-methods
         #        <auswahl position="0" value="6"/>
         #        <auswahl position="1" value="Misstrauen gegen Obrigkeit"/>
         #    </vorteil>
-        #</vt>
+        # </vt>
 
         try:
             self.name = advantage_entry.attrib["name"]
         except KeyError:
             self.name = None
-        try: # if this works then entry is a "vorurteile gegen"
+        try:  # if this works then entry is a "vorurteile gegen"
             try:
                 self.value = int(advantage_entry[0].attrib["value"])
             except KeyError:
@@ -304,17 +316,19 @@ class Advantage: # pylint: disable= too-few-public-methods
                 self.value = None
 
     def __repr__(self):
-        outstring = (f"\tname: {self.name}\n"
-                     f"\tcategory: {self.category}\n"
-                     f"\tvalue: {self.value}\n")
-        return outstring
+        out_string = (f"\tname: {self.name}\n"
+                      f"\tcategory: {self.category}\n"
+                      f"\tvalue: {self.value}\n")
+        return out_string
 
-class SpecialSkill: # pylint: disable=too-few-public-methods
+
+class SpecialSkill:  # pylint: disable=too-few-public-methods
     """ object for special skills like kulturkunde, wuchtschlag """
+
     def __init__(self, special_skill_entry):
         self.category = "special_skill"
-        #example structure of special skills
-        #<sf>
+        # example structure of special skills
+        # <sf>
         #    <sonderfertigkeit name="Ausweichen I"/>
         #    <sonderfertigkeit name="Kulturkunde">
         #        <kultur name="Orks"/>
@@ -322,13 +336,13 @@ class SpecialSkill: # pylint: disable=too-few-public-methods
         #    <sonderfertigkeit name="Sturmangriff"/>
         #    <sonderfertigkeit name="Waldkundig"/>
         #    <sonderfertigkeit name="Wuchtschlag"/>
-        #</sf>
+        # </sf>
 
         try:
             self.name = special_skill_entry.attrib["name"]
         except KeyError:
             self.name = None
-        try: # if this works then entry is a "vorurteile gegen"
+        try:  # if this works then entry is a "vorurteile gegen"
             for _, value in enumerate(special_skill_entry):
                 self.name += ", " + value.attrib["name"]
         except IndexError:
@@ -338,6 +352,6 @@ class SpecialSkill: # pylint: disable=too-few-public-methods
                 self.value = None
 
     def __repr__(self):
-        outstring = (f"\tname: {self.name}\n"
-                     f"\tcategory: {self.category}\n")
-        return outstring
+        out_string = (f"\tname: {self.name}\n"
+                      f"\tcategory: {self.category}\n")
+        return out_string
