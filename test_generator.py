@@ -1,9 +1,10 @@
 """ generate random tests to test backend and visualisation tools """
 
 import random
+
+from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent
 from libs.backend.dsa_game import GameLogic, GameState
 from libs.languages.languages import english
-from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent
 
 if __name__ == '__main__':
     configs = {"output file": "output.csv",
@@ -22,13 +23,13 @@ if __name__ == '__main__':
 
     for i in range(200):
 
-        state.current_hero = list(game.heroes)[random.randint(0, len(game.heroes)-1)]
+        state.current_hero = list(game._heroes)[random.randint(0, len(game._heroes) - 1)]
 
-        hero = game.heroes[state.current_hero]
+        hero = game._heroes[state.current_hero]
 
         entry_list = hero.attrs[0:8] + hero.skills + hero.spells + hero.fight_talents
 
-        random_test = entry_list[random.randint(0, len(entry_list)-1)]
+        random_test = entry_list[random.randint(0, len(entry_list) - 1)]
         if isinstance(random_test, Attribute):
             state.category = "attr"
         elif isinstance(random_test, Skill):
