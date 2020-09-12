@@ -1,4 +1,5 @@
-""" this file features a class for every hero entry that is covered by DSATester """
+""" this file features a class for every hero entry that is covered by
+DSATester (and also for misc dice sum) """
 import re
 
 abbr = {'Mut': 'MU',
@@ -48,6 +49,8 @@ class Misc: # pylint: disable=too-few-public-methods
 
 class Attribute: # pylint: disable=too-many-instance-attributes, too-few-public-methods
     """object for attributes like Mut, Klugheit etc"""
+    # example structure of attributes
+    # <eigenschaft mod="1" name="Intuition" startwert="11" value="11"/>
     def __init__(self, attr_entry):
         self.category = "attr"
         attr_dict = attr_entry.attrib
@@ -106,6 +109,9 @@ class Attribute: # pylint: disable=too-many-instance-attributes, too-few-public-
 
 class Skill:# pylint: disable=too-few-public-methods
     """object for skills like Zechen, Schwimmen etc"""
+    # example structure of skills
+    # <talent be="BEx2" lernmethode="Gegenseitiges Lehren" name="Schwimmen"
+    # probe=" (GE/KO/KK)" value="1"/>
     def __init__(self, skill_entry):
         self.category = "skill"
         skill_dict = skill_entry.attrib
@@ -151,6 +157,11 @@ class Skill:# pylint: disable=too-few-public-methods
 
 class Spell:# pylint: disable=too-many-instance-attributes, too-few-public-methods
     """object for spells like attributo, radau etc"""
+    # example structure of spells
+    # <zauber anmerkungen="" hauszauber="false" k="C" kosten=""
+    # lernmethode="Gegenseitiges Lehren" name="Hexenknoten" probe=" (KL/IN/CH)"
+    # reichweite="" repraesentation="Hexe" value="3" variante=""
+    # wirkungsdauer="" zauberdauer="" zauberkommentar=""/>
     def __init__(self, spell_entry): # pylint: disable=too-many-branches, too-many-statements
         self.category = "spell"
         spell_dict = spell_entry.attrib
@@ -239,6 +250,11 @@ class Spell:# pylint: disable=too-many-instance-attributes, too-few-public-metho
 
 class FightTalent: # pylint: disable= too-few-public-methods
     """ object for fight talents like raufen, ringen, hiebwaffen """
+    # example structure of fight talents
+    # <kampfwerte name="Hiebwaffen">
+    #     <attacke value="6"/>
+    #     <parade value="6"/>
+    # </kampfwerte>
     def __init__(self, fight_entry, mode):
         self.category = "fight_talent"
         # for every fight talent, offensive and defensive tests are possible
@@ -271,7 +287,6 @@ class FightTalent: # pylint: disable= too-few-public-methods
 class Advantage: # pylint: disable= too-few-public-methods
     """ object for (dis)advantages like goldgier, neugier """
     def __init__(self, advantage_entry):
-        self.category = "advantage"
         #example structure of advantages
         #<vt>
         #    <vorteil name="Vollzauberer"/>
@@ -283,6 +298,8 @@ class Advantage: # pylint: disable= too-few-public-methods
         #        <auswahl position="1" value="Misstrauen gegen Obrigkeit"/>
         #    </vorteil>
         #</vt>
+
+        self.category = "advantage"
 
         try:
             self.name = advantage_entry.attrib["name"]
