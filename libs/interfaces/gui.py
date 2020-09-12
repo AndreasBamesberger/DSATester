@@ -3,7 +3,7 @@ import re
 import tkinter as tk
 
 
-class GUI:  # pylint: disable=too-few-public-methods, too-many-instance-attributes
+class GUI:
     """ creates window using tkinter, communicates with GameLogic using the dataclass GameState"""
 
     def __init__(self, game, state, configs, lang):
@@ -288,7 +288,7 @@ class GUI:  # pylint: disable=too-few-public-methods, too-many-instance-attribut
 
         return True
 
-    def _setup_window(self):  # pylint: disable=too-many-locals
+    def _setup_window(self):
         """ clear all widgets and, based on current test category, set up screen again """
 
         format_dict = {"none": self._setup_input_screen,

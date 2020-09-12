@@ -2,10 +2,10 @@
 from libs.backend.dsa_game import GameLogic
 
 if __name__ == '__main__':
-    test_count = 10000000  # pylint: disable=invalid-name
-    dice_count = 3  # pylint: disable=invalid-name
-    min_value = 1  # pylint: disable=invalid-name
-    max_value = 20  # pylint: disable=invalid-name
+    test_count = 10000000
+    dice_count = 3
+    min_value = 1
+    max_value = 20
 
     rolls = [GameLogic._roll_dice(dice_count, min_value, max_value) for i in range(test_count)]
 
@@ -22,4 +22,4 @@ if __name__ == '__main__':
 
     for i in range(max_value):
         print("{0:2d}: {1:d}, {2:3.4f}%".format(i + 1, out_list[i], (
-                    out_list[i] / (dice_count * test_count)) * 100))  # pylint: disable=line-too-long
+                    out_list[i] / (dice_count * test_count)) * 100))

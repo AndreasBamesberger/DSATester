@@ -2,15 +2,14 @@
 
 import random
 
-from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent
 from libs.backend.dsa_game import GameLogic, GameState
 from libs.languages.languages import english
 
 if __name__ == '__main__':
-    configs = {"output file": "output.csv",
+    configs = {"output file": "../../output.csv",
                "interface": "CLI",
                "dice": "auto",
-               "hero folder": "hero_files",
+               "hero folder": "../../hero_files",
                "language": "english",
                "font size": 14,
                "width": 200,
@@ -27,18 +26,13 @@ if __name__ == '__main__':
 
         hero = game._heroes[state.current_hero]
 
-        entry_list = hero.attrs[0:8] + hero.skills + hero.spells + hero.fight_talents
+        entry_list = hero.attrs[0:8]
+        entry_list += hero.skills
+        entry_list += hero.spells
+        entry_list += hero.fight_talents
+        entry_list += hero.advantages
 
-        random_test = entry_list[random.randint(0, len(entry_list) - 1)]
-        if isinstance(random_test, Attribute):
-            state.category = "attr"
-        elif isinstance(random_test, Skill):
-            state.category = "skill"
-        elif isinstance(random_test, Spell):
-            state.category = "spell"
-        elif isinstance(random_test, FightTalent):
-            state.category = "fight_talent"
-        state.name = random_test.name
+        state.selection = entry_list[random.randint(0, len(entry_list) - 1)]
 
         state.mod = random.randint(-5, 5)
 

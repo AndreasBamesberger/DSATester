@@ -14,7 +14,7 @@ from libs.backend.dsa_data import Attribute, Skill, Spell, FightTalent, Advantag
 
 
 @dataclass
-class GameState:  # pylint: disable=too-many-instance-attributes
+class GameState:
     """ dataclass used to transfer state of game between GameLogic and interfaces """
     save: bool = False  # export roll to csv if True
     dice: str = None  # "auto" or "manual" whether dice rolls are typed in or calculated
@@ -311,7 +311,7 @@ class GameLogic:
             output_list.append(SpecialSkill(value))
         return output_list
 
-    def test(self, state):  # pylint: disable=too-many-branches
+    def test(self, state):
         """ execute the correct test method based on state.category
         input: state:GameState
         output: state:Gamestate """

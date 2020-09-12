@@ -33,7 +33,7 @@ def match_attrs(attrs_string):
     return output_list
 
 
-class Misc:  # pylint: disable=too-few-public-methods
+class Misc:
     """ object for misc dice sum tests """
 
     def __init__(self, dice_count, dice_eyes):
@@ -50,7 +50,7 @@ class Misc:  # pylint: disable=too-few-public-methods
         return out_string
 
 
-class Attribute:  # pylint: disable=too-many-instance-attributes, too-few-public-methods
+class Attribute:
     """object for attributes like Mut, Klugheit etc"""
 
     def __init__(self, attr_entry):
@@ -110,7 +110,7 @@ class Attribute:  # pylint: disable=too-many-instance-attributes, too-few-public
         return out_string
 
 
-class Skill:  # pylint: disable=too-few-public-methods
+class Skill:
     """object for skills like Zechen, Schwimmen etc"""
 
     def __init__(self, skill_entry):
@@ -156,10 +156,10 @@ class Skill:  # pylint: disable=too-few-public-methods
         return out_string
 
 
-class Spell:  # pylint: disable=too-many-instance-attributes, too-few-public-methods
+class Spell:
     """object for spells like attributo, radau etc"""
 
-    def __init__(self, spell_entry):  # pylint: disable=too-many-branches, too-many-statements
+    def __init__(self, spell_entry):
         self.category = "spell"
         spell_dict = spell_entry.attrib
 
@@ -246,7 +246,7 @@ class Spell:  # pylint: disable=too-many-instance-attributes, too-few-public-met
         return out_string
 
 
-class FightTalent:  # pylint: disable= too-few-public-methods
+class FightTalent:
     """ object for fight talents like raufen, ringen, hiebwaffen """
 
     def __init__(self, fight_entry, mode):
@@ -279,7 +279,7 @@ class FightTalent:  # pylint: disable= too-few-public-methods
         return out_string
 
 
-class Advantage:  # pylint: disable= too-few-public-methods
+class Advantage:
     """ object for (dis)advantages like goldgier, neugier """
 
     def __init__(self, advantage_entry):
@@ -322,7 +322,7 @@ class Advantage:  # pylint: disable= too-few-public-methods
         return out_string
 
 
-class SpecialSkill:  # pylint: disable=too-few-public-methods
+class SpecialSkill:
     """ object for special skills like kulturkunde, wuchtschlag """
 
     def __init__(self, special_skill_entry):
