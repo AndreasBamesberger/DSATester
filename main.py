@@ -1,4 +1,4 @@
-""" reads config file and starts interface """
+""" Reads config file and starts interface """
 from libs.interfaces.cli import CLI
 from libs.interfaces.gui import GUI
 from libs.backend.dsa_game import GameLogic, GameState
@@ -6,11 +6,20 @@ from libs.languages.languages import english, german
 
 
 def read_config(config_name):
-    """ Opens text file, looks for keywords and creates a dictionary entry for each match.
-    Input: config_name: str, the name of the file, e.g. 'config.txt'
-    Output: out_dict: dict, the created dictionary """
+    """
+    Opens text file, looks for keywords and creates a dictionary entry for
+    each match.
+
+    Parameters:
+        config_name (str): The name of the file, e.g. 'config.txt'
+
+    Returns:
+        out_dict (dict): The created dictionary
+    """
+
     out_dict = {}
-    str_entries = ("output file", "interface", "dice", "hero folder", "language")
+    str_entries = ("output file", "interface",
+                   "dice", "hero folder", "language")
     int_entries = ("font size", "width", "height")
     float_entries = "scaling"
     with open(config_name, "r", encoding="utf-8") as configfile:

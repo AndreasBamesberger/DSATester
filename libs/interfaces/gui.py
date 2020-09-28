@@ -4,7 +4,104 @@ import tkinter as tk
 
 
 class GUI:
-    """ creates window using tkinter, communicates with GameLogic using the dataclass GameState"""
+    """
+    Creates window using tkinter, communicates with GameLogic using the
+    dataclass GameState
+
+    ...
+
+    Attributes
+    ---------
+    _game: libs.backend.dsa_game.GameLogic
+        instance of the GameLogic class, does all the DSA game mechanics
+    _state: libs.backend.dsa_game.GameState
+        contains user input, selected test, rolls, result
+    _font: str
+        font of text in tkinter window
+    _scaling: float
+        scaling factor of the tkinter window, for different screen resolutions
+    _width: int
+        horizontal tkinter window resolution
+    _height: int
+        vertical tkinter window resolution
+    _lang: dict
+        dictionary holding all strings that will be printed
+    _window: tkinter.Tk
+        the tkinter window object
+    _old_hero_input: str
+        variable to see if state/user hero input has changed
+    _printable_options: list
+        list of all possible hero entries matching user input
+    _text_outputs: dict
+        contains all tkinter text strings to be displayed
+    _text_inputs: dict
+        contains all tkinter text input objects
+    _buttons: dict
+        contains all tkinter button objects
+    _var_hero: tkinter.StringVar
+        the variable linked to the hero name text input box
+    _perm_input_hero: tkinter.Entry
+        the text input object for the hero name
+    _var_input: tkinter.StringVar
+        the variable linked to the test input text input box
+    _perm_input_test: tkinter.Entry
+        the text input object for the test name
+
+    Methods
+    ------
+
+    loop():
+        Gets executed by main.py, only executes the tkinter mainloop, every
+        change is event driven.
+    _reset():
+        Every variable of GameState back to None (save is set to False),
+        deletes user input typed into the test input field.
+    _clear_screen():
+        Destroy all widgets except for roll number, test input field and
+        hero input field.
+    _get_hero():
+        Gets user input from hero input field, gets all available heroes as
+        list from GameLogic and looks for a match. If only one hero matches the
+        input, this hero is selected for the test.
+    _get_mod(mod_string):
+        Use regular expression to read the modifier as an integer from the
+        given string. No match or empty string is interpreted as 0. The matched
+        integer is stored in GameState.mod.
+    _button_test():
+        Method that gets executed when "Test" button is clicked. Calls
+        GameLogic.test and displays result.
+    _button_save():
+        Gets executed when "Test" button is clicked. Runs
+        GameLogic.save_to_csv(), then calls _reset() and shows the updated
+        current roll number and the selected hero file.
+    _trace_hero():
+        Gets executed when the hero text input changes. Calls _get_hero().
+        If hero selection has changed the screen is reset. The full hero file
+        name is shown on screen.
+    _trace_test():
+        Gets executed when the test text input changes. Calls
+        GameLogic.match_test_input(). If test selection has changed the screen
+        is reset, then (based on the current test category) matching entries
+        and the hero file name are shown.
+    _setup_window():
+        Clear all widgets and, based on current test category, set up screen
+        again.
+    _setup_input_screen():
+        Create tkinter widgets for the input screen, when GameState.category is
+        None.
+    _setup_attr_screen():
+        Create tkinter widgets for the attribute test screen, when
+        GameState.category is attr.
+    _setup_skill_screen():
+        Create tkinter widgets for skill/spell tests, when GameState.category
+        is skill or spell.
+    _setup_misc_screen():
+        Create tkinter widgets for a misc dice sum test, when
+        GameState.category is misc.
+    _setup_special_skill_screen():
+        Create tkinter widgets for the special skill test screen, when
+        GameState.category is special_skill.
+    """
 
     def __init__(self, game, state, configs, lang):
         self._game = game
@@ -17,7 +114,8 @@ class GUI:
         self._lang = lang
 
         self._window = tk.Tk()
-        # create a predefined window size so that the window doesn't start really tiny
+        # create a predefined window size so that the window doesn't start
+        # really tiny
         self._window.geometry(str(self._width) + 'x' + str(self._height))
         self._window.tk.call('tk', 'scaling', self._scaling)
         self._window.title("DSATester")
@@ -57,7 +155,8 @@ class GUI:
         self._var_input.trace('w', self._trace_test)
 
         self._setup_window()
-        self._text_outputs["var_roll_nr"].configure(text=str(self._state.counter))
+        self._text_outputs["var_roll_nr"].configure(
+            text=str(self._state.counter))
 
     def loop(self):
         """ gets executed by main.py, only executes the tkinter mainloop, every
@@ -150,14 +249,20 @@ class GUI:
 
         if self._state.selection.category == "misc":
             self._text_outputs["var_rolls"].configure(text=str(rolls))
-            self._text_outputs["var_result"].configure(text=str(self._state.result))
+            self._text_outputs["var_result"].configure(
+                text=str(self._state.result))
 
-        if self._state.selection.category in ("attr", "fight_talent", "advantage"):
+        if self._state.selection.category in ("attr",
+                                              "fight_talent", "advantage"):
             if self._state.result is not None:
-                self._text_outputs["var_tested"].configure(text=self._state.selection.name)
-                self._text_outputs["var_value"].configure(text=str(self._state.selection.value))
-                self._text_outputs["var_rolls"].configure(text=str(self._state.rolls[0]))
-                self._text_outputs["var_result"].configure(text=str(self._state.result))
+                self._text_outputs["var_tested"].configure(
+                    text=self._state.selection.name)
+                self._text_outputs["var_value"].configure(
+                    text=str(self._state.selection.value))
+                self._text_outputs["var_rolls"].configure(
+                    text=str(self._state.rolls[0]))
+                self._text_outputs["var_result"].configure(
+                    text=str(self._state.result))
 
         if self._state.selection.category in ("skill", "spell"):
             if self._state.result is not None:
@@ -166,25 +271,33 @@ class GUI:
                 if self._state.mod + self._state.selection.value < 0:
                     # value string example "8 -> 5"
                     value_string = str(self._state.selection.value) + " -> " + \
-                                   str(self._state.selection.value + self._state.mod)
+                                   str(
+                                       self._state.selection.value +
+                                       self._state.mod)
                     # attrs_string example: "KL(14->12), IN(13->11), FF(12->10)"
                     attrs_list = [i.abbr + '(' + str(i.value) + "->" +
-                                  str(i.modified) + ')' for _, i in enumerate(self._state.attrs)]
+                                  str(i.modified) + ')' for _, i in
+                                  enumerate(self._state.attrs)]
                 else:
                     attrs_list = [i.abbr + '(' + str(i.value) + ')' for _, i in
                                   enumerate(self._state.attrs)]
                     value_string = str(self._state.selection.value)
                 attrs_string = ", ".join(map(str, attrs_list))
 
-                remaining_string = [i.remaining for _, i in enumerate(self._state.attrs)]
+                remaining_string = [i.remaining for _, i in
+                                    enumerate(self._state.attrs)]
                 remaining_string = ", ".join(map(str, remaining_string))
 
-                self._text_outputs["var_tested"].configure(text=self._state.selection.name)
-                self._text_outputs["var_tested_attrs"].configure(text=attrs_string)
+                self._text_outputs["var_tested"].configure(
+                    text=self._state.selection.name)
+                self._text_outputs["var_tested_attrs"].configure(
+                    text=attrs_string)
                 self._text_outputs["var_value"].configure(text=value_string)
                 self._text_outputs["var_rolls"].configure(text=rolls)
-                self._text_outputs["var_remaining"].configure(text=remaining_string)
-                self._text_outputs["var_result"].configure(text=str(self._state.result))
+                self._text_outputs["var_remaining"].configure(
+                    text=remaining_string)
+                self._text_outputs["var_result"].configure(
+                    text=str(self._state.result))
         return True
 
     def _button_save(self):
@@ -203,8 +316,10 @@ class GUI:
         self._reset()
         self._clear_screen()
         self._setup_window()
-        self._text_outputs["var_roll_nr"].configure(text=str(self._state.counter))
-        self._text_outputs["var_matching_hero"].configure(text=self._state.current_hero)
+        self._text_outputs["var_roll_nr"].configure(
+            text=str(self._state.counter))
+        self._text_outputs["var_matching_hero"].configure(
+            text=self._state.current_hero)
 
         return True
 
@@ -222,7 +337,8 @@ class GUI:
             self._clear_screen()
             self._setup_window()
             self._old_hero_input = self._state.current_hero
-        self._text_outputs["var_matching_hero"].configure(text=self._state.current_hero)
+        self._text_outputs["var_matching_hero"].configure(
+            text=self._state.current_hero)
 
     # tkinter trace method passes 3 arguments that are not used
     def _trace_test(self, *_):
@@ -249,25 +365,34 @@ class GUI:
             # if input is no misc roll
             if self._state.selection is None:
 
-                self._printable_options = []
+                self._printable_options = list()
 
-                # print number of matching entries plus all matching entries below
-                self._printable_options.append(str(len(self._state.option_list)) + " matches\n")
+                # print number of matching entries plus all matching entries
+                # below
+                self._printable_options.append(
+                    str(len(self._state.option_list)) + " matches\n")
 
                 for _, value in enumerate(self._state.option_list):
-                    #                    option_string = "{0} ({1})".format(value.name, value.category)
-                    option_string = "{0} ({1})".format(value.name, self._lang[value.category])
+                    #                    option_string = "{0} ({1})".format(
+                    #                    value.name, value.category)
+                    option_string = "{0} ({1})".format(value.name, self._lang[
+                        value.category])
                     self._printable_options.append(option_string)
 
                 # join list to string, each list element in new line
-                self._printable_options = "\n".join(map(str, self._printable_options))
+                self._printable_options = "\n".join(
+                    map(str, self._printable_options))
 
-                # if just 1 entry matches, this entry is used for the current test
-                if self._state.option_list and len(self._state.option_list) == 1:
+                # if just 1 entry matches, this entry is used for the current
+                # test
+                if self._state.option_list and len(
+                        self._state.option_list) == 1:
                     self._state.selection = self._state.option_list[0]
-                # if more than 1 entries match but 1 entry matches the user input
+                # if more than 1 entries match but 1 entry matches the user
+                # input
                 # exactly, this entry is used for the current test
-                elif self._state.option_list and self._state.test_input.lower() \
+                elif self._state.option_list and \
+                        self._state.test_input.lower() \
                         == self._state.option_list[0].name.lower():
                     self._state.selection = self._state.option_list[0]
                 else:
@@ -277,19 +402,23 @@ class GUI:
         self._setup_window()
         self._state.result = None
 
-        self._text_outputs["var_matching_hero"].configure(text=self._state.current_hero)
+        self._text_outputs["var_matching_hero"].configure(
+            text=self._state.current_hero)
 
         if self._state.selection is None:
-            self._text_outputs["var_matching"].configure(text=self._printable_options)
+            self._text_outputs["var_matching"].configure(
+                text=self._printable_options)
             return False
 
         if self._state.selection.category != "misc":
-            self._text_outputs["var_matching"].configure(text=self._state.selection.name)
+            self._text_outputs["var_matching"].configure(
+                text=self._state.selection.name)
 
         return True
 
     def _setup_window(self):
-        """ clear all widgets and, based on current test category, set up screen again """
+        """ clear all widgets and, based on current test category, set up
+        screen again """
 
         format_dict = {"none": self._setup_input_screen,
                        "special_skill": self._setup_special_skill_screen,
@@ -325,7 +454,8 @@ class GUI:
             column = value[3]
             sticky = value[4]
 
-            temp = tk.Label(self._window, text=text, bg="black", fg="white", font=self._font)
+            temp = tk.Label(self._window, text=text, bg="black", fg="white",
+                            font=self._font)
             temp.grid(row=row, column=column, sticky=sticky)
 
             self._text_outputs.update({key: temp})
@@ -357,7 +487,8 @@ class GUI:
             sticky = value[6]
             font = self._font
 
-            temp = tk.Button(self._window, text=text, width=width, command=command, font=font)
+            temp = tk.Button(self._window, text=text, width=width,
+                             command=command, font=font)
             if sticky:
                 temp.grid(row=row, column=column, sticky=sticky)
             else:

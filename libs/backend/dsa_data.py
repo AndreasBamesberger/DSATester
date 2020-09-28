@@ -1,4 +1,7 @@
-""" this file features a class for every hero entry that is covered by DSATester """
+"""
+This file features a class for every hero entry that is covered by
+DSATester.
+"""
 import re
 
 abbr = {'Mut': 'MU',
@@ -12,11 +15,17 @@ abbr = {'Mut': 'MU',
 
 
 def match_attrs(attrs_string):
-    """ the attributes related to a skill test are stored as 3 abbreviations,
-     e.g. " (KL/IN/CH)", this function separates them into a list with 3 entries
-     the string always starts with a whitespace
-     input: attrs_string:str, the string from the xml file
-     output: output_list:list, the 3 separated values """
+    """
+    The attributes related to a skill test are stored as 3 abbreviations,
+    e.g. " (KL/IN/CH)", this function separates them into a list with 3 entries.
+    The string always starts with a whitespace.
+
+    Parameters:
+        attrs_string (str): The string from the xml file
+
+    Returns:
+        output_list (list): The 3 separated values
+    """
 
     # regex: " (KL/IN/CH)" -> KL, IN, CH
     # ^, $: match from start to end of string
@@ -34,7 +43,24 @@ def match_attrs(attrs_string):
 
 
 class Misc:
-    """ object for misc dice sum tests """
+    """
+    Class for misc dice sum tests
+
+    ...
+
+    Attributes
+    ----------
+    name: str
+        Name of the test, in this case None
+    value: int
+        Value of the tested hero entry, in this case None
+    category: str
+        What kind of test is executed
+    dice_count: int
+        How many dice should be rolled
+    dice_eyes: int
+        What kind of dice should be rolled
+    """
 
     def __init__(self, dice_count, dice_eyes):
         self.name = None
@@ -51,7 +77,34 @@ class Misc:
 
 
 class Attribute:
-    """object for attributes like Mut, Klugheit etc"""
+    """
+    Class for attributes like Mut, Klugheit, etc.
+
+    ...
+
+    Attributes
+    ----------
+    name: str
+        Name of the test
+    value: int
+        Value of the tested hero entry, value from xml file plus modifier
+    category: str
+        What kind of test is executed
+    start: int
+        Start value of the attribute, when character was created
+    mod: int
+        Modifier for attribute, e.g. increased using experience
+    dict_value: int
+        Value of attribute read from xml file, without modifier
+    meditation: int
+        ?Change of attribute value due to meditation, not used?
+    mrmod: int
+        Magic resist modifier, not used
+    karmal: int
+        ?Additional karma points from going on karma quests, not used?
+    abbr: str
+        Abbreviation of the attribute, e.g. "KL" for Klugheit
+    """
 
     def __init__(self, attr_entry):
         self.category = "attr"
@@ -86,7 +139,8 @@ class Attribute:
         except KeyError:
             self.karmal = None
 
-        # some attribute values change over time, this change is saved in attr_dict['mod']
+        # some attribute values change over time, this change is saved in
+        # attr_dict['mod']
         if self.dict_value is not None and self.mod is not None:
             self.value = self.dict_value + self.mod
 
@@ -111,7 +165,31 @@ class Attribute:
 
 
 class Skill:
-    """object for skills like Zechen, Schwimmen etc"""
+    """
+    Class for attributes like Mut, Klugheit, etc.
+
+    ...
+
+    Attributes
+    ----------
+    name: str
+        Name of the test
+    value: int
+        Value of the tested hero entry, value from xml file plus modifier
+    category: str
+        What kind of test is executed
+    learn: str
+        How the skill was learned, not used
+    dict_tests: str
+        String holding the (usually) 3 attributes to test the skill, leading
+        with a whitespace, e.g. " ( KL/IN/CH)"
+    attrs: list
+        List holding the 3 attribute abbreviations extracted from dict_tests,
+        e.g. ["KL", "IN", "CH"]
+    handicap: str
+        How handicap from equipment influences the skill test, e.g. "BEx2",
+        not used
+    """
 
     def __init__(self, skill_entry):
         self.category = "skill"
@@ -157,7 +235,48 @@ class Skill:
 
 
 class Spell:
-    """object for spells like attributo, radau etc"""
+    """
+    Class for spells like Attributo, Radau, etc.
+
+    ...
+
+    Attributes
+    ----------
+    name: str
+        Name of the test
+    value: int
+        Value of the tested hero entry, value from xml file plus modifier
+    category: str
+        What kind of test is executed
+    comments: str
+        Additional notes for this entry, not used
+    origin: str
+        ?Where/How the spell was learned, what tradition, not used?
+    k: str
+        ?I don't know, it's in the xml and was extracted, not used?
+    cost: str
+        Spell cost, not used
+    learn: str
+        How the skill was learned, not used
+    range: str
+        Spell range, not used
+    representation: str
+        ?Representation of the spell, not used?
+    variant: str
+        ?Spell variant, not used?
+    effect_time: str
+        How long spell lasts, not used
+    charge_time: str
+        How long until spell is ready
+    comment: str
+        Another additional note for the spell, not used
+    dict_tests: str
+        String holding the (usually) 3 attributes to test the skill, leading
+        with a whitespace, e.g. " ( KL/IN/CH)"
+    attrs: list
+        List holding the 3 attribute abbreviations extracted from dict_tests,
+        e.g. ["KL", "IN", "CH"]
+    """
 
     def __init__(self, spell_entry):
         self.category = "spell"
@@ -247,7 +366,20 @@ class Spell:
 
 
 class FightTalent:
-    """ object for fight talents like raufen, ringen, hiebwaffen """
+    """
+    Class for fight talents like Raufen, Hiebwaffen, etc.
+
+    ...
+
+    Attributes
+    ----------
+    name: str
+        Name of the test
+    value: int
+        Value of the tested hero entry, value from xml file plus modifier
+    category: str
+        What kind of test is executed
+    """
 
     def __init__(self, fight_entry, mode):
         self.category = "fight_talent"
@@ -280,7 +412,20 @@ class FightTalent:
 
 
 class Advantage:
-    """ object for (dis)advantages like goldgier, neugier """
+    """
+    Class for (dis)advantages like Goldgier, Neugier, etc.
+
+    ...
+
+    Attributes
+    ----------
+    name: str
+        Name of the test
+    value: int
+        Value of the tested hero entry, value from xml file plus modifier
+    category: str
+        What kind of test is executed
+    """
 
     def __init__(self, advantage_entry):
         self.category = "advantage"
@@ -323,7 +468,20 @@ class Advantage:
 
 
 class SpecialSkill:
-    """ object for special skills like kulturkunde, wuchtschlag """
+    """
+    Class for special skills like Kulturkunde, Wuchtschlag, etc.
+
+    ...
+
+    Attributes
+    ----------
+    name: str
+        Name of the test
+    value: int
+        Value of the tested hero entry, value from xml file plus modifier
+    category: str
+        What kind of test is executed
+    """
 
     def __init__(self, special_skill_entry):
         self.category = "special_skill"
